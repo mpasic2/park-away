@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mapController">
+    <top>
+        <HBox prefHeight="130.0" prefWidth="421.0" BorderPane.alignment="CENTER">
+            <stylesheets>
+                <URL value="@/css/stil.css" />
+            </stylesheets>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <children>
+                <ImageView fx:id="imgAbout" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                    <HBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Button fx:id="dugmeMenuMap" mnemonicParsing="false">
+                    <HBox.margin>
+                        <Insets left="220.0" top="20.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <TextField editable="false" promptText="Search" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets left="80.0" right="-20.0" top="-350.0" />
+            </BorderPane.margin>
+         <effect>
+            <GaussianBlur />
+         </effect></TextField>
+    </center>
+    <bottom>
+        <HBox fx:id="ButtonBarMap" spacing="35.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
+                <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
+                <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
+                <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
+                <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+            </children>
+        </HBox>
+    </bottom>
+   <right>
+      <GridPane fx:id="GridFilterMap" prefHeight="570.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="dugmeMenuMapFilter" mnemonicParsing="false">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="148.0" top="-500.0" />
+               </GridPane.margin></Button>
+             
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="219.0" text="FILTERI" textAlignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="380.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="212.0" text="Ocjena parkinga">
+               <GridPane.margin>
+                  <Insets bottom="-440.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="207.0" text="Mjesto za invalide" textAlignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="-300.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="217.0" text="Natkriveni parking">
+               <GridPane.margin>
+                  <Insets bottom="-160.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="203.0" text="Radno vrijeme">
+               <GridPane.margin>
+                  <Insets bottom="-20.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="213.0" text="Stalni parking">
+               <GridPane.margin>
+                  <Insets bottom="120.0" />
+               </GridPane.margin></Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="208.0" text="Cijena parkinga">
+               <GridPane.margin>
+                  <Insets bottom="260.0" />
+               </GridPane.margin></Label>
+            <Slider majorTickUnit="1.0" max="5.0" showTickLabels="true" showTickMarks="true">
+               <GridPane.margin>
+                  <Insets bottom="-495.0" left="15.0" right="15.0" />
+               </GridPane.margin>
+            </Slider>
+            <CheckBox mnemonicParsing="false" text="DA">
+               <GridPane.margin>
+                  <Insets bottom="-340.0" left="50.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="NE">
+               <GridPane.margin>
+                  <Insets bottom="-340.0" left="110.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="DA">
+               <GridPane.margin>
+                  <Insets bottom="-200.0" left="50.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox mnemonicParsing="false" text="NE">
+               <GridPane.margin>
+                  <Insets bottom="-200.0" left="110.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <Slider majorTickUnit="6.0" max="24.0" showTickLabels="true" showTickMarks="true">
+               <GridPane.margin>
+                  <Insets bottom="-75.0" left="15.0" right="15.0" />
+               </GridPane.margin>
+            </Slider>
+            <CheckBox layoutX="120.0" layoutY="389.0" mnemonicParsing="false" text="NE">
+               <GridPane.margin>
+                  <Insets bottom="80.0" left="110.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox layoutX="60.0" layoutY="389.0" mnemonicParsing="false" text="DA">
+               <GridPane.margin>
+                  <Insets bottom="80.0" left="50.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" showTickLabels="true" showTickMarks="true">
+               <GridPane.margin>
+                  <Insets bottom="205.0" left="15.0" right="15.0" />
+               </GridPane.margin>
+            </Slider>
+         </children>
+         <BorderPane.margin>
+            <Insets top="-132.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </right>
+</BorderPane>
