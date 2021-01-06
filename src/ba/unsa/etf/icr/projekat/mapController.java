@@ -1,4 +1,4 @@
-package sample;
+package ba.unsa.etf.icr.projekat;
 
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
