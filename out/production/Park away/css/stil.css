@@ -42,3 +42,12 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+
+#textField{
+    -fx-border-radius: 15px;
+    -fx-background-radius: 10 10 10 10;
+}
+#linkBtnLogin{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}

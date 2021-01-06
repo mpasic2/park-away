@@ -16,21 +16,21 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <ImageView fx:id="imgAbout" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgAbout" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="20.0" top="20.0" />
                </HBox.margin>
             </ImageView>
             <Button fx:id="dugmeMenuMap" mnemonicParsing="false">
                <HBox.margin>
-                  <Insets left="220.0" top="20.0" />
+                  <Insets left="230.0" top="45.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
    </top>
    <center>
-      <TextField promptText="Search" BorderPane.alignment="CENTER">
+      <TextField fx:id="textField" promptText="Search" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="80.0" right="80.0" top="-350.0" />
          </BorderPane.margin></TextField>
