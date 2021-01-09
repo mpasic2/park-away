@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.mapController">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.loginContoler">
     <top>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -37,17 +37,6 @@
          </children>
       </VBox>
     </top>
-    <bottom>
-        <HBox fx:id="ButtonBarMap" spacing="35.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
-                <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-                <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
-                <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-                <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
-            </children>
-        </HBox>
-    </bottom>
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -66,20 +55,20 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <PasswordField promptText="Lozinka" GridPane.rowIndex="1">
-               <font>
-                  <Font size="17.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets top="2.0" />
-               </GridPane.margin></PasswordField>
-            <TextField prefWidth="320.0" promptText="Korisničko ime">
+            <TextField fx:id="fldUser" prefWidth="320.0" promptText="Korisničko ime">
                <font>
                   <Font size="17.0" />
                </font>
                <GridPane.margin>
                   <Insets bottom="2.0" />
                </GridPane.margin></TextField>
+            <PasswordField fx:id="fldPassword" promptText="Lozinka" GridPane.rowIndex="1">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets top="2.0" />
+               </GridPane.margin></PasswordField>
             <Button mnemonicParsing="false" text="Prijavite se" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="19.0" />
