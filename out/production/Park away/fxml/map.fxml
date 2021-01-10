@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.mapController">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
    <top>
       <HBox prefHeight="130.0" prefWidth="421.0" BorderPane.alignment="CENTER">
          <stylesheets>
@@ -30,7 +30,7 @@
       </HBox>
    </top>
    <center>
-      <TextField fx:id="textField" promptText="Search" BorderPane.alignment="CENTER">
+      <TextField fx:id="fldSearch" promptText="Search" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="80.0" right="80.0" top="-350.0" />
          </BorderPane.margin></TextField>
@@ -38,7 +38,7 @@
    <bottom>
       <HBox fx:id="ButtonBarMap" spacing="35.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
+            <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />
             <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
             <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
             <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />

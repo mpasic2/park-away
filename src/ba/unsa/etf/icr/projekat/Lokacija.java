@@ -9,7 +9,7 @@ public class Lokacija {
     SimpleObjectProperty<Grad> grad;
     SimpleStringProperty ulica;
 
-    public Lokacija(Integer lokacijaId, Grad grad, String ulica,Integer brojUlice) {
+    public Lokacija(Integer lokacijaId, Grad grad, String ulica) {
         this.lokacijaId = new SimpleIntegerProperty(lokacijaId) ;
         this.grad = new SimpleObjectProperty<Grad>(grad);
         this.ulica = new SimpleStringProperty(ulica);
