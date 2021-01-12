@@ -22,7 +22,7 @@
                         <Insets left="20.0" top="20.0" />
                     </HBox.margin>
                 </ImageView>
-                <Button fx:id="dugmeMenuMap" mnemonicParsing="false">
+                <Button fx:id="dugmeMenuMap2" mnemonicParsing="false">
                     <HBox.margin>
                         <Insets left="220.0" top="20.0" />
                     </HBox.margin>
