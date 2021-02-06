@@ -51,3 +51,7 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+.slider-style{
+    -jfx-default-track: #0080ff;
+    -jfx-default-thumb: #0080ff;
+}

@@ -2,6 +2,7 @@ package ba.unsa.etf.icr.projekat;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import com.jfoenix.transitions.hamburger.HamburgerNextArrowBasicTransition;
 import javafx.event.ActionEvent;
@@ -39,6 +40,8 @@ public class mapController implements Initializable {
         private JFXDrawer drawer;
         @FXML
         private JFXHamburger dugmeMenuMap;
+        @FXML
+        private JFXTimePicker Timer;
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
             Image image = new Image("/img/logo.png");
@@ -55,14 +58,18 @@ public class mapController implements Initializable {
 
 
             dugmeMenuMap.addEventHandler(MouseEvent.MOUSE_CLICKED, e-> {
-                HamburgerNextArrowBasicTransition transition = new HamburgerNextArrowBasicTransition(dugmeMenuMap);
-                transition.setRate(transition.getRate() * -1);
-                transition.play();
-                if (drawer.isOpened())
-                    drawer.close();
-                else
-                    drawer.open();
 
+
+                if (drawer.isOpened()) {
+                    drawer.close();
+                    String style= "-fx-min-width: 350px;";
+                    fldSearch.setStyle(style);
+                }
+                else {
+                    drawer.open();
+                    String style = "-fx-min-width: 162px;";
+                    fldSearch.setStyle(style);
+                }
             });
         }
 

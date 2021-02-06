@@ -1,100 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane fx:id="GridFilterMap" prefHeight="570.0" prefWidth="200.0" style="-fx-background-color: rgba(240, 248, 255, 0.342);" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="GridFilterMap" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="199.0" style="-fx-background-color: rgba(240, 248, 255, 0.342);" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
+      <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="100.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" prefHeight="18.0" prefWidth="219.0" text="FILTERI" textAlignment="CENTER">
-         <GridPane.margin>
-            <Insets bottom="380.0" />
-         </GridPane.margin>
-         <font>
-            <Font name="System Bold" size="17.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="212.0" text="Ocjena parkinga">
-         <GridPane.margin>
-            <Insets bottom="-440.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="207.0" text="Mjesto za invalide" textAlignment="CENTER">
-         <GridPane.margin>
-            <Insets bottom="-300.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="217.0" text="Natkriveni parking">
-         <GridPane.margin>
-            <Insets bottom="-160.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="203.0" text="Radno vrijeme">
-         <GridPane.margin>
-            <Insets bottom="-20.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="213.0" text="Stalni parking">
-         <GridPane.margin>
-            <Insets bottom="120.0" />
-         </GridPane.margin>
-      </Label>
-      <Label alignment="CENTER" layoutX="10.0" layoutY="223.0" prefHeight="18.0" prefWidth="208.0" text="Cijena parkinga">
-         <GridPane.margin>
-            <Insets bottom="260.0" />
-         </GridPane.margin>
-      </Label>
-      <Slider majorTickUnit="1.0" max="5.0" showTickLabels="true" showTickMarks="true">
-         <GridPane.margin>
-            <Insets bottom="-495.0" left="15.0" right="15.0" />
-         </GridPane.margin>
-      </Slider>
-      <CheckBox mnemonicParsing="false" text="DA">
-         <GridPane.margin>
-            <Insets bottom="-340.0" left="50.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <CheckBox mnemonicParsing="false" text="NE">
-         <GridPane.margin>
-            <Insets bottom="-340.0" left="110.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <CheckBox mnemonicParsing="false" text="DA">
-         <GridPane.margin>
-            <Insets bottom="-200.0" left="50.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <CheckBox mnemonicParsing="false" text="NE">
-         <GridPane.margin>
-            <Insets bottom="-200.0" left="110.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <Slider majorTickUnit="6.0" max="24.0" showTickLabels="true" showTickMarks="true">
-         <GridPane.margin>
-            <Insets bottom="-75.0" left="15.0" right="15.0" />
-         </GridPane.margin>
-      </Slider>
-      <CheckBox layoutX="120.0" layoutY="389.0" mnemonicParsing="false" text="NE">
-         <GridPane.margin>
-            <Insets bottom="80.0" left="110.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <CheckBox layoutX="60.0" layoutY="389.0" mnemonicParsing="false" text="DA">
-         <GridPane.margin>
-            <Insets bottom="80.0" left="50.0" />
-         </GridPane.margin>
-      </CheckBox>
-      <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" showTickLabels="true" showTickMarks="true">
-         <GridPane.margin>
-            <Insets bottom="205.0" left="15.0" right="15.0" />
-         </GridPane.margin>
-      </Slider>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <children>
+            <Label alignment="CENTER" layoutX="42.0" layoutY="5.0" prefHeight="18.0" prefWidth="115.0" text="Ocjena parkinga" />
+            <JFXSlider blockIncrement="1.0" layoutX="30.0" layoutY="33.0" max="5.0" prefWidth="140.0" styleClass="slider-style" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="14.0" prefHeight="18.0" prefWidth="191.0" text="Mjesto za invalide" textAlignment="CENTER" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="37.0" layoutY="48.0" text="DA" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="119.0" layoutY="48.0" text="NE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="68.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <children>
+            <Label alignment="CENTER" layoutX="36.0" layoutY="14.0" prefHeight="18.0" prefWidth="128.0" text="Natkriveni parking" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="36.0" layoutY="51.0" text="DA" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="120.0" layoutY="51.0" text="NE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="16.0" prefWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <children>
+            <Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" text="Radno vrijeme" />
+            <JFXTimePicker defaultColor="#0080ff" layoutX="53.0" layoutY="33.0" prefHeight="29.0" prefWidth="121.0" />
+            <JFXTimePicker defaultColor="#0080ff" layoutX="53.0" layoutY="72.0" prefHeight="29.0" prefWidth="121.0" />
+            <Label layoutX="16.0" layoutY="38.0" text="Od:" />
+            <Label layoutX="17.0" layoutY="78.0" text="Do:" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="43.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="5.0" prefHeight="18.0" prefWidth="128.0" text="Stalni parking" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="36.0" layoutY="41.0" text="DA" />
+            <JFXCheckBox checkedColor="#0080ff" layoutX="120.0" layoutY="41.0" text="NE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="82.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="56.0" prefHeight="24.0" prefWidth="163.0" text="FILTERI" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+
+         </children>
+      </AnchorPane>
+      <AnchorPane maxWidth="-Infinity" prefHeight="65.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <Label alignment="CENTER" layoutX="39.0" layoutY="14.0" prefHeight="18.0" prefWidth="121.0" text="Cijena parkinga" />
+            <JFXSlider blockIncrement="1.0" layoutX="30.0" layoutY="52.0" max="10.0" prefWidth="140.0" styleClass="slider-style" />
+         </children>
+      </AnchorPane>
    </children>
 </GridPane>
