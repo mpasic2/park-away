@@ -1,0 +1,14 @@
+--module-path
+/home/muhamed/javafx-sdk-15.0.1/lib
+--add-modules
+javafx.base,javafx.controls,javafx.fxml,javafx.graphics
+--add-exports
+javafx.graphics/com.sun.javafx.sg.prism=ALL-UNNAMED
+--add-exports
+javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED
+--add-exports
+javafx.base/com.sun.javafx.binding=ALL-UNNAMED
+--add-exports
+javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED
+--add-exports
+javafx.base/com.sun.javafx.event=ALL-UNNAMED 
