@@ -55,3 +55,19 @@
     -jfx-default-track: #0080ff;
     -jfx-default-thumb: #0080ff;
 }
+#bttnDodajVozilo{
+    -fx-background-image:  url("/img/baseline_add_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
+#btnSearch{
+    -fx-background-image:  url("/img/baseline_search_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: white;
+    -fx-border-width: 0;
+
+}
