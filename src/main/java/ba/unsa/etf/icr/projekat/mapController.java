@@ -14,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ public class mapController implements Initializable {
 
         public TextField fldSearch;
         private String user;
+        public WebView mapView;
         public mapController(String user) {
             this.user = user;
         }
@@ -43,9 +46,10 @@ public class mapController implements Initializable {
         public void initialize(URL url, ResourceBundle resourceBundle) {
             Image image = new Image("/img/logo.png");
             imgAbout.setImage(image);
-
+            mapView.getEngine().load(getClass().getResource("/HTML/googlemap.html").toString());
             GridPane gp = null;
             try {
+
                 gp = FXMLLoader.load(getClass().getResource("/fxml/mapFilter.fxml"));
                 drawer.setSidePane(gp);
             } catch (IOException e) {

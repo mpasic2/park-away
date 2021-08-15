@@ -39,9 +39,9 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="458.0" minHeight="0.0" prefHeight="70.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="34.0" minHeight="28.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="73.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="458.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="458.0" minHeight="7.0" prefHeight="83.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
@@ -51,7 +51,7 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <Label prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
+            <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
+            <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -67,7 +67,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="47.0" prefHeight="37.0" prefWidth="83.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="vrijeme" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="vrijeme" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="149.0" layoutY="47.0" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="2 KM" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="2 KM" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
