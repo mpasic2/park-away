@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -63,13 +62,9 @@ public class mapController implements Initializable {
 
                 if (drawer.isOpened()) {
                     drawer.close();
-                    String style= "-fx-min-width: 350px;";
-                    fldSearch.setStyle(style);
                 }
                 else {
                     drawer.open();
-                    String style = "-fx-min-width: 162px;";
-                    fldSearch.setStyle(style);
                 }
             });
         }
