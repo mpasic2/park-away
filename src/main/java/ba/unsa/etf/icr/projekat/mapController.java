@@ -29,7 +29,6 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class mapController implements Initializable {
         public ImageView imgAbout;
 
-        public TextField fldSearch;
         private String user;
         public WebView mapView;
         public mapController(String user) {
@@ -75,7 +74,7 @@ public class mapController implements Initializable {
             stage.setTitle("Login");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
-            Stage close=(Stage)fldSearch.getScene().getWindow();
+            Stage close=(Stage)mapView.getScene().getWindow();
             close.close();
         }
 

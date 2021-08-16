@@ -22,7 +22,7 @@
    </rowConstraints>
    <children>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css">
-         <WebView fx:id="mapView" layoutX="4.0" layoutY="8.0" prefHeight="504.0" prefWidth="400.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+         <WebView fx:id="mapView" layoutX="4.0" layoutY="8.0" prefHeight="504.0" prefWidth="400.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" />
          <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" direction="RIGHT" layoutX="190.0" prefHeight="619.0" prefWidth="210.0" />
          <GridPane prefHeight="106.0" prefWidth="400.0">
            <columnConstraints>
