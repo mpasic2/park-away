@@ -11,11 +11,9 @@ import java.io.IOException;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class ParkingDetailsController {
-    public ImageView slikaParkinga;
+public class ProfilController {
+    public ImageView profileImg;
 
-    public void backParking(ActionEvent actionEvent) {
-    }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
@@ -28,7 +26,7 @@ public class ParkingDetailsController {
         stage.setTitle("Mapa");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Stage close=(Stage)slikaParkinga.getScene().getWindow();
+        Stage close=(Stage)profileImg.getScene().getWindow();
         close.close();
 
 
@@ -40,7 +38,7 @@ public class ParkingDetailsController {
         stage.setTitle("Profil");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Stage close=(Stage)slikaParkinga.getScene().getWindow();
+        Stage close=(Stage)profileImg.getScene().getWindow();
         close.close();
     }
 
@@ -55,7 +53,7 @@ public class ParkingDetailsController {
         stage.setTitle("Mapa");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Stage close=(Stage)slikaParkinga.getScene().getWindow();
+        Stage close=(Stage)profileImg.getScene().getWindow();
         close.close();
     }
 
@@ -65,7 +63,7 @@ public class ParkingDetailsController {
         stage.setTitle("Status vozila");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Stage close=(Stage)slikaParkinga.getScene().getWindow();
+        Stage close=(Stage)profileImg.getScene().getWindow();
         close.close();
     }
 
@@ -75,7 +73,7 @@ public class ParkingDetailsController {
         stage.setTitle("Status vozila");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Stage close=(Stage)slikaParkinga.getScene().getWindow();
+        Stage close=(Stage)profileImg.getScene().getWindow();
         close.close();
     }
 }

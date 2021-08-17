@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.StatusController">
    <top>
        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="400.0" BorderPane.alignment="CENTER">
            <stylesheets>
@@ -76,7 +76,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="149.0" layoutY="47.0" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="ParkingMjesto" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lblId" layoutX="149.0" layoutY="47.0" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="ParkingMjesto" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -116,11 +116,11 @@
    <bottom>
       <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
-            <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />
+             <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction"/>
+             <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction"/>
+             <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction"/>
+             <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction"/>
          </children>
       </HBox>
    </bottom>

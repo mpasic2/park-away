@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,8 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class mapController implements Initializable {
         public ImageView imgAbout;
+
+
 
         private String user;
         public WebView mapView;
@@ -78,6 +81,50 @@ public class mapController implements Initializable {
             close.close();
         }
 
+    public void profileAction(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/profil.fxml"));
+        stage.setTitle("Profil");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)imgAbout.getScene().getWindow();
+        close.close();
     }
+
+    public void locationAction(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        loginContoler lgn = new loginContoler();
+        String ime = lgn.name;
+        mapController cont=new mapController(ime);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
+        loader.setController(cont);
+        Parent root = loader.load();
+        stage.setTitle("Mapa");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)imgAbout.getScene().getWindow();
+        close.close();
+    }
+
+    public void carMapAction(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/parkingDetails.fxml"));
+        stage.setTitle("Status vozila");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)imgAbout.getScene().getWindow();
+        close.close();
+    }
+
+    public void messageAction(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila.fxml"));
+        stage.setTitle("Status vozila");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)imgAbout.getScene().getWindow();
+        close.close();
+    }
+}
 
 

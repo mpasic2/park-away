@@ -25,6 +25,7 @@ public class loginContoler implements Initializable {
     public TextField fldUser;
     public Label fldGreska;
     private ParkAwayDAO  dao = new ParkAwayDAO();
+    public String name;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,6 +37,7 @@ public class loginContoler implements Initializable {
     public void prijava(ActionEvent actionEvent) throws IOException {
         ObservableList<Korisnik> k = dao.dajKorisnike();
         String mail = fldUser.getText();
+        name = mail;
         String password = fldPassword.getText();
         int j = 0;
         for(int i = 0;i < k.size();i++){
