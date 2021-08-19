@@ -62,4 +62,14 @@ public class loginContoler implements Initializable {
             close.close();
         }
     }
+
+    public void registar(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/registracija_korisnik_personal.fxml"));
+        stage.setTitle("Registracija");
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)fldGreska.getScene().getWindow();
+        close.close();
+    }
 }
