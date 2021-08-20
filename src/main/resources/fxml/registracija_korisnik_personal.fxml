@@ -3,7 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -54,10 +54,10 @@
             <ColumnConstraints />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="55.99999389648438" minHeight="36.00001678466798" prefHeight="55.99999389648438" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="55.199983215332026" minHeight="35.20000610351562" prefHeight="35.20000610351562" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="45.0" minHeight="45.0" prefHeight="45.0" valignment="CENTER" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="79.99996337890627" minHeight="11.199975585937523" prefHeight="39.99998779296874" valignment="CENTER" vgrow="SOMETIMES" />
@@ -65,25 +65,22 @@
          </rowConstraints>
          <children>
             <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="357.0" promptText="Ime i prezime" GridPane.columnSpan="2" />
-            <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Email" GridPane.columnSpan="2" GridPane.rowIndex="4" />
             <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" prefWidth="132.0" promptText="Broj telefona" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Adresa stanovanja" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-            <TextField layoutX="20.0" layoutY="217.0" maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Lozinka" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-            <TextField layoutX="20.0" layoutY="282.0" maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Potvrda lozinke" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" text="Odustani" GridPane.rowIndex="7">
+            <Button mnemonicParsing="false" prefHeight="45.0" text="Odustani" GridPane.rowIndex="7">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" text="Nastavi" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" text="Nastavi" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                <font>
                   <Font size="16.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="115.0" />
+                  <Insets />
                </GridPane.margin>
             </Button>
-            <ChoiceBox prefHeight="35.0" prefWidth="370.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <ComboBox maxWidth="1.7976931348623157E308" prefHeight="45.0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
          </children>
          <padding>
             <Insets bottom="20.0" left="10.0" right="10.0" top="10.0" />
