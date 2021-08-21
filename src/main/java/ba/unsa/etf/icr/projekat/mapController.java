@@ -108,7 +108,7 @@ public class mapController implements Initializable {
 
     public void carMapAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/parkingDetails.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila.fxml"));
         stage.setTitle("Status vozila");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
@@ -118,8 +118,8 @@ public class mapController implements Initializable {
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila.fxml"));
-        stage.setTitle("Status vozila");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/historijaPlacanja.fxml"));
+        stage.setTitle("Historija placanja");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
         Stage close=(Stage)imgAbout.getScene().getWindow();

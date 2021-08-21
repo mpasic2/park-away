@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.HistorijaPlacanjaController">
     <top>
-        <AnchorPane prefHeight="162.0" prefWidth="400.0">
+        <AnchorPane prefHeight="117.0" prefWidth="400.0">
             <stylesheets>
                 <URL value="@/css/stil.css" />
             </stylesheets>
@@ -33,19 +33,19 @@
                   <Image url="@../img/logo.png" />
                </image>
                 </ImageView>
-              <TextField fx:id="fldSearch" layoutX="156.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="173.0" promptText="Search" AnchorPane.leftAnchor="158.0">
+              <TextField fx:id="fldSearch" layoutX="157.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="173.0" promptText="Search" AnchorPane.leftAnchor="157.0">
                <HBox.margin>
                   <Insets left="-220.0" top="80.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
+            <Button fx:id="btnSearch" layoutX="337.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="337.0">
                <HBox.margin>
                   <Insets left="3.0" right="30.0" top="80.0" />
                </HBox.margin>
             </Button>
-            <Label layoutX="33.0" layoutY="111.0" text="Parkinzi" textFill="WHITE">
+            <Label fx:id="lblId" layoutX="94.0" layoutY="33.0" text="Historija plačanja" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
             </children>
@@ -56,29 +56,27 @@
          <children>
               <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
                   <children>
-                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
-                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-                      <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" />
-                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />
+                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction"/>
+                      <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction"/>
+                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction"/>
+                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction"/>
                   </children>
               </HBox>
          </children>
       </VBox>
     </bottom>
    <center>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="356.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+      <TableView maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn prefWidth="144.0" text="Naziv parkinga" />
-          <TableColumn prefWidth="134.0" text="Lokacija" />
-          <TableColumn prefWidth="61.0" text="Br. dostupnih mjesta" />
+            <TableColumn prefWidth="93.19997787475586" text="Naziv parkinga" />
+          <TableColumn prefWidth="77.60004425048828" text="Lokacija" />
+          <TableColumn prefWidth="124.80000305175781" text="Br. dostupnih mjesta" />
+            <TableColumn prefWidth="43.79998779296875" text="Više" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="15.0" left="30.0" right="30.0" />
          </BorderPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
       </TableView>
    </center>
 </BorderPane>
