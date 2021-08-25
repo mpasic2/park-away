@@ -31,6 +31,8 @@ public class loginContoler implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image image = new Image("/img/logo.png");
         imgAbout.setImage(image);
+        fldUser.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        fldPassword.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
 
     }
 
