@@ -79,3 +79,8 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+
+.neValid{
+
+    -fx-border-color: red;
+}

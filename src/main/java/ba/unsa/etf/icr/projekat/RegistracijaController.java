@@ -21,9 +21,8 @@ public class RegistracijaController implements Initializable {
     public TextField fldAdresa;
     public Button btnQuit;
     public Button btnNext;
-    public ComboBox choiceGrad;
+    public ComboBox<Grad> choiceGrad;
     public TextField fldPrezime;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceGrad.setPromptText("Grad stanovanja");
@@ -55,7 +54,51 @@ public class RegistracijaController implements Initializable {
     }
 
     public void Dalje(ActionEvent actionEvent) throws IOException {
+        if(validacija()==false){
 
+        };
 
+    }
+
+    Boolean validacija(){
+        String ime = fldIme.getText();
+        String prezime = fldPrezime.getText();
+        String adresa = fldAdresa.getText();
+        String telefon = fldTelefon.getText();
+        Grad gr = choiceGrad.getValue();
+        Boolean validno = true;
+        if(ime.length()==0){
+            validno = false;
+            fldIme.getStyleClass().add("neValid");
+        }
+        else{
+            fldIme.getStyleClass().remove("neValid");
+        }
+
+        if(prezime.length() == 0){
+            validno = false;
+            fldPrezime.getStyleClass().add("neValid");
+        }else{
+            fldPrezime.getStyleClass().remove("neValid");
+        }
+        if(adresa.length() == 0){
+            validno = false;
+            fldAdresa.getStyleClass().add("neValid");
+        }else{
+            fldAdresa.getStyleClass().remove("neValid");
+        }
+        if(telefon.length() == 0){
+            validno = false;
+            fldTelefon.getStyleClass().add("neValid");
+        }else{
+            fldTelefon.getStyleClass().remove("neValid");
+        }
+        if(gr == null){
+            validno = false;
+            choiceGrad.getStyleClass().add("neValid");
+        }else{
+            choiceGrad.getStyleClass().remove("neValid");
+        }
+        return validno;
     }
 }
