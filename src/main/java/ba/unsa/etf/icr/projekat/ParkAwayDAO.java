@@ -67,7 +67,7 @@ public class ParkAwayDAO {
             ResultSet resultSet = getUsers.executeQuery();
             while(resultSet.next()) {
                 Lokacija l = pronadjiUlicu(resultSet.getInt(5));
-                Korisnik korisnik = new Korisnik(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),l, resultSet.getString(6),resultSet.getString(7),resultSet.getString(8),resultSet.getString(9));
+                Korisnik korisnik = new Korisnik(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),l, resultSet.getInt(6),resultSet.getString(7),resultSet.getString(8),resultSet.getString(9));
                 korisnici.add(korisnik);
             }
         } catch (SQLException throwables) {

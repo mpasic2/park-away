@@ -67,7 +67,9 @@ public class loginContoler implements Initializable {
 
     public void registar(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/registracija_korisnik_personal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_korisnik_personal.fxml"));
+        loader.setController(new RegistracijaPersonalController(null));
+        Parent root = loader.load();
         stage.setTitle("Registracija");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();

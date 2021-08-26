@@ -10,18 +10,18 @@ public class Korisnik {
     SimpleStringProperty prezime;
     SimpleStringProperty brojTelefona;
     SimpleObjectProperty<Lokacija> adresaStanovanja;
-    SimpleStringProperty brojRacuna;
+    SimpleIntegerProperty brojRacuna;
     SimpleStringProperty slika;
     SimpleStringProperty email;
     SimpleStringProperty lozinka;
 
-    public Korisnik(Integer korisnikId, String ime, String prezime, String brojTelefona, Lokacija adresaStanovanja, String brojRacuna, String slika, String email, String lozinka) {
+    public Korisnik(Integer korisnikId, String ime, String prezime, String brojTelefona, Lokacija adresaStanovanja, Integer brojRacuna, String slika, String email, String lozinka) {
         this.korisnikId = new SimpleIntegerProperty(korisnikId);
         this.ime = new SimpleStringProperty(ime);
         this.prezime = new SimpleStringProperty(prezime);
         this.brojTelefona = new SimpleStringProperty(brojTelefona);
         this.adresaStanovanja = new SimpleObjectProperty<Lokacija>(adresaStanovanja);
-        this.brojRacuna = new SimpleStringProperty(brojRacuna);
+        this.brojRacuna = new SimpleIntegerProperty(brojRacuna);
         this.slika = new SimpleStringProperty(slika);
         this.email = new SimpleStringProperty(email);
         this.lozinka = new SimpleStringProperty(lozinka);
@@ -87,15 +87,15 @@ public class Korisnik {
         this.adresaStanovanja.set(adresaStanovanja);
     }
 
-    public String getBrojRacuna() {
+    public int getBrojRacuna() {
         return brojRacuna.get();
     }
 
-    public SimpleStringProperty brojRacunaProperty() {
+    public SimpleIntegerProperty brojRacunaProperty() {
         return brojRacuna;
     }
 
-    public void setBrojRacuna(String brojRacuna) {
+    public void setBrojRacuna(int brojRacuna) {
         this.brojRacuna.set(brojRacuna);
     }
 

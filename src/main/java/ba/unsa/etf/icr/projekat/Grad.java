@@ -34,4 +34,9 @@ public class Grad {
         public void setNaziv(String naziv) {
                 this.naziv.set(naziv);
         }
+
+        @Override
+        public String toString() {
+                return getNaziv();
+        }
 }

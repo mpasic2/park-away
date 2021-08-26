@@ -15,7 +15,7 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class RegistracijaController implements Initializable {
+public class RegistracijaPersonalController implements Initializable {
     public TextField fldIme;
     public TextField fldTelefon;
     public TextField fldAdresa;
@@ -23,13 +23,27 @@ public class RegistracijaController implements Initializable {
     public Button btnNext;
     public ComboBox<Grad> choiceGrad;
     public TextField fldPrezime;
+    private ParkAwayDAO dao = new ParkAwayDAO();
+    private Korisnik korisnik;
+    public RegistracijaPersonalController(Korisnik k) {
+        korisnik = k;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(korisnik!=null){
+            fldTelefon.setText(korisnik.getBrojTelefona());
+            fldIme.setText(korisnik.getIme());
+            fldPrezime.setText(korisnik.getPrezime());
+            fldAdresa.setText(korisnik.getAdresaStanovanja().getUlica());
+            choiceGrad.getSelectionModel().select(korisnik.getAdresaStanovanja().getGrad());
+        }
         choiceGrad.setPromptText("Grad stanovanja");
         fldAdresa.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
         fldIme.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
         fldPrezime.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
         fldTelefon.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        choiceGrad.setItems(dao.dajGradove());
     }
 
     public void odustani(ActionEvent actionEvent) throws IOException {
@@ -54,13 +68,19 @@ public class RegistracijaController implements Initializable {
     }
 
     public void Dalje(ActionEvent actionEvent) throws IOException {
-        if(validacija()==false){
-
-        };
+        if(validacijaPersonal()==true){
+            Stage stage=new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/registracija_uplata.fxml"));
+            stage.setTitle("Registracija");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.show();
+            Stage close=(Stage)fldTelefon.getScene().getWindow();
+            close.close();
+        }
 
     }
 
-    Boolean validacija(){
+    Boolean validacijaPersonal(){
         String ime = fldIme.getText();
         String prezime = fldPrezime.getText();
         String adresa = fldAdresa.getText();
