@@ -3,7 +3,6 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
@@ -25,17 +24,12 @@
                   <Image url="@../img/logo.png" />
                </image>
                 </ImageView>
-                <Button fx:id="dugmeMenuMap" layoutX="322.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="33.0" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="20.0">
-                    <HBox.margin>
-                        <Insets left="240.0" right="30.0" top="20.0" />
-                    </HBox.margin>
-                </Button>
               <TextField fx:id="fldSearch" layoutX="156.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="173.0" promptText="Search" AnchorPane.leftAnchor="158.0">
                <HBox.margin>
                   <Insets left="-220.0" top="80.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
+            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pretraziListu" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
                <HBox.margin>
                   <Insets left="3.0" right="30.0" top="80.0" />
                </HBox.margin>

@@ -29,7 +29,7 @@
                   <Insets left="-220.0" top="80.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
+            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#pretraziListu" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
                <HBox.margin>
                   <Insets left="3.0" right="30.0" top="80.0" />
                </HBox.margin>
