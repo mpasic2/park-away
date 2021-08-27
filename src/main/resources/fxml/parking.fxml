@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.ParkingListController">
     <top>
         <AnchorPane prefHeight="96.0" prefWidth="400.0">
             <stylesheets>
@@ -24,11 +24,6 @@
                   <Image url="@../img/logo.png" />
                </image>
                 </ImageView>
-                <Button fx:id="dugmeMenuMap" layoutX="322.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="33.0" AnchorPane.leftAnchor="325.0" AnchorPane.topAnchor="20.0">
-                    <HBox.margin>
-                        <Insets left="240.0" right="30.0" top="20.0" />
-                    </HBox.margin>
-                </Button>
               <TextField fx:id="fldSearch" layoutX="156.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="173.0" promptText="Search" AnchorPane.leftAnchor="158.0">
                <HBox.margin>
                   <Insets left="-220.0" top="80.0" />
@@ -47,26 +42,25 @@
          <children>
               <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
                   <children>
-                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
-                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-                      <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
-                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />
+                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" />
+                      <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" />
+                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" />
+                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" />
                   </children>
               </HBox>
          </children>
       </VBox>
     </bottom>
    <center>
-      <TableView maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableViewParkinzi" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="382.0" tableMenuButtonVisible="true" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn prefWidth="93.19997787475586" text="Naziv parkinga" />
-          <TableColumn prefWidth="77.60004425048828" text="Lokacija" />
-          <TableColumn prefWidth="124.80000305175781" text="Br. dostupnih mjesta" />
-            <TableColumn prefWidth="43.79998779296875" text="Više" />
+            <TableColumn fx:id="colNaziv" maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="118.0" text="Naziv parkinga" />
+          <TableColumn fx:id="colLokacija" maxWidth="1.7976931348623157E308" minWidth="118.0" prefWidth="184.0" text="Lokacija" />
+          <TableColumn fx:id="colBrojDostupnihMjesta" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="118.0" text="Br. dostupnih mjesta" />
         </columns>
          <BorderPane.margin>
-            <Insets bottom="15.0" left="30.0" right="30.0" />
+            <Insets bottom="15.0" left="10.0" right="10.0" />
          </BorderPane.margin>
       </TableView>
    </center>

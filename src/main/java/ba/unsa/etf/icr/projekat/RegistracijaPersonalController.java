@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,6 +61,7 @@ public class RegistracijaPersonalController implements Initializable {
             Stage stage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
             stage.setTitle("Registracija");
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
             Stage close=(Stage)fldTelefon.getScene().getWindow();
@@ -72,6 +74,7 @@ public class RegistracijaPersonalController implements Initializable {
             Stage stage=new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/registracija_uplata.fxml"));
             stage.setTitle("Registracija");
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
             Stage close=(Stage)fldTelefon.getScene().getWindow();

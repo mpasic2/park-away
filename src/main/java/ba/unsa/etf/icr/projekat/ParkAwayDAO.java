@@ -4,16 +4,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalTime;
 
 public class ParkAwayDAO {
     private Connection con;
-    private PreparedStatement getUsers,getCity,getLocation;
+    private static ParkAwayDAO instance;
+    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree;
+    public static ParkAwayDAO getInstance() {
+        if (instance == null) instance = new ParkAwayDAO();
+        return instance;
+    }
     public ParkAwayDAO() {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:parkAwayDB.db");
             getCity = con.prepareStatement("Select * from grad");
             getLocation = con.prepareStatement("SELECT * FROM Lokacja");
+            getParking = con.prepareStatement("SELECT * FROM Parking");
+            getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
@@ -74,5 +82,32 @@ public class ParkAwayDAO {
             throwables.printStackTrace();
         }
         return korisnici;
+    }
+    public ObservableList<Parking> dajParkinge(){
+        ObservableList<Parking> parkinzi = FXCollections.observableArrayList();
+        try {
+            ResultSet resultSet = getParking.executeQuery();
+            while(resultSet.next()) {
+                Lokacija l = pronadjiUlicu(resultSet.getInt(3));
+                Parking parking = new Parking(resultSet.getInt(1),resultSet.getString(2),l,
+                        resultSet.getInt(4),LocalTime.parse(resultSet.getString(5)), LocalTime.parse(resultSet.getString(6)),
+                        resultSet.getInt(7),resultSet.getInt(8),resultSet.getString(9));
+                parkinzi.add(parking);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return parkinzi;
+    }
+    public Integer dajBrojSlobodnihMjesta(int id) {
+        try {
+            getFree.setInt(1, id);
+            ResultSet rs = getFree.executeQuery();
+            if (!rs.next()) return null;
+            return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

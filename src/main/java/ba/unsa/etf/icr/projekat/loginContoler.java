@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,6 +59,7 @@ public class loginContoler implements Initializable {
             loader.setController(cont);
             Parent root = loader.load();
             stage.setTitle("Mapa");
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
             Stage close=(Stage)fldGreska.getScene().getWindow();
@@ -71,6 +73,7 @@ public class loginContoler implements Initializable {
         loader.setController(new RegistracijaPersonalController(null));
         Parent root = loader.load();
         stage.setTitle("Registracija");
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
         Stage close=(Stage)fldGreska.getScene().getWindow();

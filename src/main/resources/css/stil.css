@@ -83,3 +83,10 @@
 .neValid{
     -fx-border-color: red;
 }
+#btnListaParkinga{
+    -fx-background-image:  url("/img/baseline_view_list_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: right;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
