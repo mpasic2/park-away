@@ -1,5 +1,6 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.Navigation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +24,7 @@ public class HistorijaPlacanjaController {
     }
 
     public void profileAction(ActionEvent actionEvent) throws IOException {
-        navigation.profileAction(actionEvent);
+        navigation.profileAction(actionEvent,null);
     }
 
     public void locationAction(ActionEvent actionEvent) throws IOException {

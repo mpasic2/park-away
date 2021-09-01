@@ -1,12 +1,9 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Parking {

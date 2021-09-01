@@ -1,5 +1,9 @@
 package ba.unsa.etf.icr.projekat;
 
+import ba.unsa.etf.icr.projekat.model.Grad;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
+import ba.unsa.etf.icr.projekat.model.Lokacija;
+import ba.unsa.etf.icr.projekat.model.Parking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

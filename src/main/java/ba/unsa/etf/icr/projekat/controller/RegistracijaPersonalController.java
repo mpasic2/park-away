@@ -1,5 +1,10 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.controller.RegistarcijaUplataController;
+import ba.unsa.etf.icr.projekat.model.Grad;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
+import ba.unsa.etf.icr.projekat.model.Lokacija;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -73,7 +78,7 @@ public class RegistracijaPersonalController implements Initializable {
         if(validacijaPersonal()==true){
             korisnik = new Korisnik(0,fldIme.getText(),fldPrezime.getText(),fldTelefon.getText(),new Lokacija(0,choiceGrad.getValue(),fldAdresa.getText()),0,"","","");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_uplata.fxml"));
-            loader.setController(new RegistarcijaUplata(korisnik));
+            loader.setController(new RegistarcijaUplataController(korisnik,null));
             Parent root = loader.load();
             Stage stage=new Stage();
             stage.setTitle("Registracija");
@@ -127,4 +132,6 @@ public class RegistracijaPersonalController implements Initializable {
         }
         return validno;
     }
+
+
 }

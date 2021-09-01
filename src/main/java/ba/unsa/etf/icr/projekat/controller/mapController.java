@@ -1,5 +1,9 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.Navigation;
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.model.Grad;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTimePicker;
@@ -36,14 +40,14 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 public class mapController implements Initializable {
     public ImageView imgAbout;
     public Button btnListaParkinga;
-    private String user;
+    private Korisnik user;
     public WebView mapView;
     public TextField fldPretraga;
     public ObservableList<Grad> nadjeniGradovi= FXCollections.observableArrayList();
     ParkAwayDAO dao = new ParkAwayDAO();
     public ObservableList<Grad> gradovi= dao.dajGradove();
 
-    public mapController(String user) {
+    public mapController(Korisnik user) {
         this.user = user;
     }
 
@@ -56,6 +60,7 @@ public class mapController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println(user);
         Image image = new Image("/img/logo.png");
         imgAbout.setImage(image);
         mapView.getEngine().load(getClass().getResource("/HTML/googlemap.html").toString());
@@ -108,7 +113,7 @@ public class mapController implements Initializable {
     }
 
     public void profileAction(ActionEvent actionEvent) throws IOException {
-        navigation.profileAction(actionEvent);
+        navigation.profileAction(actionEvent,user);
     }
 
     public void locationAction(ActionEvent actionEvent) throws IOException {

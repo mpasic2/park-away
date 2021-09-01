@@ -1,5 +1,7 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -25,8 +27,8 @@ public class loginContoler implements Initializable {
     public PasswordField fldPassword;
     public TextField fldUser;
     public Label fldGreska;
-    private ParkAwayDAO  dao = new ParkAwayDAO();
-    public String name;
+    private ParkAwayDAO dao = new ParkAwayDAO();
+    public Korisnik korisnik;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,12 +42,13 @@ public class loginContoler implements Initializable {
     public void prijava(ActionEvent actionEvent) throws IOException {
         ObservableList<Korisnik> k = dao.dajKorisnike();
         String mail = fldUser.getText();
-        name = mail;
         String password = fldPassword.getText();
         int j = 0;
+        korisnik = k.get(0);
         for(int i = 0;i < k.size();i++){
             if(mail.equals(k.get(i).getEmail())  && password.equals(k.get(i).getLozinka())){
                 j++;
+                korisnik = k.get(i);
                 break;
             }
         }
@@ -54,7 +57,7 @@ public class loginContoler implements Initializable {
             fldUser.requestFocus();
         }else{
             Stage stage=new Stage();
-            mapController cont=new mapController(mail);
+            mapController cont=new mapController(korisnik);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
             loader.setController(cont);
             Parent root = loader.load();

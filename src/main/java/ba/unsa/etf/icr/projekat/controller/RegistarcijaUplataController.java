@@ -1,5 +1,7 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.model.Kartica;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +22,7 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class RegistarcijaUplata implements Initializable {
+public class RegistarcijaUplataController implements Initializable {
 
     public TextField fldImeKartica;
     public TextField fldBrojCard;
@@ -30,8 +32,10 @@ public class RegistarcijaUplata implements Initializable {
     public ComboBox<Integer> choiceGodin;
     public ComboBox<Integer> choiceMjesec;
     private Korisnik korisnik;
-    public RegistarcijaUplata(Korisnik k) {
+    private Kartica kartica;
+    public RegistarcijaUplataController(Korisnik k, Kartica kar) {
         korisnik = k;
+        kartica = kar;
     }
 
     @Override
@@ -88,8 +92,26 @@ public class RegistarcijaUplata implements Initializable {
         }
     }
 
-    public void nastavi(ActionEvent actionEvent) {
-        validacijaUplata();
+    public void nastavi(ActionEvent actionEvent) throws IOException {
+        if(validacijaUplata()){
+            Integer tip = -1;
+            if(checkMaster.selectedProperty().get()){
+                tip = 0;// 0 = Master Card
+            }else if(checkPaypal.selectedProperty().get()){
+                tip = 1;
+            }
+            kartica = new Kartica(0,fldImeKartica.getText(),tip,fldBrojCard.getText(),choiceGodin.getValue(),choiceMjesec.getValue(),Integer.parseInt(fldCvc.getText()));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_login_data.fxml"));
+            loader.setController(new RegistracijaLogInInfoController(korisnik,kartica));
+            Parent root = loader.load();
+            Stage stage=new Stage();
+            stage.setTitle("Registracija");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.show();
+            Stage close=(Stage)fldBrojCard.getScene().getWindow();
+            close.close();
+        };
     }
 
     Boolean validacijaUplata(){

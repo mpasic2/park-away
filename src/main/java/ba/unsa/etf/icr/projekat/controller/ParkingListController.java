@@ -1,15 +1,14 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.controller;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import ba.unsa.etf.icr.projekat.Navigation;
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.model.Parking;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -17,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ParkingListController implements Initializable {
@@ -37,7 +35,7 @@ public class ParkingListController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableViewParkinzi.setItems(listParking);
         colNaziv.setCellValueFactory(new PropertyValueFactory("naziv"));
-        colLokacija.setCellValueFactory( entry -> new SimpleObjectProperty(entry.getValue().lokacija.getValue().getUlica()));
+        colLokacija.setCellValueFactory( entry -> new SimpleObjectProperty(entry.getValue().getLokacija().getUlica()));
         colBrojDostupnihMjesta.setCellValueFactory(entry -> new SimpleObjectProperty(dao.dajBrojSlobodnihMjesta(entry.getValue().getParkingId())));
         fldSearch. textProperty().addListener((obs, oldText, newText) -> {
             search();
@@ -68,7 +66,7 @@ public class ParkingListController implements Initializable {
     }
 
     public void profileAction(ActionEvent actionEvent) throws IOException {
-        navigation.profileAction(actionEvent);
+        navigation.profileAction(actionEvent,null);
     }
 
     public void locationAction(ActionEvent actionEvent) throws IOException {

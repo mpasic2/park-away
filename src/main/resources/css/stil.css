@@ -102,3 +102,13 @@
 .choiceMjesec{
     -fx-font-size : 16px;
 }
+
+.zeleniProgress  {
+    -fx-accent: green;
+}
+.crveniProgress {
+    -fx-accent: red;
+}
+.zutiProgress {
+    -fx-accent: yellow;
+}

@@ -1,4 +1,4 @@
-package ba.unsa.etf.icr.projekat;
+package ba.unsa.etf.icr.projekat.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;

@@ -22,7 +22,7 @@ public class StatusController {
     }
 
     public void profileAction(ActionEvent actionEvent) throws IOException {
-        navigation.profileAction(actionEvent);
+        navigation.profileAction(actionEvent,null);
     }
 
     public void locationAction(ActionEvent actionEvent) throws IOException {

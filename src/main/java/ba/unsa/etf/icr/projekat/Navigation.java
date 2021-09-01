@@ -1,5 +1,9 @@
 package ba.unsa.etf.icr.projekat;
 
+import ba.unsa.etf.icr.projekat.controller.ProfilController;
+import ba.unsa.etf.icr.projekat.controller.loginContoler;
+import ba.unsa.etf.icr.projekat.controller.mapController;
+import ba.unsa.etf.icr.projekat.model.Korisnik;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -34,9 +38,13 @@ public class Navigation {
 
     }
 
-    public void profileAction(ActionEvent actionEvent) throws IOException {
+    public void profileAction(ActionEvent actionEvent,Korisnik user) throws IOException {
+
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/profil.fxml"));
+        ProfilController cont=new ProfilController(user);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profil.fxml"));
+        loader.setController(cont);
+        Parent root = loader.load();
         stage.setTitle("Profil");
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.initStyle(StageStyle.UNDECORATED);
@@ -54,7 +62,7 @@ public class Navigation {
     public void locationAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
         loginContoler lgn = new loginContoler();
-        String ime = lgn.name;
+        Korisnik ime = lgn.korisnik;
         mapController cont=new mapController(ime);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
         loader.setController(cont);
