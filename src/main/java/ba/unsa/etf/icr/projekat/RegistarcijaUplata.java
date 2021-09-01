@@ -1,6 +1,8 @@
 package ba.unsa.etf.icr.projekat;
 
 import com.jfoenix.controls.JFXCheckBox;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +14,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -24,8 +27,8 @@ public class RegistarcijaUplata implements Initializable {
     public TextField fldCvc;
     public JFXCheckBox checkPaypal;
     public JFXCheckBox checkMaster;
-    public ChoiceBox choiceGodin;
-    public ChoiceBox choiceMjesec;
+    public ComboBox<Integer> choiceGodin;
+    public ComboBox<Integer> choiceMjesec;
     private Korisnik korisnik;
     public RegistarcijaUplata(Korisnik k) {
         korisnik = k;
@@ -46,6 +49,19 @@ public class RegistarcijaUplata implements Initializable {
                 checkPaypal.selectedProperty().set(false);
             }
         });
+        ObservableList<Integer> godine = FXCollections.observableArrayList();
+        for(int i = LocalDate.now().getYear();i < LocalDate.now().getYear() + 10;i++){
+            godine.add(i);
+        }
+        choiceGodin.setItems(godine);
+
+        ObservableList<Integer> mjeseci = FXCollections.observableArrayList();
+        for(int i = 1;i <= 12;i++){
+            mjeseci.add(i);
+        }
+        choiceMjesec.setItems(mjeseci);
+        choiceMjesec.setPromptText("Mjesec isticanja");
+        choiceGodin.setPromptText("Godina isticanja");
     }
 
     public void back(ActionEvent actionEvent) throws IOException {
@@ -73,5 +89,61 @@ public class RegistarcijaUplata implements Initializable {
     }
 
     public void nastavi(ActionEvent actionEvent) {
+        validacijaUplata();
+    }
+
+    Boolean validacijaUplata(){
+        String imeKartia = fldImeKartica.getText();
+        Integer godina = choiceGodin.getValue();
+        Integer mjesec = choiceMjesec.getValue();
+        String broj = fldBrojCard.getText();
+        String cvc = fldCvc.getText();
+        Integer tip = -1;
+        if(checkMaster.selectedProperty().get()){
+            tip = 0;// 0 = Master Card
+        }else if(checkPaypal.selectedProperty().get()){
+            tip = 1;
+        }
+        Boolean validno = true;
+       if(imeKartia.length()==0){
+            validno = false;
+            fldImeKartica.getStyleClass().add("neValid");
+        }
+        else{
+            fldImeKartica.getStyleClass().remove("neValid");
+        }
+        if(godina == null){
+            validno = false;
+            choiceGodin.getStyleClass().add("neValid");
+        }else{
+            choiceGodin.getStyleClass().remove("neValid");
+        }
+        if(mjesec == null){
+            validno = false;
+            choiceMjesec.getStyleClass().add("neValid");
+        }else{
+            choiceMjesec.getStyleClass().remove("neValid");
+        }
+        if(tip == -1){
+            validno = false;
+            checkMaster.getStyleClass().add("neValid");
+            checkPaypal.getStyleClass().add("neValid");
+        }else{
+            checkMaster.getStyleClass().remove("neValid");
+            checkPaypal.getStyleClass().remove("neValid");
+        }
+        if(broj.length()==0){
+            validno = false;
+            fldBrojCard.getStyleClass().add("neValid");
+        }else {
+            fldBrojCard.getStyleClass().remove("neValid");
+        }
+        if(cvc.length()==0){
+            validno = false;
+            fldCvc.getStyleClass().add("neValid");
+        }else{
+            fldCvc.getStyleClass().remove("neValid");
+        }
+        return validno;
     }
 }
