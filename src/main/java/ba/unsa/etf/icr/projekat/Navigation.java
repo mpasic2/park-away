@@ -92,8 +92,8 @@ public class Navigation {
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/historijaPlacanja.fxml"));
-        stage.setTitle("Historija placanja");
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+
         stage.initStyle(StageStyle.UNDECORATED);
         stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (KeyCode.ESCAPE == event.getCode()) {

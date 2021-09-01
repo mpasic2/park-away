@@ -55,17 +55,26 @@
             <RowConstraints maxHeight="126.4000244140625" minHeight="24.0" prefHeight="66.40001220703124" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Email" GridPane.columnSpan="2" />
-            <TextField layoutX="20.0" layoutY="217.0" maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Lozinka" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <TextField layoutX="20.0" layoutY="282.0" maxHeight="1.7976931348623157E308" prefHeight="45.0" promptText="Potvrda lozinke" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="45.0" text="Vrati se" GridPane.rowIndex="7">
+            <TextField maxHeight="1.7976931348623157E308" prefHeight="37.0" prefWidth="320.0" promptText="Email" GridPane.columnSpan="2">
                <font>
                   <Font size="16.0" />
+               </font></TextField>
+            <TextField layoutX="20.0" layoutY="217.0" maxHeight="1.7976931348623157E308" prefHeight="37.0" prefWidth="320.0" promptText="Lozinka" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <TextField layoutX="20.0" layoutY="282.0" maxHeight="1.7976931348623157E308" prefHeight="37.0" prefWidth="320.0" promptText="Potvrda lozinke" GridPane.columnSpan="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <Button mnemonicParsing="false" prefHeight="35.0" text="Vrati se" GridPane.rowIndex="7">
+               <font>
+                  <Font size="14.0" />
                </font>
             </Button>
-            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="45.0" text="Nastavi" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" text="Nastavi" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
                <font>
-                  <Font size="16.0" />
+                  <Font size="14.0" />
                </font>
                <GridPane.margin>
                   <Insets />

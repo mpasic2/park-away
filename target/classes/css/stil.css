@@ -90,3 +90,15 @@
     -fx-background-repeat: no-repeat;
     -fx-border-width: 0;
 }
+
+.combo-box {
+    -fx-font-size : 16px;
+}
+
+.choiceGodin{
+    -fx-font-size : 16px;
+}
+
+.choiceMjesec{
+    -fx-font-size : 16px;
+}

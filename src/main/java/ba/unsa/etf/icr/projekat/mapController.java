@@ -3,6 +3,8 @@ package ba.unsa.etf.icr.projekat;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTimePicker;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +38,10 @@ public class mapController implements Initializable {
     public Button btnListaParkinga;
     private String user;
     public WebView mapView;
+    public TextField fldPretraga;
+    public ObservableList<Grad> nadjeniGradovi= FXCollections.observableArrayList();
+    ParkAwayDAO dao = new ParkAwayDAO();
+    public ObservableList<Grad> gradovi= dao.dajGradove();
 
     public mapController(String user) {
         this.user = user;
@@ -75,6 +81,8 @@ public class mapController implements Initializable {
                 mapView.setEffect(effect);
             }
         });
+
+        fldPretraga.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
     }
 
     public void openListParking(ActionEvent actionEvent) throws IOException {
@@ -113,6 +121,15 @@ public class mapController implements Initializable {
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
         navigation.messageAction(actionEvent);
+    }
+    
+    public void actionPretraga(ActionEvent actionEvent){
+
+        for (Grad grad : gradovi)
+            if (grad.getNaziv().toLowerCase().contains(fldPretraga.getText().toLowerCase()))
+                nadjeniGradovi.add(grad);
+
+        System.out.println("broj nadjenih gradova jeste: " + nadjeniGradovi);
     }
 }
 

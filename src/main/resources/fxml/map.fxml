@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -17,7 +23,11 @@
     </rowConstraints>
     <children>
         <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css">
-            <WebView fx:id="mapView" layoutX="30.0" layoutY="284.0" prefHeight="335.0" prefWidth="341.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" />
+         <TextField fx:id="fldPretraga" layoutX="59.0" prefHeight="34.0" prefWidth="260.0" promptText="Pretraži po nazivu grada" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
+            <font>
+               <Font size="17.0" />
+            </font></TextField>
+            <WebView fx:id="mapView" layoutX="30.0" layoutY="284.0" prefHeight="504.0" prefWidth="341.0" AnchorPane.bottomAnchor="-111.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" />
             <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" direction="RIGHT" layoutX="190.0" prefHeight="619.0" prefWidth="210.0" />
             <GridPane prefHeight="106.0" prefWidth="400.0">
                 <columnConstraints>
@@ -41,6 +51,7 @@
                     </AnchorPane>
                 </children>
             </GridPane>
+         <Button layoutX="319.0" layoutY="161.0" mnemonicParsing="false" onAction="#actionPretraga" prefHeight="34.0" prefWidth="56.0" text="Pretraži" AnchorPane.leftAnchor="310.0" />
         </AnchorPane>
         <HBox fx:id="ButtonBarMap" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="28.0" spacing="35.0" GridPane.rowIndex="1">
             <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />

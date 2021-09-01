@@ -2,6 +2,7 @@ package ba.unsa.etf.icr.projekat;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -37,5 +38,22 @@ public class ProfilController {
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
         navigation.messageAction(actionEvent);
+    }
+
+    public void historijaPlacanja(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/historijaPlacanja.fxml"));
+        stage.setTitle("Historija placanja");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
+        close.close();
     }
 }
