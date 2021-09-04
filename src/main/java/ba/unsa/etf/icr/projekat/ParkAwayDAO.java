@@ -1,9 +1,6 @@
 package ba.unsa.etf.icr.projekat;
 
-import ba.unsa.etf.icr.projekat.model.Grad;
-import ba.unsa.etf.icr.projekat.model.Korisnik;
-import ba.unsa.etf.icr.projekat.model.Lokacija;
-import ba.unsa.etf.icr.projekat.model.Parking;
+import ba.unsa.etf.icr.projekat.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,7 +10,7 @@ import java.time.LocalTime;
 public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
-    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree;
+    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -27,6 +24,7 @@ public class ParkAwayDAO {
             getParking = con.prepareStatement("SELECT * FROM Parking");
             getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
+            addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -114,4 +112,32 @@ public class ParkAwayDAO {
             return null;
         }
     }
+
+    public Integer addCard(Kartica k) {
+        Integer i = 1;
+        try {
+            PreparedStatement newRiderStatement=con.prepareStatement("Select MAX(id)+1 from kartica ");
+            ResultSet result = newRiderStatement.executeQuery();
+            if(result.next()){
+                i = result.getInt(1);
+                k.setKarticaId(result.getInt(1));
+            }else{
+                k.setKarticaId(1);
+            }
+            addCard.setInt(1,k.getKarticaId());
+            addCard.setString(2,k.getVlasnik());
+            addCard.setInt(3,k.getTip());
+            addCard.setString(4, k.getBrojKartice());
+            addCard.setInt(5, k.getGodinaIsticanja());
+            addCard.setInt(6,k.getMjesecIsticanja());
+            addCard.setInt(7,k.getCwc());
+            addCard.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
 }

@@ -1,5 +1,6 @@
 package ba.unsa.etf.icr.projekat.controller;
 
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Kartica;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
 import javafx.beans.value.ChangeListener;
@@ -21,6 +22,7 @@ public class RegistracijaLogInInfoController implements Initializable {
     public Label statusLabel;
     private Korisnik korisnik;
     private Kartica kartica;
+    private ParkAwayDAO dao = new ParkAwayDAO();
 
     public RegistracijaLogInInfoController(Korisnik korisnik, Kartica kartica) {
         this.korisnik = korisnik;
@@ -65,6 +67,7 @@ public class RegistracijaLogInInfoController implements Initializable {
         if(validacijaLog()){
             korisnik.setEmail(fldMail.getText());
             korisnik.setLozinka(fldLozinka1.getText());
+            Integer idKard = dao.addCard(kartica);
         }
     }
 
