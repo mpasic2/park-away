@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class loginContoler implements Initializable {
+public class AdminloginContoler implements Initializable {
     public ImageView imgAbout;
     public PasswordField fldPassword;
     public TextField fldUser;
@@ -39,7 +39,8 @@ public class loginContoler implements Initializable {
 
     }
 
-    public void prijava(ActionEvent actionEvent) throws IOException {
+
+    public void prijavaAdmina(ActionEvent actionEvent) throws IOException {
         ObservableList<Korisnik> k = dao.dajKorisnike();
         String mail = fldUser.getText();
         String password = fldPassword.getText();
@@ -56,42 +57,16 @@ public class loginContoler implements Initializable {
             fldGreska.setText("Unesene informacije nisu tačne, pokušajte ponovo");
             fldUser.requestFocus();
         }else{
-            Stage stage=new Stage();
-            mapController cont=new mapController(korisnik);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
-            loader.setController(cont);
-            Parent root = loader.load();
-            stage.setTitle("Mapa");
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.show();
-            Stage close=(Stage)fldGreska.getScene().getWindow();
-            close.close();
+
+            Stage noviProzor = new Stage();
+            Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
+            noviProzor.setTitle("Administrator");
+            noviProzor.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            noviProzor.setScene(scene);
+            noviProzor.show();
+            Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
+            zatvaranjePoruka.close();
         }
-    }
-
-    public void registar(ActionEvent actionEvent) throws IOException {
-        Stage stage=new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_korisnik_personal.fxml"));
-        loader.setController(new RegistracijaPersonalController(null));
-        Parent root = loader.load();
-        stage.setTitle("Registracija");
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
-        Stage close=(Stage)fldGreska.getScene().getWindow();
-        close.close();
-    }
-
-    public void prijavaAdmina(ActionEvent actionEvent) throws IOException {
-        Stage noviProzor = new Stage();
-        Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/administratorLogin.fxml"));
-        noviProzor.setTitle("Prijava administratora");
-        noviProzor.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        noviProzor.setScene(scene);
-        noviProzor.show();
-        Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
-        zatvaranjePoruka.close();
     }
 }
