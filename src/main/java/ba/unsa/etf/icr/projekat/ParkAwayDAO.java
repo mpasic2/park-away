@@ -10,7 +10,7 @@ import java.time.LocalTime;
 public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
-    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard;
+    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -25,6 +25,8 @@ public class ParkAwayDAO {
             getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
+            addUser =  con.prepareStatement("Insert into korisnik values (?,?,?,?,?,?,?,?)");
+            addLokacija =  con.prepareStatement("Insert into lokacja values (?,?,?)");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -77,7 +79,7 @@ public class ParkAwayDAO {
             ResultSet resultSet = getUsers.executeQuery();
             while(resultSet.next()) {
                 Lokacija l = pronadjiUlicu(resultSet.getInt(5));
-                Korisnik korisnik = new Korisnik(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),l, resultSet.getInt(6),resultSet.getString(7),resultSet.getString(8),resultSet.getString(9));
+                Korisnik korisnik = new Korisnik(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),l, resultSet.getInt(6),resultSet.getString(7),resultSet.getString(8));
                 korisnici.add(korisnik);
             }
         } catch (SQLException throwables) {
@@ -137,6 +139,51 @@ public class ParkAwayDAO {
             e.printStackTrace();
         }
         return i;
+    }
+
+    public void addKorisnik(Korisnik k) {
+        try {
+            PreparedStatement newRiderStatement=con.prepareStatement("Select MAX(korisnik_id)+1 from korisnik ");
+            ResultSet result = newRiderStatement.executeQuery();
+            if(result.next()){
+                k.setKorisnikId(result.getInt(1));
+            }else{
+                k.setKorisnikId(1);
+            }
+            addUser.setInt(1,k.getKorisnikId());
+            addUser.setString(2,k.getIme());
+            addUser.setString(3,k.getPrezime());
+            addUser.setString(4, k.getBrojTelefona());
+            addUser.setInt(5, k.getAdresaStanovanja().getLokacijaId());
+            addUser.setInt(6,k.getBrojRacuna());
+            addUser.setString(7,k.getEmail());
+            addUser.setString(8,k.getLozinka());
+            addUser.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Integer addLocation(Lokacija l) {
+        try {
+            PreparedStatement newRiderStatement=con.prepareStatement("Select MAX(lokacija_id)+1 from lokacja ");
+            ResultSet result = newRiderStatement.executeQuery();
+            if(result.next()){
+                l.setLokacijaId(result.getInt(1));
+            }else{
+                l.setLokacijaId(1);
+            }
+            addLokacija.setInt(1,l.getLokacijaId());
+            addLokacija.setInt(2,l.getGrad().getGrad_id());
+            addLokacija.setString(3,l.getUlica());
+
+            addLokacija.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return l.getLokacijaId();
     }
 
 

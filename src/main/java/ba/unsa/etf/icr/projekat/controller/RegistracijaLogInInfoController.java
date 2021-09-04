@@ -68,6 +68,9 @@ public class RegistracijaLogInInfoController implements Initializable {
             korisnik.setEmail(fldMail.getText());
             korisnik.setLozinka(fldLozinka1.getText());
             Integer idKard = dao.addCard(kartica);
+            korisnik.setBrojRacuna(idKard);
+            korisnik.getAdresaStanovanja().setLokacijaId(dao.addLocation(korisnik.getAdresaStanovanja()));
+            dao.addKorisnik(korisnik);
         }
     }
 

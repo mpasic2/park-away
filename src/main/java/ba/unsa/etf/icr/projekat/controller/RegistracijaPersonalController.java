@@ -76,7 +76,7 @@ public class RegistracijaPersonalController implements Initializable {
 
     public void Dalje(ActionEvent actionEvent) throws IOException {
         if(validacijaPersonal()==true){
-            korisnik = new Korisnik(0,fldIme.getText(),fldPrezime.getText(),fldTelefon.getText(),new Lokacija(0,choiceGrad.getValue(),fldAdresa.getText()),0,"","","");
+            korisnik = new Korisnik(0,fldIme.getText(),fldPrezime.getText(),fldTelefon.getText(),new Lokacija(0,choiceGrad.getValue(),fldAdresa.getText()),0,"","");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_uplata.fxml"));
             loader.setController(new RegistarcijaUplataController(korisnik,null));
             Parent root = loader.load();

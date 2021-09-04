@@ -11,18 +11,16 @@ public class Korisnik {
     SimpleStringProperty brojTelefona;
     SimpleObjectProperty<Lokacija> adresaStanovanja;
     SimpleIntegerProperty brojRacuna;
-    SimpleStringProperty slika;
     SimpleStringProperty email;
     SimpleStringProperty lozinka;
 
-    public Korisnik(Integer korisnikId, String ime, String prezime, String brojTelefona, Lokacija adresaStanovanja, Integer brojRacuna, String slika, String email, String lozinka) {
+    public Korisnik(Integer korisnikId, String ime, String prezime, String brojTelefona, Lokacija adresaStanovanja, Integer brojRacuna, String email, String lozinka) {
         this.korisnikId = new SimpleIntegerProperty(korisnikId);
         this.ime = new SimpleStringProperty(ime);
         this.prezime = new SimpleStringProperty(prezime);
         this.brojTelefona = new SimpleStringProperty(brojTelefona);
         this.adresaStanovanja = new SimpleObjectProperty<Lokacija>(adresaStanovanja);
         this.brojRacuna = new SimpleIntegerProperty(brojRacuna);
-        this.slika = new SimpleStringProperty(slika);
         this.email = new SimpleStringProperty(email);
         this.lozinka = new SimpleStringProperty(lozinka);
     }
@@ -99,17 +97,6 @@ public class Korisnik {
         this.brojRacuna.set(brojRacuna);
     }
 
-    public String getSlika() {
-        return slika.get();
-    }
-
-    public SimpleStringProperty slikaProperty() {
-        return slika;
-    }
-
-    public void setSlika(String slika) {
-        this.slika.set(slika);
-    }
 
     public String getEmail() {
         return email.get();
