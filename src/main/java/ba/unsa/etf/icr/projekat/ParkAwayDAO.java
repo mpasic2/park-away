@@ -10,7 +10,7 @@ import java.time.LocalTime;
 public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
-    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija;
+    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija, addVozilo;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -27,6 +27,7 @@ public class ParkAwayDAO {
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
             addUser =  con.prepareStatement("Insert into korisnik values (?,?,?,?,?,?,?,?)");
             addLokacija =  con.prepareStatement("Insert into lokacja values (?,?,?)");
+            addVozilo =  con.prepareStatement("Insert into vozilo values (?,?,?,?,?)");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -86,6 +87,13 @@ public class ParkAwayDAO {
             throwables.printStackTrace();
         }
         return korisnici;
+    }
+    public Korisnik pronadjiKorisnika(int id){
+        ObservableList<Korisnik> k = dajKorisnike();
+        for(int i = 0; i< k.size();i++){
+            if(k.get(i).getKorisnikId()== id) return k.get(i);
+        }
+        return null;
     }
     public ObservableList<Parking> dajParkinge(){
         ObservableList<Parking> parkinzi = FXCollections.observableArrayList();
@@ -186,5 +194,25 @@ public class ParkAwayDAO {
         return l.getLokacijaId();
     }
 
+    public void addVozilo(Vozilo v) {
+        try {
+            PreparedStatement newRiderStatement=con.prepareStatement("Select MAX(vozilo_id)+1 from vozilo ");
+            ResultSet result = newRiderStatement.executeQuery();
+            if(result.next()){
+                v.setVozilo_id(result.getInt(1));
+            }else{
+                v.setVozilo_id(1);
+            }
+            addVozilo.setInt(1,v.getVozilo_id());
+            addVozilo.setString(2,v.getRegistracijska_oznaka());
+            addVozilo.setString(3,v.getModel());
+            addVozilo.setInt(4, v.getKorisnik().getKorisnikId());
+            addVozilo.setString(5, v.getSasija());
+            addVozilo.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -91,7 +91,7 @@ public class RegistracijaLogInInfoController implements Initializable {
         }
     }
 
-    public void dalje(ActionEvent actionEvent) {
+    public void dalje(ActionEvent actionEvent) throws IOException {
         if(validacijaLog()){
             korisnik.setEmail(fldMail.getText());
             korisnik.setLozinka(fldLozinka1.getText());
@@ -99,6 +99,16 @@ public class RegistracijaLogInInfoController implements Initializable {
             korisnik.setBrojRacuna(idKard);
             korisnik.getAdresaStanovanja().setLokacijaId(dao.addLocation(korisnik.getAdresaStanovanja()));
             dao.addKorisnik(korisnik);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_vozilo.fxml"));
+            loader.setController(new RegistracijaVozilaController(korisnik,0));
+            Parent root = loader.load();
+            Stage stage=new Stage();
+            stage.setTitle("Registracija");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.show();
+            Stage close=(Stage)fldLozinka1.getScene().getWindow();
+            close.close();
         }
     }
 
