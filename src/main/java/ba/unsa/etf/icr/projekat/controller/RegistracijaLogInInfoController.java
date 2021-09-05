@@ -6,13 +6,20 @@ import ba.unsa.etf.icr.projekat.model.Korisnik;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class RegistracijaLogInInfoController implements Initializable {
     public TextField fldLozinka2;
@@ -60,7 +67,28 @@ public class RegistracijaLogInInfoController implements Initializable {
 
     }
 
-    public void nazad(ActionEvent actionEvent) {
+    public void nazad(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Potvrda");
+        alert.setHeaderText("Ovom radnjom ćete se vratiti korak unazad");
+        alert.setContentText("Da li ste sigurni da se želite vratiti? Unesena polja se neće spasiti!");
+
+        ButtonType buttonDa = new ButtonType("Da");
+        ButtonType buttonNe = new ButtonType("Ne", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonDa,buttonNe);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonDa){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_uplata.fxml"));
+            loader.setController(new RegistarcijaUplataController(korisnik,kartica));
+            Parent root = loader.load();
+            Stage stage=new Stage();
+            stage.setTitle("Registracija");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.show();
+            Stage close=(Stage)fldLozinka1.getScene().getWindow();
+            close.close();
+        }
     }
 
     public void dalje(ActionEvent actionEvent) {

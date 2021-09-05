@@ -66,6 +66,18 @@ public class RegistarcijaUplataController implements Initializable {
         choiceMjesec.setItems(mjeseci);
         choiceMjesec.setPromptText("Mjesec isticanja");
         choiceGodin.setPromptText("Godina isticanja");
+        if(kartica!=null){
+            fldImeKartica.setText(kartica.getVlasnik());
+            fldBrojCard.setText(kartica.getBrojKartice());
+            fldCvc.setText(String.valueOf(kartica.getCwc()));
+            choiceGodin.getSelectionModel().select(kartica.getGodinaIsticanja());
+            choiceMjesec.getSelectionModel().select(kartica.getMjesecIsticanja());
+            if(kartica.getTip()==0){
+                checkMaster.selectedProperty().set(true);
+            }else{
+                checkPaypal.selectedProperty().set(true);
+            }
+        }
     }
 
     public void back(ActionEvent actionEvent) throws IOException {

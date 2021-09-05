@@ -8,23 +8,15 @@ CREATE TABLE IF NOT EXISTS "Slike" (
 	"id"	INTEGER,
 	"slika"	TEXT,
 	"parking_id"	INTEGER,
-	FOREIGN KEY("parking_id") REFERENCES "Parking"("parking_id"),
-	PRIMARY KEY("id")
-);
-CREATE TABLE IF NOT EXISTS "Vozilo" (
-	"vozilo_id"	INTEGER NOT NULL,
-	"registracijske_oznake"	TEXT NOT NULL UNIQUE,
-	"model"	INTEGER NOT NULL,
-	"korisnik_id"	INTEGER NOT NULL,
-	FOREIGN KEY("korisnik_id") REFERENCES "Korisnik"("korisnik_id"),
-	PRIMARY KEY("vozilo_id")
+	PRIMARY KEY("id"),
+	FOREIGN KEY("parking_id") REFERENCES "Parking"("parking_id")
 );
 CREATE TABLE IF NOT EXISTS "Lokacja" (
 	"lokacija_id"	INTEGER NOT NULL,
 	"grad_id"	INTEGER NOT NULL,
 	"naziv_ulice"	TEXT NOT NULL,
-	FOREIGN KEY("grad_id") REFERENCES "Grad"("grad_id"),
-	PRIMARY KEY("lokacija_id")
+	PRIMARY KEY("lokacija_id"),
+	FOREIGN KEY("grad_id") REFERENCES "Grad"("grad_id")
 );
 CREATE TABLE IF NOT EXISTS "Racun" (
 	"racun_id"	INTEGER NOT NULL,
@@ -33,8 +25,8 @@ CREATE TABLE IF NOT EXISTS "Racun" (
 	"placeno"	INTEGER NOT NULL,
 	"vrijeme_prijave"	DATE,
 	"vrijeme_odjave"	INTEGER,
-	FOREIGN KEY("vozilo_id") REFERENCES "Vozilo"("vozilo_id"),
-	PRIMARY KEY("racun_id")
+	PRIMARY KEY("racun_id"),
+	FOREIGN KEY("vozilo_id") REFERENCES "Vozilo"("vozilo_id")
 );
 CREATE TABLE IF NOT EXISTS "Kartica" (
 	"id"	INTEGER,
@@ -52,8 +44,8 @@ CREATE TABLE IF NOT EXISTS "Parking_mjesto" (
 	"broj_parking_mjesta"	TEXT NOT NULL,
 	"mjesto_za_invalide"	INTEGER NOT NULL,
 	"vozilo_id"	INTEGER DEFAULT 0,
-	FOREIGN KEY("parking_id") REFERENCES "Parking"("parking_id"),
 	PRIMARY KEY("parking_mjesto_id"),
+	FOREIGN KEY("parking_id") REFERENCES "Parking"("parking_id"),
 	FOREIGN KEY("vozilo_id") REFERENCES "Vozilo"("vozilo_id")
 );
 CREATE TABLE IF NOT EXISTS "Parking" (
@@ -81,6 +73,15 @@ CREATE TABLE IF NOT EXISTS "Korisnik" (
 	PRIMARY KEY("korisnik_id"),
 	FOREIGN KEY("lokacja_id") REFERENCES "Lokacja"("lokacija_id")
 );
+CREATE TABLE IF NOT EXISTS "Vozilo" (
+	"vozilo_id"	INTEGER NOT NULL,
+	"registracijske_oznake"	TEXT NOT NULL UNIQUE,
+	"model"	INTEGER NOT NULL,
+	"korisnik_id"	INTEGER NOT NULL,
+	"sasija"	TEXT,
+	PRIMARY KEY("vozilo_id"),
+	FOREIGN KEY("korisnik_id") REFERENCES "Korisnik"("korisnik_id")
+);
 INSERT INTO "Grad" VALUES (1,'Sarajevo');
 INSERT INTO "Grad" VALUES (2,'Mostar');
 INSERT INTO "Grad" VALUES (3,'Tuzla');
@@ -89,17 +90,6 @@ INSERT INTO "Grad" VALUES (5,'Zenica');
 INSERT INTO "Slike" VALUES (1,'/img/parking1.jpg',1);
 INSERT INTO "Slike" VALUES (2,'/img/parking2.jpg',2);
 INSERT INTO "Slike" VALUES (3,'/img/parking3.jpg',3);
-INSERT INTO "Vozilo" VALUES (1,'K63-M-058','Volkswagen Golf 5',1);
-INSERT INTO "Vozilo" VALUES (2,'A12-A-345','Mercedes-Benz C220',2);
-INSERT INTO "Vozilo" VALUES (3,'E67-0-143','Skoda oktavia ',3);
-INSERT INTO "Vozilo" VALUES (4,'K21-J-825','Opel Astra',1);
-INSERT INTO "Vozilo" VALUES (5,'X00-X-000','Renault Megane',4);
-INSERT INTO "Vozilo" VALUES (6,'K14-M-521','Volkswagen Golf 7',5);
-INSERT INTO "Vozilo" VALUES (7,'G63-O-000','Mercedes G class',6);
-INSERT INTO "Vozilo" VALUES (8,'M54-A-555','Peugeot 206',7);
-INSERT INTO "Vozilo" VALUES (9,'A42-A-999','Mercedes A class',8);
-INSERT INTO "Vozilo" VALUES (10,'A92-M-843','Kia Sportage',9);
-INSERT INTO "Vozilo" VALUES (11,'A32-B-123','Volkswagen Passat B8',10);
 INSERT INTO "Lokacja" VALUES (1,1,'Zmaja od Bosne');
 INSERT INTO "Lokacja" VALUES (2,2,'Hrvatskih branitelja');
 INSERT INTO "Lokacja" VALUES (3,3,'Kulina Bana');
@@ -110,6 +100,7 @@ INSERT INTO "Lokacja" VALUES (7,4,'Rosulje');
 INSERT INTO "Lokacja" VALUES (8,3,'Ulica 8');
 INSERT INTO "Lokacja" VALUES (9,1,'Ulica 10');
 INSERT INTO "Lokacja" VALUES (10,1,'SCC');
+INSERT INTO "Lokacja" VALUES (11,3,'afea');
 INSERT INTO "Racun" VALUES (1,1,3,0,'2021-08-14T20:00:00',NULL);
 INSERT INTO "Racun" VALUES (2,2,4,1,'2021-08-14T21:00:00',NULL);
 INSERT INTO "Racun" VALUES (3,3,1,0,'2021-08-14T22:00:00',NULL);
@@ -120,6 +111,8 @@ INSERT INTO "Racun" VALUES (7,7,2,0,'2021-08-14T23:00:00',NULL);
 INSERT INTO "Racun" VALUES (8,8,3,0,'2021-08-14T23:10:00',NULL);
 INSERT INTO "Racun" VALUES (9,9,1,0,'2021-08-14T23:15:00',NULL);
 INSERT INTO "Racun" VALUES (10,10,4,0,'2021-08-14T23:35:00',NULL);
+INSERT INTO "Kartica" VALUES (0,'sd',1,'sds',2023,5,3343);
+INSERT INTO "Kartica" VALUES (1,'fae',1,'fea',2023,3,32);
 INSERT INTO "Parking_mjesto" VALUES (1,1,'1',0,NULL);
 INSERT INTO "Parking_mjesto" VALUES (2,1,'2',0,1);
 INSERT INTO "Parking_mjesto" VALUES (3,1,'3',0,NULL);
@@ -143,4 +136,16 @@ INSERT INTO "Korisnik" VALUES (8,'Sulejman','Suljic','055-555-555',3,'4564-4565-
 INSERT INTO "Korisnik" VALUES (9,'Meho','Mehic','061-061-061',8,'4444-5555-4444-3333','meho@gmail.com','meho123');
 INSERT INTO "Korisnik" VALUES (10,'Sale','Salic','066-555-444',9,'6666-6666-5555-1111','sale@gmail.com','sale123');
 INSERT INTO "Korisnik" VALUES (11,'1','1','111-111-111',1,'123-123-123-123-1234','1','1');
+INSERT INTO "Korisnik" VALUES (12,'dsa','deaw','cfe',11,1,'fes','fff');
+INSERT INTO "Vozilo" VALUES (1,'K63-M-058','Volkswagen Golf 5',1,NULL);
+INSERT INTO "Vozilo" VALUES (2,'A12-A-345','Mercedes-Benz C220',2,NULL);
+INSERT INTO "Vozilo" VALUES (3,'E67-0-143','Skoda oktavia ',3,NULL);
+INSERT INTO "Vozilo" VALUES (4,'K21-J-825','Opel Astra',1,NULL);
+INSERT INTO "Vozilo" VALUES (5,'X00-X-000','Renault Megane',4,NULL);
+INSERT INTO "Vozilo" VALUES (6,'K14-M-521','Volkswagen Golf 7',5,NULL);
+INSERT INTO "Vozilo" VALUES (7,'G63-O-000','Mercedes G class',6,NULL);
+INSERT INTO "Vozilo" VALUES (8,'M54-A-555','Peugeot 206',7,NULL);
+INSERT INTO "Vozilo" VALUES (9,'A42-A-999','Mercedes A class',8,NULL);
+INSERT INTO "Vozilo" VALUES (10,'A92-M-843','Kia Sportage',9,NULL);
+INSERT INTO "Vozilo" VALUES (11,'A32-B-123','Volkswagen Passat B8',10,NULL);
 COMMIT;
