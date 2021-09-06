@@ -10,7 +10,7 @@ import java.time.LocalTime;
 public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
-    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija, addVozilo;
+    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija, addVozilo, getParkingImages;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -24,6 +24,7 @@ public class ParkAwayDAO {
             getParking = con.prepareStatement("SELECT * FROM Parking");
             getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
+            getParkingImages = con.prepareStatement("Select * from slike where parking_id=?");
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
             addUser =  con.prepareStatement("Insert into korisnik values (?,?,?,?,?,?,?,?)");
             addLokacija =  con.prepareStatement("Insert into lokacja values (?,?,?)");
@@ -117,6 +118,17 @@ public class ParkAwayDAO {
             ResultSet rs = getFree.executeQuery();
             if (!rs.next()) return null;
             return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public String dajSliku(int id) {
+        try {
+            getParkingImages.setInt(1, id);
+            ResultSet rs = getParkingImages.executeQuery();
+            if (!rs.next()) return null;
+            return rs.getString(2);
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

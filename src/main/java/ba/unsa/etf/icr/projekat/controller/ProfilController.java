@@ -42,6 +42,7 @@ public class ProfilController implements Initializable {
         fldImePrezime.setText(korisnik.getIme() + " " + korisnik.getPrezime());
         fldTelefon.setText(korisnik.getBrojTelefona());
         fldAdresa.setText(korisnik.getAdresaStanovanja().getUlica() + ", " + korisnik.getAdresaStanovanja().getGrad().getNaziv());
+
     }
 
 

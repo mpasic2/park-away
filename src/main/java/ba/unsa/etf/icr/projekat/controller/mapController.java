@@ -42,6 +42,7 @@ public class mapController implements Initializable {
     public Button btnListaParkinga;
     private Korisnik user;
     public WebView mapView;
+    public Button btnSearch;
     public TextField fldPretraga;
     public ObservableList<Grad> nadjeniGradovi= FXCollections.observableArrayList();
     ParkAwayDAO dao = new ParkAwayDAO();
@@ -78,10 +79,12 @@ public class mapController implements Initializable {
             if (drawer.isOpened()) {
                 drawer.close();
                 btnListaParkinga.setVisible(true);
+                btnSearch.setVisible(true);
                 mapView.setEffect(null);
             } else {
                 drawer.open();
                 btnListaParkinga.setVisible(false);
+                btnSearch.setVisible(false);
                 BoxBlur effect = new BoxBlur();
                 mapView.setEffect(effect);
             }
