@@ -14,8 +14,6 @@ import java.io.IOException;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class HistorijaPlacanjaController {
-    public Label lblId;
-
 
     Navigation navigation= new Navigation();
 

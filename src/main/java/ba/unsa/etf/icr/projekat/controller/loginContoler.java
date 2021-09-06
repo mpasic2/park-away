@@ -1,6 +1,7 @@
 package ba.unsa.etf.icr.projekat.controller;
 
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -57,6 +58,7 @@ public class loginContoler implements Initializable {
             fldUser.requestFocus();
         }else{
             Stage stage=new Stage();
+            PrijavljeniKorisnik.setKorisnik(korisnik);
             mapController cont=new mapController(korisnik);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
             loader.setController(cont);

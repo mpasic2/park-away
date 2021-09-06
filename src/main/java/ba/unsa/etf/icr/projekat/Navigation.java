@@ -39,9 +39,13 @@ public class Navigation {
     }
 
     public void profileAction(ActionEvent actionEvent,Korisnik user) throws IOException {
-
         Stage stage=new Stage();
-        ProfilController cont=new ProfilController(user);
+        ProfilController cont;
+        if(user != null)
+            cont= new ProfilController(user);
+        else {
+            cont = new ProfilController(PrijavljeniKorisnik.getKorisnik());
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profil.fxml"));
         loader.setController(cont);
         Parent root = loader.load();
