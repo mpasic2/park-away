@@ -16,6 +16,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -91,7 +92,7 @@ public class RegistracijaLogInInfoController implements Initializable {
         }
     }
 
-    public void dalje(ActionEvent actionEvent) throws IOException {
+    public void dalje(ActionEvent actionEvent) throws IOException, SQLException {
         if(validacijaLog()){
             korisnik.setEmail(fldMail.getText());
             korisnik.setLozinka(fldLozinka1.getText());
@@ -107,6 +108,7 @@ public class RegistracijaLogInInfoController implements Initializable {
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
+            dao.closeBase();
             Stage close=(Stage)fldLozinka1.getScene().getWindow();
             close.close();
         }

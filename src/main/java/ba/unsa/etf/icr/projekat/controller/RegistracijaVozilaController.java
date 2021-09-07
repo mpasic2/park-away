@@ -73,10 +73,35 @@ public class RegistracijaVozilaController implements Initializable {
         }
     }
 
-    public void Zavrsi(ActionEvent actionEvent) {
+    public void Zavrsi(ActionEvent actionEvent) throws IOException {
         if(validacijaVozilo()){
             Vozilo voz =  new Vozilo(0,fldRegistration.getText(),fldModel.getText(),k,fldSasija.getText());
             dao.addVozilo(voz);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Čestitamo");
+            alert.setContentText("Uspješno ste dodali svoje vozilo");
+            alert.showAndWait();
+            if(vozila != 0){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/profil.fxml"));
+                loader.setController(new ProfilController(k));
+                Parent root = loader.load();
+                Stage stage=new Stage();
+                stage.setTitle("Profil");
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+            }else{
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
+                loader.setController(new mapController(k));
+                Parent root = loader.load();
+                Stage stage=new Stage();
+                stage.setTitle("Mapa");
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+            }
+            Stage close=(Stage)fldSasija.getScene().getWindow();
+            close.close();
         }
     }
 

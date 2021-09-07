@@ -1,7 +1,11 @@
 package ba.unsa.etf.icr.projekat.controller;
 
 import ba.unsa.etf.icr.projekat.Navigation;
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
+import ba.unsa.etf.icr.projekat.model.Vozilo;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +22,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -30,9 +35,11 @@ public class ProfilController implements Initializable {
     public Label fldAdresa;
     public Label fldModel;
     public Label fldRregistracija;
+    public Label fldSasija;
     public ComboBox chocideAuto;
     private Korisnik korisnik;
     Navigation navigation= new Navigation();
+    private ParkAwayDAO dao = new ParkAwayDAO();
     public ProfilController(Korisnik korisnik) {
         this.korisnik = korisnik;
     }
@@ -42,7 +49,22 @@ public class ProfilController implements Initializable {
         fldImePrezime.setText(korisnik.getIme() + " " + korisnik.getPrezime());
         fldTelefon.setText(korisnik.getBrojTelefona());
         fldAdresa.setText(korisnik.getAdresaStanovanja().getUlica() + ", " + korisnik.getAdresaStanovanja().getGrad().getNaziv());
+        try {
+            chocideAuto.setItems(dao.dajKorisnikovaAuta(korisnik.getKorisnikId()));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
+        chocideAuto.valueProperty().addListener(new ChangeListener<Vozilo>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Vozilo> observableValue, Vozilo vozilo, Vozilo t1) {
+                fldModel.setText(t1.getModel());
+                fldRregistracija.setText(t1.getRegistracijska_oznaka());
+                fldSasija.setText(t1.getSasija());
+            }
+        });
+        chocideAuto.getSelectionModel().select(0);
     }
 
 
@@ -85,6 +107,16 @@ public class ProfilController implements Initializable {
 
 
 
-    public void dodajNovo(ActionEvent actionEvent) {
+    public void dodajNovo(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/registracija_vozilo.fxml"));
+        loader.setController(new RegistracijaVozilaController(korisnik,1));
+        Parent root = loader.load();
+        Stage stage=new Stage();
+        stage.setTitle("Registracija");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close=(Stage)fldAdresa.getScene().getWindow();
+        close.close();
     }
 }

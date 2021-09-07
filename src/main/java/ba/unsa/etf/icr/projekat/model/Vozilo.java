@@ -78,4 +78,9 @@ public class Vozilo {
     public void setSasija(String sasija) {
         this.sasija.set(sasija);
     }
+
+    @Override
+    public String toString() {
+        return getModel();
+    }
 }

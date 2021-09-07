@@ -11,7 +11,7 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -33,12 +33,16 @@ public class ParkAwayDAO {
             addParking = con.prepareStatement("INSERT INTO parking values (?,?,?,?,?,?,?,?,?)");
             obrisiParking = con.prepareStatement("DELETE FROM parking where parking_id=?");
             izmijeniParking = con.prepareStatement("UPDATE parking SET naziv=?, lokacija_id=?, cijena=?, pocetak_radnog_vremena=?, kraj_radnog_vremena=?, stalni_parking=?, ocjena=?, opis=? WHERE parking_id=? ");
-
+            getUserCars = con.prepareStatement("SELECT * FROM vozilo where korisnik_id=?");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
     }
 
+    public void closeBase() throws SQLException {
+        con.close();
+        con = null;
+    }
     public ObservableList<Grad> dajGradove(){
         ObservableList<Grad> gradovi = FXCollections.observableArrayList();
         try {
@@ -283,6 +287,22 @@ public class ParkAwayDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public ObservableList<Vozilo> dajKorisnikovaAuta(Integer korisnikId) throws SQLException {
+        getUserCars.setInt(1,korisnikId);
+        ObservableList<Vozilo> vozila = FXCollections.observableArrayList();
+        try {
+            ResultSet resultSet = getUserCars.executeQuery();
+            while(resultSet.next()) {
+                Korisnik l = pronadjiKorisnika(resultSet.getInt(4));
+                Vozilo auto = new Vozilo(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),l,resultSet.getString(5));
+                vozila.add(auto);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return vozila;
     }
 
 }
