@@ -26,7 +26,7 @@ public class ChangeParkingController implements Initializable {
     public TextField fldNazivParkinga;
     public Label fldGreska;
     public TextField fldOpis;
-    public ChoiceBox cbLokacija;
+    public ComboBox<Lokacija> cbLokacija;
     public TextField fldCijena;
     public CheckBox cbStalni;
     public Slider sldOcjena;
@@ -45,14 +45,14 @@ public class ChangeParkingController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lokacije=dao.dajLokacije();
+        cbLokacija.setItems(lokacije);
         for(int i=0;i<parkinzi.size();i++){
             if(parkinzi.get(i).getNaziv().equals(fldNazivParkinga.getText()))
                 id=parkinzi.get(i).getParkingId();
         }
 
-        lokacije=dao.dajLokacije();
-        cbLokacija.setItems(lokacije);
-        Lokacija lok = new Lokacija(dao.dajLokacije().get(parking.getLokacija().getLokacijaId()));
+        System.out.println("ovo je lokacija" + dao.dajLokacije().get(parking.getLokacija().getLokacijaId()));
 
 
         fldNazivParkinga.setText(parking.getNaziv());
@@ -62,7 +62,7 @@ public class ChangeParkingController implements Initializable {
         sldKraj.adjustValue(parking.getKrajRadnogVremena().getHour());
         sldOcjena.adjustValue(parking.getOcjena());
         cbStalni.setSelected(parking.getStalniParking() != 0);
-        cbLokacija.getSelectionModel().select(lok);
+        cbLokacija.getSelectionModel().select(parking.getLokacija());
     }
 
     public void izmijeniAction(ActionEvent actionEvent) {

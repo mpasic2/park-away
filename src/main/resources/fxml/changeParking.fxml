@@ -72,7 +72,7 @@
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <ChoiceBox fx:id="cbLokacija" prefWidth="150.0" GridPane.rowIndex="1" />
+                <ComboBox fx:id="cbLokacija" prefWidth="150.0" GridPane.rowIndex="1" />
                 <TextField fx:id="fldCijena" layoutX="50.0" layoutY="58.0" prefWidth="320.0" promptText="Cijena parkinga" GridPane.rowIndex="2">
                     <font>
                         <Font size="17.0" />
