@@ -10,7 +10,8 @@ import java.time.LocalTime;
 public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
-    private PreparedStatement getUsers,getCity,getLocation, getParking, getFree, addCard, addUser,addLokacija, addVozilo, getParkingImages;
+    private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
+            addVozilo, getParkingImages, izmijeniParking;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -29,6 +30,10 @@ public class ParkAwayDAO {
             addUser =  con.prepareStatement("Insert into korisnik values (?,?,?,?,?,?,?,?)");
             addLokacija =  con.prepareStatement("Insert into lokacja values (?,?,?)");
             addVozilo =  con.prepareStatement("Insert into vozilo values (?,?,?,?,?)");
+            addParking = con.prepareStatement("INSERT INTO parking values (?,?,?,?,?,?,?,?,?)");
+            obrisiParking = con.prepareStatement("DELETE FROM parking where parking_id=?");
+            izmijeniParking = con.prepareStatement("UPDATE parking SET naziv=?, lokacija_id=?, cijena=?, pocetak_radnog_vremena=?, kraj_radnog_vremena=?, stalni_parking=?, ocjena=?, opis=? WHERE parking_id=? ");
+
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -224,6 +229,59 @@ public class ParkAwayDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void addParking(Parking p){
+        try {
+            PreparedStatement newParkingStatement=con.prepareStatement("Select MAX(parking_id)+1 from parking ");
+            ResultSet result = newParkingStatement.executeQuery();
+            if(result.next()){
+                p.setParkingId(result.getInt(1));
+            }else{
+                p.setParkingId(1);
+            }
+            addParking.setInt(1,p.getParkingId());
+            addParking.setString(2,p.getNaziv());
+            addParking.setInt(3,p.getLokacija().getLokacijaId());
+            addParking.setInt(4,p.getCijena());
+            addParking.setString(5,p.getPocetakRadnogVremena().toString());
+            addParking.setString(6,p.getKrajRadnogVremena().toString());
+            addParking.setInt(7,p.getStalniParking());
+            addParking.setInt(8,p.getOcjena());
+            addParking.setString(9,p.getOpis());
+            addParking.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void obrisiPaarking(Parking parking) {
+        try {
+            obrisiParking.setInt(1, parking.getParkingId());
+            obrisiParking.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void izmijeniParking(Parking parking){
+        try{
+            izmijeniParking.setString(1,parking.getNaziv());
+            izmijeniParking.setInt(2,parking.getLokacija().getLokacijaId());
+            izmijeniParking.setInt(3,parking.getCijena());
+            izmijeniParking.setString(4,parking.getPocetakRadnogVremena().toString());
+            izmijeniParking.setString(5,parking.getKrajRadnogVremena().toString());
+            izmijeniParking.setInt(6,parking.getStalniParking());
+            izmijeniParking.setInt(7,parking.getOcjena());
+            izmijeniParking.setString(8,parking.getOpis());
+            izmijeniParking.setInt(9,parking.getParkingId());
+            izmijeniParking.executeUpdate();
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 

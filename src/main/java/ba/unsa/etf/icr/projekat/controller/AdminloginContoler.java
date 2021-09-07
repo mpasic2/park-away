@@ -24,9 +24,9 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class AdminloginContoler implements Initializable {
     public ImageView imgAbout;
-    public PasswordField fldPassword;
-    public TextField fldUser;
     public Label fldGreska;
+    public TextField fldAdmin;
+    public PasswordField fldAdminPassword;
     private ParkAwayDAO dao = new ParkAwayDAO();
     public Korisnik korisnik;
 
@@ -34,16 +34,16 @@ public class AdminloginContoler implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image image = new Image("/img/logo.png");
         imgAbout.setImage(image);
-        fldUser.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
-        fldPassword.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        fldAdmin.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
+        fldAdminPassword.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
 
     }
 
 
     public void prijavaAdmina(ActionEvent actionEvent) throws IOException {
         ObservableList<Korisnik> k = dao.dajKorisnike();
-        String mail = fldUser.getText();
-        String password = fldPassword.getText();
+        String mail = fldAdmin.getText();
+        String password = fldAdminPassword.getText();
         int j = 0;
         korisnik = k.get(0);
         for(int i = 0;i < k.size();i++){
@@ -55,7 +55,7 @@ public class AdminloginContoler implements Initializable {
         }
         if(j == 0){
             fldGreska.setText("Unesene informacije nisu tačne, pokušajte ponovo");
-            fldUser.requestFocus();
+            fldAdmin.requestFocus();
         }else{
 
             Stage noviProzor = new Stage();

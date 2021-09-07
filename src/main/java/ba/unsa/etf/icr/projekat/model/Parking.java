@@ -29,6 +29,10 @@ public class Parking {
         this.opis = new SimpleStringProperty(opis);
     }
 
+    public Parking() {
+
+    }
+
     public LocalTime getPocetakRadnogVremena() {
         return pocetakRadnogVremena.get();
     }
@@ -134,5 +138,11 @@ public class Parking {
 
     public void setOpis(String opis) {
         this.opis.set(opis);
+    }
+
+    @Override
+    public String toString() {
+        return
+                 parkingId.getValue() + "  " + naziv.getValue() + "  " + lokacija.getValue().getUlica();
     }
 }

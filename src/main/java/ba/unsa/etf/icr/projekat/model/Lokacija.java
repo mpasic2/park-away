@@ -16,6 +16,9 @@ public class Lokacija {
         this.ulica = new SimpleStringProperty(ulica);
     }
 
+    public Lokacija(Lokacija lokacija) {
+    }
+
     public int getLokacijaId() {
         return lokacijaId.get();
     }
@@ -50,6 +53,11 @@ public class Lokacija {
 
     public void setUlica(String ulica) {
         this.ulica.set(ulica);
+    }
+
+    @Override
+    public String toString() {
+        return grad.getValue() +", " + ulica.getValue();
     }
 }
 

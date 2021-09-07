@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.AdminloginContoler">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <VBox BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -23,12 +23,15 @@
                             <HBox.margin>
                                 <Insets left="149.0" top="15.0" />
                             </HBox.margin>
+                            <image>
+                                <Image url="@../img/logo.png" />
+                            </image>
                         </ImageView>
                     </children>
                 </HBox>
-                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="DOBRODOŠLI NA PARK AWAY!" textAlignment="CENTER" textFill="WHITE">
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="UNESITE PODATKE ZA NOVI PARKING" textAlignment="CENTER" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="19.0" />
                     </font>
                     <VBox.margin>
                         <Insets top="-15.0" />
@@ -56,32 +59,41 @@
                 <Insets />
             </BorderPane.margin>
             <children>
-                <TextField fx:id="fldAdmin" prefWidth="320.0" promptText="Email">
+                <TextField fx:id="fldNazivParkinga" prefWidth="320.0" promptText="Naziv parkinga">
                     <font>
                         <Font size="17.0" />
                     </font>
                     <GridPane.margin>
                         <Insets bottom="2.0" />
                     </GridPane.margin></TextField>
-                <PasswordField fx:id="fldAdminPassword" promptText="Lozinka" GridPane.rowIndex="1">
+                <Label fx:id="fldGreska" prefHeight="18.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" GridPane.rowIndex="2" />
+                <TextField fx:id="fldOpis" layoutX="50.0" layoutY="226.0" promptText="Opis parkinga" GridPane.rowIndex="7">
                     <font>
                         <Font size="17.0" />
                     </font>
-                    <GridPane.margin>
-                        <Insets top="2.0" />
-                    </GridPane.margin></PasswordField>
-                <Button mnemonicParsing="false" onAction="#prijavaAdmina" text="Prijavite se" GridPane.rowIndex="4">
+                </TextField>
+                <ChoiceBox fx:id="cbLokacija" prefWidth="150.0" GridPane.rowIndex="1" />
+                <TextField fx:id="fldCijena" layoutX="50.0" layoutY="58.0" prefWidth="320.0" promptText="Cijena parkinga" GridPane.rowIndex="2">
                     <font>
-                        <Font name="System Bold" size="19.0" />
+                        <Font size="17.0" />
                     </font>
-                    <GridPane.margin>
-                        <Insets left="98.0" />
-                    </GridPane.margin></Button>
-                <Label fx:id="fldGreska" prefHeight="18.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" GridPane.rowIndex="2" />
+                </TextField>
+                <CheckBox fx:id="cbStalni" mnemonicParsing="false" text="Stalni parking" GridPane.rowIndex="5" />
+                <Slider fx:id="sldOcjena" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="6" />
+                <Slider fx:id="sldPocetak" blockIncrement="1.0" layoutX="50.0" layoutY="376.0" majorTickUnit="2.0" max="24.0" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="3" />
+                <Slider fx:id="sldKraj" blockIncrement="1.0" layoutX="50.0" layoutY="226.0" majorTickUnit="2.0" max="24.0" showTickLabels="true" showTickMarks="true" GridPane.rowIndex="4" />
             </children>
             <padding>
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
             </padding>
         </GridPane>
     </center>
+    <bottom>
+        <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <buttons>
+                <Button mnemonicParsing="false" onAction="#izmijeniAction" text="Izmijeni" translateX="-120.0" />
+            <Button mnemonicParsing="false" onAction="#backAction" text="Nazad" translateX="-110.0" />
+            </buttons>
+        </ButtonBar>
+    </bottom>
 </BorderPane>
