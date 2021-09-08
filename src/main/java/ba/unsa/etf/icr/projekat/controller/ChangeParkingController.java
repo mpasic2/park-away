@@ -3,6 +3,8 @@ package ba.unsa.etf.icr.projekat.controller;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Lokacija;
 import ba.unsa.etf.icr.projekat.model.Parking;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,9 +31,9 @@ public class ChangeParkingController implements Initializable {
     public ComboBox<Lokacija> cbLokacija;
     public TextField fldCijena;
     public CheckBox cbStalni;
-    public Slider sldOcjena;
-    public Slider sldPocetak;
-    public Slider sldKraj;
+    public JFXTimePicker sldPocetak;
+    public JFXTimePicker sldKraj;
+    public JFXSlider sldOcjena;
     private Parking parking;
     private ParkAwayDAO dao;
     private int id;
@@ -58,15 +60,15 @@ public class ChangeParkingController implements Initializable {
         fldNazivParkinga.setText(parking.getNaziv());
         fldCijena.setText(String.valueOf(parking.getCijena()));
         fldOpis.setText(parking.getOpis());
-        sldPocetak.adjustValue(parking.getPocetakRadnogVremena().getHour());
-        sldKraj.adjustValue(parking.getKrajRadnogVremena().getHour());
+        sldPocetak.valueProperty().set(parking.getPocetakRadnogVremena());
+        sldKraj.valueProperty().set(parking.getKrajRadnogVremena());
         sldOcjena.adjustValue(parking.getOcjena());
         cbStalni.setSelected(parking.getStalniParking() != 0);
         cbLokacija.getSelectionModel().select(parking.getLokacija());
     }
 
     public void izmijeniAction(ActionEvent actionEvent) {
-        parkinzi.addAll(dao.dajParkinge());
+        /*parkinzi.addAll(dao.dajParkinge());
         LocalTime t1 = LocalTime.of((int) sldPocetak.getValue(),0);
         LocalTime t2 = LocalTime.of((int) sldKraj.getValue(),0);
         Lokacija lok = dao.dajLokacije().get(1);
@@ -84,7 +86,7 @@ public class ChangeParkingController implements Initializable {
         alert.setContentText("Čestitamo!");
         alert.showAndWait();
         Stage zatvaranjePoruka = (Stage) sldKraj.getScene().getWindow();
-        zatvaranjePoruka.close();
+        zatvaranjePoruka.close();*/
     }
 
     public void backAction(ActionEvent actionEvent) throws IOException {
