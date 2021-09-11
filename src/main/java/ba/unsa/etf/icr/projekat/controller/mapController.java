@@ -4,6 +4,7 @@ import ba.unsa.etf.icr.projekat.Navigation;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Grad;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
+import ba.unsa.etf.icr.projekat.model.Parking;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.controls.JFXTimePicker;
@@ -131,13 +132,32 @@ public class mapController implements Initializable {
         navigation.messageAction(actionEvent);
     }
     
-    public void actionPretraga(ActionEvent actionEvent){
+    public void actionPretraga(ActionEvent actionEvent) throws IOException {
+        ObservableList<Parking> listParking = FXCollections.observableArrayList();
 
         for (Grad grad : gradovi)
             if (grad.getNaziv().toLowerCase().contains(fldPretraga.getText().toLowerCase()))
                 nadjeniGradovi.add(grad);
 
-        System.out.println("broj nadjenih gradova jeste: " + nadjeniGradovi);
+
+
+
+        Stage stage = new Stage();
+        stage.initStyle(StageStyle.UNDECORATED);
+        ParkingListController pklc = new ParkingListController(fldPretraga.getText());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/parking.fxml"));
+        loader.setController(pklc);
+        Parent root = loader.load();
+        stage.setTitle("Lista parkinga");
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        Stage close = (Stage) mapView.getScene().getWindow();
+        close.close();
     }
 }
 

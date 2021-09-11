@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
     </columnConstraints>
@@ -36,11 +42,6 @@
                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                         <children>
                             <JFXHamburger fx:id="dugmeMenuMap" alignment="TOP_RIGHT" layoutX="148.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="31.0" AnchorPane.rightAnchor="21.0" />
-                            <Button fx:id="btnListaParkinga" alignment="BOTTOM_LEFT" layoutX="67.0" layoutY="66.0" mnemonicParsing="false" onAction="#openListParking" prefHeight="26.0" prefWidth="134.0" stylesheets="@../css/stil.css" text="Lista parkinga" AnchorPane.rightAnchor="21.0">
-                                <font>
-                                    <Font name="System Bold" size="13.0" />
-                                </font>
-                            </Button>
                         </children>
                     </AnchorPane>
                 </children>

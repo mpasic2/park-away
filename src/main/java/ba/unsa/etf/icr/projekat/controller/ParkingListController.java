@@ -32,28 +32,39 @@ import java.util.ResourceBundle;
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ParkingListController implements Initializable {
-    private ObservableList<Parking> listParking;
+    private ObservableList<Parking> listParking = FXCollections.observableArrayList();;
     private ParkAwayDAO dao;
     public TableView<Parking> tableViewParkinzi;
     public TableColumn colNaziv;
     public TableColumn<Parking, String> colLokacija;
     public TableColumn<Parking, Integer> colBrojDostupnihMjesta;
     public TextField fldSearch;
+    public String pretraga = "";
 
     public ParkingListController() {
         dao = ParkAwayDAO.getInstance();
         listParking = FXCollections.observableArrayList(dao.dajParkinge());
     }
 
+    public ParkingListController(String text) {
+        this.pretraga = text;
+        dao = ParkAwayDAO.getInstance();
+        listParking = FXCollections.observableArrayList(dao.dajParkinge());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         tableViewParkinzi.setItems(listParking);
         colNaziv.setCellValueFactory(new PropertyValueFactory("naziv"));
         colLokacija.setCellValueFactory( entry -> new SimpleObjectProperty(entry.getValue().getLokacija().getUlica()));
         colBrojDostupnihMjesta.setCellValueFactory(entry -> new SimpleObjectProperty(dao.dajBrojSlobodnihMjesta(entry.getValue().getParkingId())));
+
         fldSearch. textProperty().addListener((obs, oldText, newText) -> {
             search();
         });
+        fldSearch.textProperty().set(pretraga);
+        fldSearch.setFocusTraversable(false);
         tableViewParkinzi.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 Stage stage=new Stage();
@@ -79,6 +90,7 @@ public class ParkingListController implements Initializable {
                 close.close();
             }
         });
+
     }
 
 
@@ -91,7 +103,7 @@ public class ParkingListController implements Initializable {
             ObservableList<Parking> filteredData = FXCollections.observableArrayList();
             for (Parking parking : listParking) {
                 if (parking.getNaziv().toLowerCase().contains(keyword) ||
-                    parking.getLokacija().getUlica().toLowerCase().contains(keyword))
+                        parking.getLokacija().getUlica().toLowerCase().contains(keyword))
                     filteredData.add(parking);
             }
 
