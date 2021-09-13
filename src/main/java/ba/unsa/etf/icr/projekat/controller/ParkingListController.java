@@ -4,6 +4,7 @@ import ba.unsa.etf.icr.projekat.Navigation;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import ba.unsa.etf.icr.projekat.model.Parking;
+import com.jfoenix.controls.*;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -14,20 +15,32 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
@@ -40,18 +53,27 @@ public class ParkingListController implements Initializable {
     public TableColumn<Parking, Integer> colBrojDostupnihMjesta;
     public TextField fldSearch;
     public String pretraga = "";
+    public JFXSlider minCijenaFilter;
+    public JFXCheckBox stalniFilter;
+    public JFXCheckBox nadkriveniFilter;
+    public JFXTimePicker pocetakRadaFilter;
+    public JFXTimePicker krajRadaFilter;
+    public JFXSlider ocjenaFilter;
+    public JFXSlider maxCijenaFilter;
+    public Button btnRefresh;
+    GridPane gp = null;
+    AnchorPane ap = null;
+    @FXML
+    private JFXDrawer drawer;
+    @FXML
+    private JFXHamburger dugmeMenuMap;
 
-    public ParkingListController() {
-        dao = ParkAwayDAO.getInstance();
-        listParking = FXCollections.observableArrayList(dao.dajParkinge());
-    }
 
     public ParkingListController(String text) {
         this.pretraga = text;
         dao = ParkAwayDAO.getInstance();
         listParking = FXCollections.observableArrayList(dao.dajParkinge());
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -65,10 +87,58 @@ public class ParkingListController implements Initializable {
         });
         fldSearch.textProperty().set(pretraga);
         fldSearch.setFocusTraversable(false);
+
+        try {
+
+            gp = FXMLLoader.load(getClass().getResource("/fxml/mapFilter.fxml"));
+            drawer.setSidePane(gp);
+            btnRefresh = (Button) gp.getChildren().get(gp.getChildren().size()-1);
+            for(int i = 0; i<gp.getChildren().size()-1; i++) {
+                ap = (AnchorPane) gp.getChildren().get(i);
+                for(int j=0; j< ap.getChildren().size(); j++) {
+                    Node node= ap.getChildren().get(j);
+                    //System.out.println(j + " : " + ap.getChildren().get(j).toString() + "\n");
+                    if(node.getId()!=null){
+                        if (node.getId().equals("ocjenaFilter")) ocjenaFilter = (JFXSlider) node;
+                        else if (node.getId().equals("pocetakRadaFilter")) pocetakRadaFilter = (JFXTimePicker) node;
+                        else if (node.getId().equals("krajRadaFilter")) krajRadaFilter = (JFXTimePicker) node;
+                        else if (node.getId().equals("stalniFilter")) stalniFilter = (JFXCheckBox) node;
+                        else if (node.getId().equals("nadkriveniFilter")) nadkriveniFilter = (JFXCheckBox) node;
+                        else if (node.getId().equals("minCijenaFilter")) minCijenaFilter = (JFXSlider) node;
+                        else if (node.getId().equals("maxCijenaFilter")) maxCijenaFilter = (JFXSlider) node;
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            Logger.getLogger(mapController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        btnRefresh.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
+            search();
+        });
+        dugmeMenuMap.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+            if (drawer.isOpened()) {
+                drawer.close();
+                tableViewParkinzi.setEffect(null);
+                try {
+                    TimeUnit.MICROSECONDS.sleep(10);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+                drawer.setVisible(false);
+            } else {
+                drawer.setVisible(true);
+                drawer.open();
+                BoxBlur effect = new BoxBlur();
+                tableViewParkinzi.setEffect(effect);
+            }
+        });
+
         tableViewParkinzi.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 Stage stage=new Stage();
-                ParkingDetailsController cont = new ParkingDetailsController(newSelection);
+                Stage close=(Stage)tableViewParkinzi.getScene().getWindow();
+                ParkingDetailsController cont = new ParkingDetailsController(newSelection, close);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/parkingDetails.fxml"));
                 loader.setController(cont);
                 Parent root = null;
@@ -77,7 +147,7 @@ public class ParkingListController implements Initializable {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stage.setTitle("Profil");
+                stage.setTitle(newSelection.getNaziv());
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.show();
@@ -86,8 +156,8 @@ public class ParkingListController implements Initializable {
                         stage.close();
                     }
                 });
-                Stage close=(Stage)tableViewParkinzi.getScene().getWindow();
-                close.close();
+                tableViewParkinzi.getSelectionModel().clearSelection();
+                close.hide();
             }
         });
 
@@ -97,18 +167,48 @@ public class ParkingListController implements Initializable {
 
     @FXML private void search() {
         String keyword = fldSearch.getText().toLowerCase();
-        if (keyword.equals("")) {
-            tableViewParkinzi.setItems(listParking);
-        } else {
             ObservableList<Parking> filteredData = FXCollections.observableArrayList();
+
             for (Parking parking : listParking) {
+                boolean ok=true;
                 if (parking.getNaziv().toLowerCase().contains(keyword) ||
-                        parking.getLokacija().getUlica().toLowerCase().contains(keyword))
+                        parking.getLokacija().getUlica().toLowerCase().contains(keyword)){
+                    if (nadkriveniFilter.isSelected()) {
+                        if(parking.getOpis()==null || !parking.getOpis().toLowerCase().contains("nadkr")) {
+                            ok = false;
+                            continue;
+                        }
+                    }
+                    if(parking.getCijena()<minCijenaFilter.getValue() || parking.getCijena()>maxCijenaFilter.getValue()){
+                        System.out.println(parking.getCijena() + " - " +minCijenaFilter.getValue() + " - " + maxCijenaFilter.getValue());
+                        ok = false;
+                        continue;
+                    }
+                    if(stalniFilter.isSelected()){
+                        if(parking.getStalniParking()!=1){
+                            ok = false;
+                            continue;
+                        }
+                    }
+                    if(krajRadaFilter.getValue()!=null && pocetakRadaFilter.getValue() !=null && !parking.getPocetakRadnogVremena().equals(LocalTime.parse("00:00"))  &&
+                            !((parking.getPocetakRadnogVremena().isBefore(pocetakRadaFilter.getValue()) ||
+                                    (parking.getPocetakRadnogVremena().equals(pocetakRadaFilter.getValue())))
+                                    && (parking.getKrajRadnogVremena().isAfter(krajRadaFilter.getValue()) ||
+                                    parking.getKrajRadnogVremena().equals(krajRadaFilter.getValue())))){
+                        ok= false;
+                        System.out.println(krajRadaFilter.getValue() + "("+ parking.getKrajRadnogVremena() +")" + "\n" +
+                                pocetakRadaFilter.getValue() + "(" + parking.getPocetakRadnogVremena() + ")");
+                        continue;
+                    }
+                    if(parking.getOcjena()<ocjenaFilter.getValue()){
+                        ok = false;
+                    }
+                }else
+                    ok= false;
+                if(ok)
                     filteredData.add(parking);
             }
-
             tableViewParkinzi.setItems(filteredData);
-        }
     }
     public void pretraziListu(ActionEvent actionEvent){
         search();

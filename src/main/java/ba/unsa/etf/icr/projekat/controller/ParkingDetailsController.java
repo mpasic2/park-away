@@ -2,6 +2,7 @@ package ba.unsa.etf.icr.projekat.controller;
 
 import ba.unsa.etf.icr.projekat.Navigation;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import ba.unsa.etf.icr.projekat.model.Parking;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -33,10 +34,12 @@ public class ParkingDetailsController implements Initializable {
     public Label lblOpis;
     private Parking parking;
     private ParkAwayDAO dao;
+    private Stage backScene;
 
-    public ParkingDetailsController(Parking parking) {
+    public ParkingDetailsController(Parking parking, Stage backScene) {
         dao = ParkAwayDAO.getInstance();
         this.parking=parking;
+        this.backScene=backScene;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,24 +52,13 @@ public class ParkingDetailsController implements Initializable {
         if(Objects.equals(parking.getOpis(), "") || parking.getOpis() !=null)
             lblOpis.setText(parking.getOpis());
         String imagePath = dao.dajSliku(parking.getParkingId());
-        System.out.println(imagePath);
-        //if(getClass().getResource(imagePath).getPath() != null){
+        if(getClass().getResourceAsStream(imagePath) != null){
             slikaParkinga.setImage(new Image(getClass().getResourceAsStream(imagePath)));
-        //}
+        }
 
     }
     public void backParking(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/parking.fxml"));
-        stage.setTitle("Lista parkinga");
-        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
-                stage.close();
-            }
-        });
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
+        backScene.show();
         Stage close = (Stage) lblOpis.getScene().getWindow();
         close.close();
     }

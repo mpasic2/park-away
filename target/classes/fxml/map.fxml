@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
     </columnConstraints>
@@ -22,7 +26,6 @@
                <Font size="17.0" />
             </font></TextField>
             <WebView fx:id="mapView" layoutX="30.0" layoutY="284.0" prefHeight="504.0" prefWidth="341.0" AnchorPane.bottomAnchor="-111.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" />
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" direction="RIGHT" layoutX="190.0" prefHeight="619.0" prefWidth="210.0" />
             <GridPane prefHeight="106.0" prefWidth="400.0">
                 <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,16 +36,7 @@
                 </rowConstraints>
                 <children>
                     <ImageView fx:id="imgAbout" fitHeight="72.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" />
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                        <children>
-                            <JFXHamburger fx:id="dugmeMenuMap" alignment="TOP_RIGHT" layoutX="148.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="23.0" prefWidth="31.0" AnchorPane.rightAnchor="21.0" />
-                            <Button fx:id="btnListaParkinga" alignment="BOTTOM_LEFT" layoutX="67.0" layoutY="66.0" mnemonicParsing="false" onAction="#openListParking" prefHeight="26.0" prefWidth="134.0" stylesheets="@../css/stil.css" text="Lista parkinga" AnchorPane.rightAnchor="21.0">
-                                <font>
-                                    <Font name="System Bold" size="13.0" />
-                                </font>
-                            </Button>
-                        </children>
-                    </AnchorPane>
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
                 </children>
             </GridPane>
          <Button fx:id="btnSearch" layoutX="283.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPretraga" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="60.0" />

@@ -5,15 +5,14 @@ import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Grad;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
 import ba.unsa.etf.icr.projekat.model.Parking;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.controls.JFXTimePicker;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -40,25 +40,16 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class mapController implements Initializable {
     public ImageView imgAbout;
-    public Button btnListaParkinga;
     private Korisnik user;
     public WebView mapView;
-    public Button btnSearch;
     public TextField fldPretraga;
     public ObservableList<Grad> nadjeniGradovi= FXCollections.observableArrayList();
     ParkAwayDAO dao = new ParkAwayDAO();
     public ObservableList<Grad> gradovi= dao.dajGradove();
-
     public mapController(Korisnik user) {
         this.user = user;
     }
 
-    @FXML
-    private JFXDrawer drawer;
-    @FXML
-    private JFXHamburger dugmeMenuMap;
-    @FXML
-    private JFXTimePicker Timer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,30 +57,6 @@ public class mapController implements Initializable {
         Image image = new Image("/img/logo.png");
         imgAbout.setImage(image);
         mapView.getEngine().load(getClass().getResource("/HTML/googlemap.html").toString());
-        GridPane gp = null;
-        try {
-
-            gp = FXMLLoader.load(getClass().getResource("/fxml/mapFilter.fxml"));
-            drawer.setSidePane(gp);
-        } catch (IOException e) {
-            Logger.getLogger(mapController.class.getName()).log(Level.SEVERE, null, e);
-        }
-
-
-        dugmeMenuMap.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if (drawer.isOpened()) {
-                drawer.close();
-                btnListaParkinga.setVisible(true);
-                btnSearch.setVisible(true);
-                mapView.setEffect(null);
-            } else {
-                drawer.open();
-                btnListaParkinga.setVisible(false);
-                btnSearch.setVisible(false);
-                BoxBlur effect = new BoxBlur();
-                mapView.setEffect(effect);
-            }
-        });
 
         fldPretraga.setStyle("-fx-prompt-text-fill: derive(-fx-control-inner-background, -30%);");
     }
@@ -138,10 +105,6 @@ public class mapController implements Initializable {
         for (Grad grad : gradovi)
             if (grad.getNaziv().toLowerCase().contains(fldPretraga.getText().toLowerCase()))
                 nadjeniGradovi.add(grad);
-
-
-
-
         Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         ParkingListController pklc = new ParkingListController(fldPretraga.getText());
