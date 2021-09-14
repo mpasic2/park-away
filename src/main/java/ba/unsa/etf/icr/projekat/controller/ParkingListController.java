@@ -89,9 +89,6 @@ public class ParkingListController implements Initializable {
         fldSearch. textProperty().addListener((obs, oldText, newText) -> {
             search();
         });
-        fldSearch.textProperty().set(pretraga);
-        fldSearch.setFocusTraversable(false);
-
         try {
 
             gp = FXMLLoader.load(getClass().getResource("/fxml/mapFilter.fxml"));
@@ -117,6 +114,10 @@ public class ParkingListController implements Initializable {
         } catch (IOException e) {
             Logger.getLogger(mapController.class.getName()).log(Level.SEVERE, null, e);
         }
+        fldSearch.textProperty().set(pretraga);
+        fldSearch.setFocusTraversable(false);
+
+
         btnRefresh.addEventHandler(MouseEvent.MOUSE_CLICKED, e->{
             search();
         });
