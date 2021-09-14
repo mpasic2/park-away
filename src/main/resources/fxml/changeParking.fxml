@@ -40,6 +40,11 @@
                                 <Image url="@../img/logo.png" />
                             </image>
                         </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="32.0" onMouseClicked="#helpAction" pickOnBounds="true" preserveRatio="true" translateX="110.0" translateY="10.0">
+                     <image>
+                        <Image url="@../img/question.png" />
+                     </image>
+                  </ImageView>
                     </children>
                 </HBox>
                 <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="UNESITE PODATKE ZA NOVI PARKING" textAlignment="CENTER" textFill="WHITE">

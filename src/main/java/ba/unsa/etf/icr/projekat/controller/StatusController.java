@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -72,4 +73,19 @@ public class StatusController {
         tooltip.setText("Izlaz");
         dugmePorukaMap.setTooltip(tooltip);
     }
+
+    public void helpAction(MouseEvent mouseEvent) {
+        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        lb.setWrapText(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informativni ekran");
+        alert.setHeaderText("Prijava");
+        alert.getDialogPane().setContent(lb);
+        alert.showAndWait();
+
+    }
+
+
+
 }

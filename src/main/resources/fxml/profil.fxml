@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <stylesheets>
@@ -40,6 +40,11 @@
                <image>
                   <Image url="@../img/baseline_account_circle_white_48dp.png" />
                </image></ImageView>
+            <ImageView fitHeight="35.0" fitWidth="32.0" onMouseClicked="#helpAction" pickOnBounds="true" preserveRatio="true" translateX="120.0" translateY="10.0">
+               <image>
+                  <Image url="@../img/question.png" />
+               </image>
+            </ImageView>
             </children>
         </HBox>
     </top>
@@ -49,10 +54,10 @@
                 <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
                     <children>
                         <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" onMouseEntered="#mousePopupBack" />
-                        <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil"/>
-                        <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa"/>
-                        <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta"/>
-                        <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz"/>
+                        <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil" />
+                        <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa" />
+                        <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta" />
+                        <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz" />
                     </children>
                 </HBox>
             </children>
@@ -152,7 +157,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label text="8877" fx:id="fldSasija" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="fldSasija" text="8877" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
