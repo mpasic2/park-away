@@ -9,11 +9,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -95,5 +97,17 @@ public class loginContoler implements Initializable {
         noviProzor.show();
         Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
         zatvaranjePoruka.close();
+    }
+
+    public void helpAction(MouseEvent mouseEvent) {
+        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        lb.setWrapText(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informativni ekran");
+        alert.setHeaderText("Prijava");
+        alert.getDialogPane().setContent(lb);
+        alert.showAndWait();
+
     }
 }

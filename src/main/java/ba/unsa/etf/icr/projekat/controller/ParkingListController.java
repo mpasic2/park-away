@@ -15,10 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.input.KeyCode;
@@ -61,6 +58,13 @@ public class ParkingListController implements Initializable {
     public JFXSlider ocjenaFilter;
     public JFXSlider maxCijenaFilter;
     public Button btnRefresh;
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
+
+
     GridPane gp = null;
     AnchorPane ap = null;
     @FXML
@@ -235,5 +239,29 @@ public class ParkingListController implements Initializable {
         navigation.messageAction(actionEvent);
     }
 
-
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Nazad");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
+    }
 }

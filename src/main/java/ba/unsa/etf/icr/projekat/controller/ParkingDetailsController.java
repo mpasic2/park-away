@@ -9,11 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -35,6 +38,11 @@ public class ParkingDetailsController implements Initializable {
     private Parking parking;
     private ParkAwayDAO dao;
     private Stage backScene;
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
 
     public ParkingDetailsController(Parking parking, Stage backScene) {
         dao = ParkAwayDAO.getInstance();
@@ -83,6 +91,34 @@ public class ParkingDetailsController implements Initializable {
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
         navigation.messageAction(actionEvent);
+    }
+
+
+
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Nazad");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
     }
 
 

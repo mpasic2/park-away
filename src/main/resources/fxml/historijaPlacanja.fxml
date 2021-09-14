@@ -56,11 +56,11 @@
          <children>
               <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
                   <children>
-                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" />
-                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction"/>
-                      <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction"/>
-                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction"/>
-                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction"/>
+                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" onMouseEntered="#mousePopupBack" />
+                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil"/>
+                      <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa"/>
+                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta"/>
+                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz"/>
                   </children>
               </HBox>
          </children>

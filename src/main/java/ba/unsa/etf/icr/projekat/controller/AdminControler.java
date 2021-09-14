@@ -10,7 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -26,6 +29,11 @@ public class AdminControler implements Initializable {
     public javafx.scene.control.ListView listaParking;
     public ObservableList<Parking> parkinzi = FXCollections.observableArrayList();
     private ParkAwayDAO dao;
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
 
     Navigation navigation= new Navigation();
 
@@ -101,5 +109,32 @@ public class AdminControler implements Initializable {
 
         listaParking.setItems(parkinzi);
 
+    }
+
+
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Nazad");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
     }
 }

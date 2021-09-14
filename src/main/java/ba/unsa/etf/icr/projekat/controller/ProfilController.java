@@ -12,11 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -37,6 +40,11 @@ public class ProfilController implements Initializable {
     public Label fldRregistracija;
     public Label fldSasija;
     public ComboBox chocideAuto;
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
     private Korisnik korisnik;
     Navigation navigation= new Navigation();
     private ParkAwayDAO dao = new ParkAwayDAO();
@@ -118,5 +126,32 @@ public class ProfilController implements Initializable {
         stage.show();
         Stage close=(Stage)fldAdresa.getScene().getWindow();
         close.close();
+    }
+
+
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Nazad");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
     }
 }

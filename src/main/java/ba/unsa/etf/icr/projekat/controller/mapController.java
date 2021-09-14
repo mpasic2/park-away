@@ -15,16 +15,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -40,12 +41,18 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class mapController implements Initializable {
     public ImageView imgAbout;
+    public HBox ButtonBarMap;
     private Korisnik user;
     public WebView mapView;
     public TextField fldPretraga;
     public ObservableList<Grad> nadjeniGradovi= FXCollections.observableArrayList();
     ParkAwayDAO dao = new ParkAwayDAO();
     public ObservableList<Grad> gradovi= dao.dajGradove();
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
     public mapController(Korisnik user) {
         this.user = user;
     }
@@ -122,6 +129,45 @@ public class mapController implements Initializable {
         Stage close = (Stage) mapView.getScene().getWindow();
         close.close();
     }
+
+    public void helpAction(MouseEvent mouseEvent) {
+        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        lb.setWrapText(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Informativni ekran");
+        alert.setHeaderText("Prijava");
+        alert.getDialogPane().setContent(lb);
+        alert.showAndWait();
+
+    }
+
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Nazad");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
+    }
+
 }
 
 

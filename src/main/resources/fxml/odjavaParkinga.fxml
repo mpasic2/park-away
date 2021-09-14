@@ -115,11 +115,11 @@
    <bottom>
       <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
-            <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-            <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeIzlazMap" mnemonicParsing="false"/>
+             <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false"/>
          </children>
       </HBox>
    </bottom>
