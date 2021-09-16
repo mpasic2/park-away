@@ -128,7 +128,7 @@ public class ProfilController implements Initializable {
 
     public void mousePopupBack(MouseEvent mouseEvent) {
         Tooltip tooltip = new Tooltip();
-        tooltip.setText("Nazad");
+        tooltip.setText("Odjava");
         dugmeIzlazMap.setTooltip(tooltip);
     }
     public void mousePopupProfil(MouseEvent mouseEvent) {
@@ -153,12 +153,13 @@ public class ProfilController implements Initializable {
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        Label lb = new Label("Prikazani su svi Vaši podaci unešeni u aplikaciju. \nUkoliko želite dodati novi automobil pritisnite dugme za dodavanje. \n" +
+                "Ukoliko želite promijeniti trenutno vozilo pritisnite dugme za promjenu vozila");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informativni ekran");
-        alert.setHeaderText("Prijava");
+        alert.setHeaderText("Profil");
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 

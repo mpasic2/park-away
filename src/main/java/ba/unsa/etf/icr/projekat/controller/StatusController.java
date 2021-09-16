@@ -50,7 +50,7 @@ public class StatusController {
 
     public void mousePopupBack(MouseEvent mouseEvent) {
         Tooltip tooltip = new Tooltip();
-        tooltip.setText("Nazad");
+        tooltip.setText("Odjava");
         dugmeIzlazMap.setTooltip(tooltip);
     }
     public void mousePopupProfil(MouseEvent mouseEvent) {
@@ -75,12 +75,12 @@ public class StatusController {
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        Label lb = new Label("Prikazano je trenutno stanje Vašeg vozila \n (lokacija, dosadašna cijena i naziv vozila)");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informativni ekran");
-        alert.setHeaderText("Prijava");
+        alert.setHeaderText("Status vozila");
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 

@@ -70,35 +70,50 @@ public class AdminControler implements Initializable {
         noviProzor.show();
         Stage zatvaranjePoruka=(Stage)listaParking.getScene().getWindow();
         zatvaranjePoruka.close();
+
+
     }
 
     public void izmijeniParking(ActionEvent actionEvent) throws IOException {
-        String sve = listaParking.getSelectionModel().getSelectedItem().toString();
-        int idParkinga = Integer.parseInt(sve.split(" ")[0]);
+
+        if(listaParking.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informativni ekran");
+            alert.setHeaderText("Izmjena parkinga");
+            alert.getDialogPane().setContentText("Niste odabrali parking");
+            alert.showAndWait();
+        }
+        else {
 
 
-        Stage noviProzor = new Stage();
-        FXMLLoader loader =  new FXMLLoader(getClass().getResource("/fxml/changeParking.fxml"));
-        ChangeParkingController cpc = new ChangeParkingController(dao.dajParkinge().get(idParkinga-1));
-        loader.setController(cpc);
-        Parent roditelj = loader.load();
-        noviProzor.setTitle("Administrator");
-        noviProzor.initStyle(StageStyle.UNDECORATED);
-        Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-        noviProzor.setScene(scene);
-        noviProzor.show();
+            String sve = listaParking.getSelectionModel().getSelectedItem().toString();
+            int idParkinga = Integer.parseInt(sve.split(" ")[0]);
 
-        Stage zatvaranjePoruka=(Stage)listaParking.getScene().getWindow();
-        zatvaranjePoruka.close();
+
+            Stage noviProzor = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/changeParking.fxml"));
+            ChangeParkingController cpc = new ChangeParkingController(dao.dajParkinge().get(idParkinga - 1));
+            loader.setController(cpc);
+            Parent roditelj = loader.load();
+            noviProzor.setTitle("Administrator");
+            noviProzor.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            noviProzor.setScene(scene);
+            noviProzor.show();
+
+            Stage zatvaranjePoruka = (Stage) listaParking.getScene().getWindow();
+            zatvaranjePoruka.close();
+        }
+
     }
 
     public void obrisiParking(ActionEvent actionEvent) {
 
 
-        String sve = listaParking.getSelectionModel().getSelectedItem().toString();
-        int idParkinga = Integer.parseInt(sve.split(" ")[0]);
+            String sve = listaParking.getSelectionModel().getSelectedItem().toString();
+            int idParkinga = Integer.parseInt(sve.split(" ")[0]);
 
-        dao.obrisiPaarking(dao.dajParkinge().get(idParkinga-1));
+            dao.obrisiPaarking(dao.dajParkinge().get(idParkinga - 1));
 
         listaParking.refresh();
 

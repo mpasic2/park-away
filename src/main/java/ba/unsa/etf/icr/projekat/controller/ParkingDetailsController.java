@@ -98,7 +98,7 @@ public class ParkingDetailsController implements Initializable {
 
     public void mousePopupBack(MouseEvent mouseEvent) {
         Tooltip tooltip = new Tooltip();
-        tooltip.setText("Nazad");
+        tooltip.setText("Odjava");
         dugmeIzlazMap.setTooltip(tooltip);
     }
     public void mousePopupProfil(MouseEvent mouseEvent) {
@@ -129,7 +129,7 @@ public class ParkingDetailsController implements Initializable {
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informativni ekran");
-        alert.setHeaderText("Prijava");
+        alert.setHeaderText("Detalji o parkingu");
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 

@@ -219,6 +219,8 @@ public class ParkingListController implements Initializable {
             }
             tableViewParkinzi.setItems(filteredData);
     }
+
+
     public void pretraziListu(ActionEvent actionEvent){
         search();
     }
@@ -271,12 +273,12 @@ public class ParkingListController implements Initializable {
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        Label lb = new Label("Dodatno pretražite i odaberite parking kako biste vidjeli \nsve pojedinosti o njemu");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informativni ekran");
-        alert.setHeaderText("Prijava");
+        alert.setHeaderText("Tabela parkinga");
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 

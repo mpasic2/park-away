@@ -36,7 +36,7 @@ public class newParkingController implements Initializable {
     public ObservableList<Lokacija> lokacije = FXCollections.observableArrayList();
 
 
-    public void dodajAction(ActionEvent actionEvent) {
+    public void dodajAction(ActionEvent actionEvent) throws IOException {
         int vel = dao.dajParkinge().size();
         LocalTime t1 = LocalTime.of((int) sldPocetak.getValue(),0);
         LocalTime t2 = LocalTime.of((int) sldKraj.getValue(),0);
@@ -56,6 +56,14 @@ public class newParkingController implements Initializable {
         alert.showAndWait();
         Stage zatvaranjePoruka = (Stage) cbStalni.getScene().getWindow();
         zatvaranjePoruka.close();
+
+        Stage noviProzor1 = new Stage();
+        Parent roditelj1 = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
+        noviProzor1.setTitle("Administrator");
+        noviProzor1.initStyle(StageStyle.UNDECORATED);
+        Scene scene1 = new  Scene(roditelj1, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+        noviProzor1.setScene(scene1);
+        noviProzor1.show();
 
     }
 
