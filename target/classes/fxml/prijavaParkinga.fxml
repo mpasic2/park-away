@@ -33,8 +33,8 @@
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="208.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="67.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="106.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="70.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="70.0" />
             <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
@@ -53,7 +53,7 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
+            <Label fx:id="lblNaziv" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -61,41 +61,41 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
+            <Label fx:id="lblAdresa" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="205.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Cijena" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="lblCijena" layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Cijena" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="SlobodihMjesta" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lblSlobMjesta" layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Slobodna mj" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <ComboBox maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="207.0" promptText="Odaberi vozilo" GridPane.rowIndex="3" />
-            <JFXTimePicker defaultColor="#6b6b6b" prefHeight="29.0" prefWidth="225.0" GridPane.rowIndex="5" />
-            <ComboBox editable="true" maxWidth="1.7976931348623157E308" prefHeight="45.0" promptText="Paring mjesto" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cbvozilo" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="207.0" promptText="Odaberi vozilo" GridPane.rowIndex="3" />
+            <JFXTimePicker fx:id="vrijemePrijave" defaultColor="#e72c2c" prefHeight="29.0" prefWidth="225.0" GridPane.rowIndex="5" />
+            <ComboBox fx:id="cmboxMjestaParking" editable="true" maxWidth="1.7976931348623157E308" prefHeight="45.0" promptText="Paring mjesto" GridPane.rowIndex="6" />
             <ButtonBar prefHeight="87.0" prefWidth="304.0" GridPane.columnSpan="3" GridPane.rowIndex="9">
               <buttons>
-                  <Button mnemonicParsing="false" prefHeight="52.0" text="Odustani">
+                  <Button fx:id="dugmeOdustani" mnemonicParsing="false" onAction="#backParking" prefHeight="52.0" text="Odustani">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="136.0" text="Prijavi parking">
+                <Button fx:id="dugmePrijava" mnemonicParsing="false" prefHeight="52.0" prefWidth="136.0" text="Prijavi parking">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -107,6 +107,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
+            <Label fx:id="lblPopunjen" text="Ovaj parking je popunjen!" textFill="RED" visible="false" GridPane.rowIndex="2" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

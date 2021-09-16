@@ -71,6 +71,29 @@ public class ParkingDetailsController implements Initializable {
         Stage close = (Stage) lblOpis.getScene().getWindow();
         close.close();
     }
+    public void actionPrijava(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Stage close = (Stage) lblNazivParkinga.getScene().getWindow();
+        prijavaParkingaController cont = new prijavaParkingaController(parking, close);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/prijavaParkinga.fxml"));
+        loader.setController(cont);
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setTitle(parking.getNaziv());
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
+        close.hide();
+    }
 
     Navigation navigation= new Navigation();
 

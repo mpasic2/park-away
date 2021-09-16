@@ -11,7 +11,7 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking, getUserCars;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars,getAllFree;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -24,6 +24,7 @@ public class ParkAwayDAO {
             getLocation = con.prepareStatement("SELECT * FROM Lokacja");
             getParking = con.prepareStatement("SELECT * FROM Parking");
             getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
+            getAllFree = con.prepareStatement("SELECT broj_parking_mjesta from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
             getParkingImages = con.prepareStatement("Select * from slike where parking_id=?");
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
@@ -127,6 +128,20 @@ public class ParkAwayDAO {
             ResultSet rs = getFree.executeQuery();
             if (!rs.next()) return null;
             return rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public ObservableList<Integer> dajSlobodnaMjesta(int id) {
+        ObservableList<Integer> slobodnaMjesta = FXCollections.observableArrayList();
+        try {
+            getAllFree.setInt(1, id);
+            ResultSet rs = getAllFree.executeQuery();
+            while(rs.next()) {
+                slobodnaMjesta.add(rs.getInt(1));
+            }
+            return slobodnaMjesta;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -304,5 +319,6 @@ public class ParkAwayDAO {
         }
         return vozila;
     }
+
 
 }
