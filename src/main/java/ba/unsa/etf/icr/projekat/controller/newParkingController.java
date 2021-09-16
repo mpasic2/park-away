@@ -4,6 +4,7 @@ import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.model.Grad;
 import ba.unsa.etf.icr.projekat.model.Lokacija;
 import ba.unsa.etf.icr.projekat.model.Parking;
+import com.jfoenix.controls.JFXTimePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,16 +31,16 @@ public class newParkingController implements Initializable {
     public TextField fldCijena;
     public CheckBox cbStalni;
     public Slider sldOcjena;
-    public Slider sldPocetak;
-    public Slider sldKraj;
+    public JFXTimePicker sldPocetak;
+    public JFXTimePicker sldKraj;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
     public ObservableList<Lokacija> lokacije = FXCollections.observableArrayList();
 
 
     public void dodajAction(ActionEvent actionEvent) throws IOException {
         int vel = dao.dajParkinge().size();
-        LocalTime t1 = LocalTime.of((int) sldPocetak.getValue(),0);
-        LocalTime t2 = LocalTime.of((int) sldKraj.getValue(),0);
+        LocalTime t1 = sldPocetak.valueProperty().get();
+        LocalTime t2 = sldKraj.valueProperty().get();
         Lokacija lok = dao.dajLokacije().get(1);
         int isSelected = 0;
         if(cbStalni.isSelected()) isSelected=1;

@@ -40,7 +40,7 @@
                         <Insets left="-220.0" top="80.0" />
                      </HBox.margin>
                   </TextField>
-                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="245.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="45.0">
+                  <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="245.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="45.0" onMouseClicked="#helpAction">
                      <image>
                         <Image url="@../img/question.png" />
                      </image>
