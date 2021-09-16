@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
+
+<GridPane prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="629.0" minHeight="10.0" prefHeight="612.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="41.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css">
+         <TextField fx:id="fldPretraga" layoutX="59.0" prefHeight="34.0" prefWidth="260.0" promptText="Pretraži po nazivu grada" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="160.0">
+            <font>
+               <Font size="17.0" />
+            </font></TextField>
+            <WebView fx:id="mapView" layoutX="30.0" layoutY="284.0" prefHeight="504.0" prefWidth="341.0" AnchorPane.bottomAnchor="-111.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.0" />
+            <GridPane prefHeight="106.0" prefWidth="400.0">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+                <children>
+                    <ImageView fx:id="imgAbout" fitHeight="72.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" />
+                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <children>
+                     <ImageView fitHeight="35.0" fitWidth="32.0" layoutX="58.0" layoutY="53.0" onMouseClicked="#helpAction" pickOnBounds="true" preserveRatio="true" translateX="100.0" translateY="-45.0">
+                        <image>
+                           <Image url="@../img/question.png" />
+                        </image>
+                     </ImageView>
+                  </children></AnchorPane>
+                </children>
+            </GridPane>
+         <Button fx:id="btnSearch" layoutX="283.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionPretraga" prefHeight="25.0" prefWidth="25.0" AnchorPane.rightAnchor="60.0" />
+        </AnchorPane>
+        <HBox fx:id="ButtonBarMap" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="28.0" spacing="35.0" GridPane.rowIndex="1">
+            <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" onMouseEntered="#mousePopupBack" />
+            <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil"/>
+            <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa"/>
+            <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta"/>
+            <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz"/>
+        </HBox>
+    </children>
+</GridPane>

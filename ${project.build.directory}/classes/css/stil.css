@@ -1,0 +1,114 @@
+#dugmeIzlazMap{
+    -fx-graphic: url("/img/back.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+#ButtonBarMap{
+    -fx-background-color: white;
+}
+#dugmeCarMap{
+    -fx-graphic: url("/img/car.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#dugmeLokacijaMap{
+    -fx-graphic: url("/img/pin.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#dugmePorukaMap{
+    -fx-graphic: url("/img/messages.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#dugmeProfilMap{
+    -fx-graphic: url("/img/profile.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+#dugmeMenuMap{
+    -fx-graphic: url("/img/filter.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+#GridFilterMap{
+    -fx-background-color: lightgray;
+}
+#dugmeMenuMapFilter{
+    -fx-graphic: url("/img/filter.png");
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#textField{
+    -fx-border-radius: 15px;
+    -fx-background-radius: 10 10 10 10;
+}
+#linkBtnLogin{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+.slider-style{
+    -jfx-default-track: #0080ff;
+    -jfx-default-thumb: #0080ff;
+}
+#bttnDodajVozilo{
+    -fx-background-image:  url("/img/baseline_add_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
+#btnSearch{
+    -fx-background-image:  url("/img/baseline_search_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: white;
+    -fx-border-width: 0;
+
+}
+#btnBack{
+    -fx-background-image:  url("/img/baseline_arrow_back_ios_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.neValid{
+    -fx-border-color: red;
+}
+#btnListaParkinga{
+    -fx-background-image:  url("/img/baseline_view_list_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: right;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
+
+.combo-box {
+    -fx-font-size : 16px;
+}
+
+.choiceGodin{
+    -fx-font-size : 16px;
+}
+
+.choiceMjesec{
+    -fx-font-size : 16px;
+}
+
+.zeleniProgress  {
+    -fx-accent: green;
+}
+.crveniProgress {
+    -fx-accent: red;
+}
+.zutiProgress {
+    -fx-accent: yellow;
+}

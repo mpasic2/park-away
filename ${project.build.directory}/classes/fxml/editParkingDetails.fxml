@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTimePicker?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.ParkingDetailsController">
+    <bottom>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
+                    <children>
+                        <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" onMouseEntered="#mousePopupBack" />
+                        <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil" />
+                        <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa" />
+                        <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta" />
+                        <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+    <center>
+        <GridPane hgap="2.0" vgap="5.0" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0" prefWidth="30.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="248.0" minHeight="10.0" prefHeight="192.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="399.0" minHeight="10.0" prefHeight="237.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <ImageView fx:id="slikaParkinga" fitHeight="154.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+                <ImageView fx:id="parkingPlace" fitHeight="70.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="2.0" top="-54.0" />
+                    </GridPane.margin></ImageView>
+                <GridPane hgap="5.0" prefHeight="321.0" prefWidth="321.0" vgap="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="181.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="140.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="83.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Lokacija" textFill="WHITE" GridPane.rowIndex="1">
+                            <font>
+                                <Font size="16.0" />
+                            </font></Label>
+                  <TextField text="Sarajevo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField maxWidth="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="68.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Broj slobodnih mjesta:" textFill="WHITE" GridPane.rowIndex="3">
+                            <font>
+                                <Font size="16.0" />
+                            </font></Label>
+                        <Label text="Cijena:" textFill="WHITE" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="16.0" />
+                            </font></Label>
+                        <Label layoutX="10.0" layoutY="90.0" text="Radno vrijeme:" textFill="WHITE" GridPane.rowIndex="4">
+                            <font>
+                                <Font size="16.0" />
+                            </font></Label>
+                        <Label layoutX="10.0" layoutY="97.0" text="Kratki opis:" textFill="WHITE" GridPane.rowIndex="5">
+                            <font>
+                                <Font size="16.0" />
+                            </font></Label>
+                        <Label layoutX="140.0" layoutY="107.0" prefHeight="20.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label text="KM/h" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField text="10" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <AnchorPane prefHeight="74.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <children>
+                                <JFXTimePicker defaultColor="#0080ff" layoutX="45.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="29.0" prefWidth="89.0" />
+                                <JFXTimePicker defaultColor="#0080ff" layoutX="45.0" layoutY="39.0" prefHeight="29.0" prefWidth="89.0" />
+                                <Label layoutX="8.0" layoutY="5.0" text="Od:" />
+                                <Label layoutX="9.0" layoutY="45.0" text="Do:" />
+                            </children>
+                        </AnchorPane>
+                  <TextField text="Nema opisa" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField text="PARKING BASCARSIJA " GridPane.columnSpan="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                    </children>
+                    <GridPane.margin>
+                        <Insets />
+                    </GridPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" />
+                    </padding>
+                </GridPane>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <buttons>
+                      <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="117.0" text="Spasi izmjene">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+               </buttons>
+            </ButtonBar>
+                <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backParking" prefHeight="43.0" prefWidth="26.0" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+                </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" text="Promjeni sliku" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+            </children>
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="5.0" right="5.0" />
+         </BorderPane.margin>
+        </GridPane>
+    </center>
+   <top>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <stylesheets>
+            <URL value="@/css/stil.css" />
+         </stylesheets>
+         <children>
+            <ImageView fx:id="imgAbout" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="32.0" onMouseClicked="#helpAction" pickOnBounds="true" preserveRatio="true" translateX="265.0" translateY="10.0">
+               <image>
+                  <Image url="@../img/question.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

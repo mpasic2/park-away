@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <AnchorPane prefHeight="162.0" prefWidth="400.0">
+            <stylesheets>
+                <URL value="@/css/stil.css" />
+            </stylesheets>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+            <children>
+                <ImageView fx:id="imgAbout" fitHeight="70.0" fitWidth="70.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <HBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                    </HBox.margin>
+               <image>
+                  <Image url="@../img/logo.png" />
+               </image>
+                </ImageView>
+              <TextField fx:id="fldSearch" layoutX="156.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="173.0" promptText="Search" AnchorPane.leftAnchor="158.0">
+               <HBox.margin>
+                  <Insets left="-220.0" top="80.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="btnSearch" layoutX="338.0" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="338.0">
+               <HBox.margin>
+                  <Insets left="3.0" right="30.0" top="80.0" />
+               </HBox.margin>
+            </Button>
+            <Label layoutX="33.0" layoutY="111.0" text="Parkinzi" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            </children>
+        </AnchorPane>
+    </top>
+    <bottom>
+      <VBox prefHeight="32.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <children>
+              <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0">
+                  <children>
+                      <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" />
+                      <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
+                      <Button layoutX="62.0" layoutY="10.0" mnemonicParsing="false" prefHeight="28.0" />
+                      <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
+                      <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" />
+                  </children>
+              </HBox>
+         </children>
+      </VBox>
+    </bottom>
+   <center>
+      <TableView maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="356.0" prefWidth="340.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn prefWidth="144.0" text="Naziv parkinga" />
+          <TableColumn prefWidth="134.0" text="Lokacija" />
+          <TableColumn prefWidth="61.0" text="Br. dostupnih mjesta" />
+        </columns>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="30.0" right="30.0" />
+         </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TableView>
+   </center>
+</BorderPane>

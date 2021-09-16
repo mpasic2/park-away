@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+       <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+           <stylesheets>
+               <URL value="@/css/stil.css" />
+           </stylesheets>
+           <BorderPane.margin>
+               <Insets />
+           </BorderPane.margin>
+           <children>
+               <ImageView fx:id="imgAbout" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                   <HBox.margin>
+                       <Insets left="20.0" top="20.0" />
+                   </HBox.margin>
+                   <image>
+                       <Image url="@../img/logo.png" />
+                   </image>
+               </ImageView>
+           </children>
+       </HBox>
+   </top>
+    <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="208.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="79.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="94.0" />
+            <ColumnConstraints />
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="34.0" minHeight="28.0" prefHeight="32.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="73.0" minHeight="0.0" prefHeight="69.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="458.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="458.0" minHeight="7.0" prefHeight="83.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+         <children>
+            <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="vrijeme" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="2 KM" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Label>
+          <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="202.0" text="Platite gotovinom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBack" mnemonicParsing="false" prefHeight="50.0" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label text="2 KM" textFill="WHITE" underline="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Button layoutX="109.0" layoutY="345.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="202.0" text="Platite karticom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </GridPane>
+   </center>
+   <bottom>
+      <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0" BorderPane.alignment="CENTER">
+         <children>
+             <Button fx:id="dugmeIzlazMap" mnemonicParsing="false"/>
+             <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
+             <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false"/>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -5,6 +5,7 @@ import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import ba.unsa.etf.icr.projekat.model.Parking;
 import com.jfoenix.controls.*;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
@@ -141,8 +142,9 @@ public class ParkingListController implements Initializable {
 
         tableViewParkinzi.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                Stage stage=new Stage();
-                Stage close=(Stage)tableViewParkinzi.getScene().getWindow();
+                Platform.runLater(() -> {
+                Stage stage = new Stage();
+                Stage close = (Stage) tableViewParkinzi.getScene().getWindow();
                 ParkingDetailsController cont = new ParkingDetailsController(newSelection, close);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/parkingDetails.fxml"));
                 loader.setController(cont);
@@ -163,7 +165,9 @@ public class ParkingListController implements Initializable {
                 });
                 tableViewParkinzi.getSelectionModel().clearSelection();
                 close.hide();
+            });
             }
+
         });
 
     }
