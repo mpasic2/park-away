@@ -55,6 +55,10 @@
     -jfx-default-track: #0080ff;
     -jfx-default-thumb: #0080ff;
 }
+.slider-style2{
+    -jfx-default-track: #e72c2c;
+    -jfx-default-thumb: #e72c2c;
+}
 #bttnDodajVozilo{
     -fx-background-image:  url("/img/baseline_add_black_24dp.png");
     -fx-background-size: 25px 25px;

@@ -32,6 +32,7 @@ public class loginContoler implements Initializable {
     public Label fldGreska;
     private ParkAwayDAO dao = new ParkAwayDAO();
     public Korisnik korisnik;
+    public static Korisnik trenutniKorisnik;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
