@@ -70,4 +70,9 @@ public class prijavaParkingaController implements Initializable {
         Stage close = (Stage) lblAdresa.getScene().getWindow();
         close.close();
     }
+
+    public void prijavaAction(ActionEvent actionEvent) throws IOException {
+        
+    }
+
 }

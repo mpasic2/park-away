@@ -11,7 +11,7 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking, getUserCars,getAllFree;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars,getAllFree, dodajRacun;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -35,6 +35,7 @@ public class ParkAwayDAO {
             obrisiParking = con.prepareStatement("DELETE FROM parking where parking_id=?");
             izmijeniParking = con.prepareStatement("UPDATE parking SET naziv=?, lokacija_id=?, cijena=?, pocetak_radnog_vremena=?, kraj_radnog_vremena=?, stalni_parking=?, ocjena=?, opis=? WHERE parking_id=? ");
             getUserCars = con.prepareStatement("SELECT * FROM vozilo where korisnik_id=?");
+            dodajRacun = con.prepareStatement("Insert into lokacja values (?,?,?)");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

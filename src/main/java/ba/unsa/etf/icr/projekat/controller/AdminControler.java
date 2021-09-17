@@ -6,14 +6,12 @@ import ba.unsa.etf.icr.projekat.model.Parking;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -36,6 +34,7 @@ public class AdminControler implements Initializable {
     public Button dugmeLokacijaMap;
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
+    public TextField searchList;
 
     Navigation navigation= new Navigation();
 
@@ -107,7 +106,16 @@ public class AdminControler implements Initializable {
 
     }
 
-    public void obrisiParking(ActionEvent actionEvent) {
+    public void obrisiParking(ActionEvent actionEvent) throws IOException {
+
+        if(listaParking.getSelectionModel().getSelectedItem()==null){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Informativni ekran");
+            alert.setHeaderText("Brisanje parkinga");
+            alert.getDialogPane().setContentText("Niste odabrali parking");
+            alert.showAndWait();
+        }
+        else {
 
 
             String sve = listaParking.getSelectionModel().getSelectedItem().toString();
@@ -115,8 +123,17 @@ public class AdminControler implements Initializable {
 
             dao.obrisiPaarking(dao.dajParkinge().get(idParkinga - 1));
 
-        listaParking.refresh();
+            listaParking.refresh();
 
+
+            Stage noviProzor1 = new Stage();
+            Parent roditelj1 = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
+            noviProzor1.setTitle("Administrator");
+            noviProzor1.initStyle(StageStyle.UNDECORATED);
+            Scene scene1 = new Scene(roditelj1, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            noviProzor1.setScene(scene1);
+            noviProzor1.show();
+        }
     }
 
     @Override
@@ -126,6 +143,27 @@ public class AdminControler implements Initializable {
 
         listaParking.setItems(parkinzi);
 
+        searchList.textProperty().addListener((obs, oldText, newText) -> {
+            search();
+        });
+
+        searchList.setFocusTraversable(false);
+    }
+
+    @FXML private void search() {
+        String keyword = searchList.getText().toLowerCase();
+        if (keyword.equals("")) {
+            listaParking.setItems(parkinzi);
+        } else {
+            ObservableList<Parking> filteredData = FXCollections.observableArrayList();
+            for (Parking parking : parkinzi) {
+                if (parking.getNaziv().toLowerCase().contains(keyword) ||
+                        parking.getLokacija().getUlica().toLowerCase().contains(keyword))
+                    filteredData.add(parking);
+            }
+
+            listaParking.setItems(filteredData);
+        }
     }
 
 
