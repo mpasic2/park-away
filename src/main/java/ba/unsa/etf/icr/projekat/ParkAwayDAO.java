@@ -3,6 +3,7 @@ package ba.unsa.etf.icr.projekat;
 import ba.unsa.etf.icr.projekat.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.util.Pair;
 
 import java.sql.*;
 import java.time.LocalTime;
@@ -11,7 +12,7 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking, getUserCars,getAllFree, dodajRacun;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -23,8 +24,9 @@ public class ParkAwayDAO {
             getCity = con.prepareStatement("Select * from grad");
             getLocation = con.prepareStatement("SELECT * FROM Lokacja");
             getParking = con.prepareStatement("SELECT * FROM Parking");
-            getFree=con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
-            getAllFree = con.prepareStatement("SELECT broj_parking_mjesta from Parking_mjesto where parking_id=? and vozilo_id is NULL");
+            getFree = con.prepareStatement("SELECT count(parking_mjesto_id) from Parking_mjesto where parking_id=? and vozilo_id is NULL");
+            getAllFreeBroj = con.prepareStatement("SELECT broj_parking_mjesta from Parking_mjesto where parking_id=? and vozilo_id is NULL");
+            getAllFreeId = con.prepareStatement("SELECT parking_mjesto_id, broj_parking_mjesta from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
             getParkingImages = con.prepareStatement("Select * from slike where parking_id=?");
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
@@ -35,7 +37,8 @@ public class ParkAwayDAO {
             obrisiParking = con.prepareStatement("DELETE FROM parking where parking_id=?");
             izmijeniParking = con.prepareStatement("UPDATE parking SET naziv=?, lokacija_id=?, cijena=?, pocetak_radnog_vremena=?, kraj_radnog_vremena=?, stalni_parking=?, ocjena=?, opis=? WHERE parking_id=? ");
             getUserCars = con.prepareStatement("SELECT * FROM vozilo where korisnik_id=?");
-            dodajRacun = con.prepareStatement("Insert into lokacja values (?,?,?)");
+            dodajRacun = con.prepareStatement("Insert into racun values (?,?,?,?,?,?)");
+            dajRacun = con.prepareStatement("SELECT * FROM Racun");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -137,8 +140,8 @@ public class ParkAwayDAO {
     public ObservableList<Integer> dajSlobodnaMjesta(int id) {
         ObservableList<Integer> slobodnaMjesta = FXCollections.observableArrayList();
         try {
-            getAllFree.setInt(1, id);
-            ResultSet rs = getAllFree.executeQuery();
+            getAllFreeBroj.setInt(1, id);
+            ResultSet rs = getAllFreeBroj.executeQuery();
             while(rs.next()) {
                 slobodnaMjesta.add(rs.getInt(1));
             }
@@ -326,6 +329,7 @@ public class ParkAwayDAO {
         try {
             ResultSet rs = dajRacun.executeQuery();
             while(rs.next()) {
+                System.out.println(rs.getString(5));
                 Racun racun = new Racun(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getInt(4),LocalTime.parse(rs.getString(5)),LocalTime.parse(rs.getString(6)));
                 racuni.add(racun);
             }
@@ -336,4 +340,35 @@ public class ParkAwayDAO {
     }
 
 
+    public ObservableList<Pair<Integer, Integer>> dajSlobodnaMjestaId(int parkingId) {
+        ObservableList<Pair<Integer, Integer>> slobodnaMjesta = FXCollections.observableArrayList();
+        try {
+            getAllFreeId.setInt(1, parkingId);
+            ResultSet rs = getAllFreeId.executeQuery();
+            while(rs.next()) {
+                slobodnaMjesta.add(new Pair(rs.getInt(1), rs.getInt(2)));
+            }
+            return slobodnaMjesta;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public Integer addRacun(int idMjesta,int idVozila,LocalTime vrijemePrijave) {
+        try {
+            PreparedStatement newRiderStatement=con.prepareStatement("Select MAX(racun_id)+1 from Racun");
+            ResultSet result = newRiderStatement.executeQuery();
+            dodajRacun.setInt(1,result.getInt(1));
+            dodajRacun.setInt(2, idVozila);
+            dodajRacun.setInt(3, idMjesta);
+            dodajRacun.setInt(4, 0);
+            dodajRacun.setString(5, LocalTime.now().toString());
+            dodajRacun.setString(6,null);
+            dodajRacun.execute();
+            return result.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

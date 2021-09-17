@@ -25,7 +25,10 @@ import javafx.util.Pair;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class prijavaParkingaController implements Initializable {
     public Label lblNaziv;
@@ -70,6 +73,8 @@ public class prijavaParkingaController implements Initializable {
             e.printStackTrace();
         }
         cmboxMjestaParking.setItems(dao.dajSlobodnaMjesta(parking.getParkingId()));
+        cmboxMjestaParking.getSelectionModel().selectFirst();
+        vrijemePrijave.valueProperty().setValue(LocalTime.now());
     }
 
     public void backParking(ActionEvent actionEvent) throws IOException {
@@ -96,11 +101,8 @@ public class prijavaParkingaController implements Initializable {
         }
         if(idVozila!=0 && idMjesta!=0) {
             int idRacuna = dao.addRacun(idMjesta, idVozila, vrijemPrijave);
-            for (int i = 0; i < dao.dajRacune().size();i++){
-                if(dao.dajRacune().get(i).getRacunId()==idRacuna)
-                    PrijavljeniKorisnik.setTrenutniRacun(dao.dajRacune().get(i));
-            }
-
+            Racun racun = new Racun(idRacuna,idVozila,idMjesta,0,vrijemPrijave, null);
+            PrijavljeniKorisnik.setTrenutniRacun(racun);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informativni ekran");
@@ -108,9 +110,13 @@ public class prijavaParkingaController implements Initializable {
             alert.getDialogPane().setContentText("Uspješno ste se prijavili na parking");
             alert.showAndWait();
 
-
+            PrijavljeniKorisnik.setTrenutniParking(parking);
             Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila.fxml"));
+            Stage close = (Stage) lblNaziv.getScene().getWindow();
+            StatusController statusController = new StatusController(parking,close);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
+            loader.setController(statusController);
+            Parent root = loader.load();
             stage.setTitle("Status vozila");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
@@ -120,7 +126,6 @@ public class prijavaParkingaController implements Initializable {
             });
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.show();
-            Stage close = (Stage) lblCijena.getScene().getWindow();
             close.close();
         }
 

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <top>
        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="112.0" prefWidth="400.0" BorderPane.alignment="CENTER">
            <stylesheets>
@@ -43,8 +43,8 @@
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="232.0" minWidth="10.0" prefWidth="208.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="67.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="10.0" prefWidth="106.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="90.0" prefWidth="90.0" />
             <ColumnConstraints />
             <ColumnConstraints />
         </columnConstraints>
@@ -63,7 +63,7 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <Label prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
+            <Label fx:id="lblNaziv" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -71,7 +71,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
+            <Label fx:id="lblAdresa" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="421.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -79,7 +79,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="47.0" prefHeight="37.0" prefWidth="78.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Cijena" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="lblCijena" layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="5 KM/h" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -87,7 +87,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="lblId" layoutX="149.0" layoutY="47.0" prefHeight="37.0" prefWidth="193.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="ParkingMjesto" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lblMjesto" layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="34.0" prefWidth="99.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="23" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -95,12 +95,12 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label prefHeight="25.0" prefWidth="297.0" text="Vaše vozilo je parkirano 90 minuta" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Label fx:id="lblVrijeme" prefHeight="25.0" prefWidth="297.0" text="Vaše vozilo je parkirano 90 minuta" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="81.0" layoutY="132.0" prefHeight="25.0" prefWidth="284.0" text="Trenutna cijena parkinga je 2KM" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Label fx:id="lblUkupnaCijena" layoutX="81.0" layoutY="132.0" prefHeight="25.0" prefWidth="284.0" text="Trenutna cijena parkinga je 2KM" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -110,11 +110,11 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnBack" mnemonicParsing="false" prefHeight="50.0" GridPane.rowIndex="8">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
+            <Label text="Mjesto" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
+            </Label>
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

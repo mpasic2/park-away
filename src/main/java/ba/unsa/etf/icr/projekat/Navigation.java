@@ -1,6 +1,7 @@
 package ba.unsa.etf.icr.projekat;
 
 import ba.unsa.etf.icr.projekat.controller.ProfilController;
+import ba.unsa.etf.icr.projekat.controller.StatusController;
 import ba.unsa.etf.icr.projekat.controller.loginContoler;
 import ba.unsa.etf.icr.projekat.controller.mapController;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
@@ -87,7 +88,12 @@ public class Navigation {
 
     public void carMapAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila.fxml"));
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
+        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(), close);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
+        loader.setController(statusController);
+        Parent root = loader.load();
         stage.setTitle("Status vozila");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
@@ -97,8 +103,6 @@ public class Navigation {
         });
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Node node = (Node) actionEvent.getSource();
-        Stage close=(Stage)node.getScene().getWindow();
         close.close();
     }
 
