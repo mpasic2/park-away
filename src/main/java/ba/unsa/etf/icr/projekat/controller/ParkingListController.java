@@ -143,28 +143,29 @@ public class ParkingListController implements Initializable {
         tableViewParkinzi.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 Platform.runLater(() -> {
-                Stage stage = new Stage();
-                Stage close = (Stage) tableViewParkinzi.getScene().getWindow();
-                ParkingDetailsController cont = new ParkingDetailsController(newSelection, close);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/parkingDetails.fxml"));
-                loader.setController(cont);
-                Parent root = null;
-                try {
-                    root = loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                stage.setTitle(newSelection.getNaziv());
-                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-                stage.initStyle(StageStyle.UNDECORATED);
-                stage.show();
-                stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-                    if (KeyCode.ESCAPE == event.getCode()) {
-                        stage.close();
+                    Stage stage = new Stage();
+                    Stage close = (Stage) tableViewParkinzi.getScene().getWindow();
+                    ParkingDetailsController cont = new ParkingDetailsController(newSelection, close);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/parkingDetails.fxml"));
+                    loader.setController(cont);
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
-                tableViewParkinzi.getSelectionModel().clearSelection();
-                close.hide();
+
+                    stage.setTitle(newSelection.getNaziv());
+                    stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.show();
+                    stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                        if (KeyCode.ESCAPE == event.getCode()) {
+                            stage.close();
+                        }
+                    });
+                    tableViewParkinzi.getSelectionModel().clearSelection();
+                    close.hide();
             });
             }
 

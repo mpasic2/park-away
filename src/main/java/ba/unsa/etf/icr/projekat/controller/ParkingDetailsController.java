@@ -30,6 +30,7 @@ import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class ParkingDetailsController implements Initializable {
     public ImageView slikaParkinga;
+    public ImageView imgOcjena;
     public Label lblNazivParkinga;
     public Label lblLokacija;
     public Label lblCijena;
@@ -64,7 +65,9 @@ public class ParkingDetailsController implements Initializable {
         if(getClass().getResourceAsStream(imagePath) != null){
             slikaParkinga.setImage(new Image(getClass().getResourceAsStream(imagePath)));
         }
-
+        System.out.println(parking.getCijena());
+        if(getClass().getResourceAsStream("/img/"+parking.getOcjena()+".png")!=null)
+        imgOcjena.setImage(new Image(getClass().getResourceAsStream("/img/"+parking.getOcjena()+".png")));
     }
     public void backParking(ActionEvent actionEvent) throws IOException {
         backScene.show();
