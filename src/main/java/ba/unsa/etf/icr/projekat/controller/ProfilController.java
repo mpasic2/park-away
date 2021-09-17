@@ -120,6 +120,11 @@ public class ProfilController implements Initializable {
         stage.setTitle("Registracija");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
         stage.show();
         Stage close=(Stage)fldAdresa.getScene().getWindow();
         close.close();

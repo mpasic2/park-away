@@ -11,6 +11,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -86,6 +88,11 @@ public class RegistracijaLogInInfoController implements Initializable {
             stage.setTitle("Registracija");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                if (KeyCode.ESCAPE == event.getCode()) {
+                    stage.close();
+                }
+            });
             stage.show();
             Stage close=(Stage)fldLozinka1.getScene().getWindow();
             close.close();

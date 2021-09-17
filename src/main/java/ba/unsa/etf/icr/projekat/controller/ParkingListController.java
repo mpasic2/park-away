@@ -274,7 +274,8 @@ public class ParkingListController implements Initializable {
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Dodatno pretražite i odaberite parking kako biste vidjeli \nsve pojedinosti o njemu");
+        Label lb = new Label("Dodatno pretražite, filtrirajte i odaberite parking kako biste vidjeli \nsve pojedinosti o njemu.\nLista se može sortirati klikom na naziv kolone po kojoj " +
+                "želite sortirati");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

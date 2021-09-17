@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,7 +30,7 @@ public class ChangeParkingController implements Initializable {
 
     public TextField fldNazivParkinga;
     public Label fldGreska;
-    public TextField fldOpis;
+    public TextArea fldOpis;
     public ComboBox<Lokacija> cbLokacija;
     public TextField fldCijena;
     public CheckBox cbStalni;
@@ -97,6 +99,11 @@ public class ChangeParkingController implements Initializable {
         noviProzor.initStyle(StageStyle.UNDECORATED);
         Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         noviProzor.setScene(scene);
+        noviProzor.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                noviProzor.close();
+            }
+        });
         noviProzor.show();
         Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
         zatvaranjePoruka.close();

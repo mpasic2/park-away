@@ -15,6 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -69,6 +71,11 @@ public class loginContoler implements Initializable {
             stage.setTitle("Mapa");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                if (KeyCode.ESCAPE == event.getCode()) {
+                    stage.close();
+                }
+            });
             stage.show();
             Stage close=(Stage)fldGreska.getScene().getWindow();
             close.close();
@@ -83,6 +90,11 @@ public class loginContoler implements Initializable {
         stage.setTitle("Registracija");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
         stage.show();
         Stage close=(Stage)fldGreska.getScene().getWindow();
         close.close();
@@ -95,6 +107,11 @@ public class loginContoler implements Initializable {
         noviProzor.initStyle(StageStyle.UNDECORATED);
         Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
         noviProzor.setScene(scene);
+        noviProzor.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                noviProzor.close();
+            }
+        });
         noviProzor.show();
         Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
         zatvaranjePoruka.close();

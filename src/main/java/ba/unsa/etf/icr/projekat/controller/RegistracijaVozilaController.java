@@ -13,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -52,7 +54,7 @@ public class RegistracijaVozilaController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Potvrda");
             alert.setHeaderText("Ovom radnjom ćete prekinuti kreiranje novog vozila");
-            alert.setContentText("Da li ste sigurni da se prestati? Unesena polja se neće spasiti!");
+            alert.setContentText("Da li ste sigurni da želite odustati? Unesena polja se neće spasiti!");
 
             ButtonType buttonDa = new ButtonType("Da");
             ButtonType buttonNe = new ButtonType("Ne", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -66,6 +68,11 @@ public class RegistracijaVozilaController implements Initializable {
                 stage.setTitle("Registracija");
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                    if (KeyCode.ESCAPE == event.getCode()) {
+                        stage.close();
+                    }
+                });
                 stage.show();
                 Stage close=(Stage)fldSasija.getScene().getWindow();
                 close.close();
@@ -89,6 +96,11 @@ public class RegistracijaVozilaController implements Initializable {
                 stage.setTitle("Profil");
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                    if (KeyCode.ESCAPE == event.getCode()) {
+                        stage.close();
+                    }
+                });
                 stage.show();
             }else{
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
@@ -98,6 +110,11 @@ public class RegistracijaVozilaController implements Initializable {
                 stage.setTitle("Mapa");
                 stage.initStyle(StageStyle.UNDECORATED);
                 stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                    if (KeyCode.ESCAPE == event.getCode()) {
+                        stage.close();
+                    }
+                });
                 stage.show();
             }
             Stage close=(Stage)fldSasija.getScene().getWindow();

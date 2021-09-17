@@ -35,7 +35,7 @@
                   </ImageView>
                     </children>
                 </HBox>
-                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="UNESITE PODATKE ZA NOVI PARKING" textAlignment="CENTER" textFill="WHITE">
+                <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="IZMJENITE PODATKE O PARKINGU" textAlignment="CENTER" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
@@ -47,7 +47,7 @@
         </VBox>
     </top>
     <center>
-        <GridPane BorderPane.alignment="CENTER">
+        <GridPane vgap="5.0" BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             </columnConstraints>
@@ -57,7 +57,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
@@ -73,24 +75,36 @@
                         <Insets bottom="2.0" />
                     </GridPane.margin></TextField>
                 <Label fx:id="fldGreska" prefHeight="18.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" GridPane.rowIndex="2" />
-                <ComboBox fx:id="cbLokacija" prefWidth="150.0" GridPane.rowIndex="1" />
                 <TextField fx:id="fldCijena" layoutX="50.0" layoutY="58.0" prefWidth="320.0" promptText="Cijena parkinga" GridPane.rowIndex="2">
                     <font>
                         <Font size="17.0" />
                     </font>
                 </TextField>
-                <CheckBox fx:id="cbStalni" mnemonicParsing="false" text="Stalni parking" GridPane.rowIndex="5" />
-            <JFXTimePicker fx:id="sldPocetak" defaultColor="#e72c2c" GridPane.rowIndex="3" />
-            <JFXTimePicker fx:id="sldKraj" defaultColor="#e72c2c" GridPane.rowIndex="4" />
-            <JFXSlider fx:id="sldOcjena" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" styleClass="slider-style" value="1.0" GridPane.rowIndex="6" />
-            <Label GridPane.rowIndex="3" />
-            <Label text="Od:" GridPane.rowIndex="3" />
-            <Label text="Do:" GridPane.rowIndex="4" />
-            <TextArea fx:id="fldOpis" prefHeight="200.0" prefWidth="200.0" promptText="Opis parkinga" GridPane.rowIndex="7">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextArea>
+                <Button alignment="CENTER_RIGHT" mnemonicParsing="false" prefWidth="130.0" styleClass="btn-dodaj-lokaciju" text="Dodaj lokaciju" translateX="165.0" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                <JFXTimePicker fx:id="sldPocetak" defaultColor="#e72c2c" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                <JFXTimePicker fx:id="sldKraj" defaultColor="#e72c2c" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                <JFXSlider fx:id="sldOcjena" blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" styleClass="slider-style2" value="1.0" GridPane.rowIndex="8" />
+                <JFXCheckBox fx:id="cbStalni" checkedColor="#e72c2c" text="Stalni" GridPane.rowIndex="6" />
+                <Label text="Ocjena parkinga:" GridPane.rowIndex="7">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <TextArea fx:id="fldOpis" prefHeight="200.0" prefWidth="200.0" promptText="Opis parkinga" GridPane.rowIndex="9" />
+                <Label text="Radno vrijeme:" GridPane.rowIndex="3">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Label text="Početak:" GridPane.rowIndex="4">
+                    <font>
+                        <Font size="12.0" />
+                    </font></Label>
+                <Label text="Kraj:" GridPane.rowIndex="5">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+            <ComboBox fx:id="cbLokacija" prefWidth="150.0" GridPane.rowIndex="1" />
             </children>
             <padding>
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />

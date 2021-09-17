@@ -131,7 +131,7 @@ public class mapController implements Initializable {
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        Label lb = new Label("Unesite naziv ili lokaciju parkinga koji tražite.\nNakon toga pritisnite dugme za pretragu.\nUkoliko želite vidjeti listu svih parkinga ostavite\nprazno polje i pritisnite dugme za pretragu.");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -47,7 +48,7 @@ public class prijavaParkingaController implements Initializable {
             dugmePrijava.disableProperty().set(true);
         }
         lblAdresa.setText(parking.getLokacija().getUlica());
-        lblCijena.setText(String.valueOf(parking.getCijena()));
+        lblCijena.setText(String.valueOf(parking.getCijena())+" KM");
         lblSlobMjesta.setText(String.valueOf(dao.dajBrojSlobodnihMjesta(parking.getParkingId())));
         lblNaziv.setText(parking.getNaziv());
         try {
@@ -57,6 +58,7 @@ public class prijavaParkingaController implements Initializable {
                 vozilaString.add(vozilo.getModel());
             }
             cbvozilo.setItems(vozilaString);
+            cbvozilo.getSelectionModel().selectFirst();
         } catch (SQLException e) {
             e.printStackTrace();
         }

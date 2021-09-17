@@ -55,8 +55,26 @@
     -jfx-default-track: #0080ff;
     -jfx-default-thumb: #0080ff;
 }
+.slider-style2{
+    -jfx-default-track: #e72c2c;
+    -jfx-default-thumb: #e72c2c;
+}
+.btn-historija-placanja{
+    -fx-background-image:  url("/img/baseline_history_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
 #bttnDodajVozilo{
     -fx-background-image:  url("/img/baseline_add_black_24dp.png");
+    -fx-background-size: 25px 25px;
+    -fx-background-position: left;
+    -fx-background-repeat: no-repeat;
+    -fx-border-width: 0;
+}
+.btn-dodaj-lokaciju{
+    -fx-background-image:  url("/img/baseline_add_location_black_24dp.png");
     -fx-background-size: 25px 25px;
     -fx-background-position: left;
     -fx-background-repeat: no-repeat;
