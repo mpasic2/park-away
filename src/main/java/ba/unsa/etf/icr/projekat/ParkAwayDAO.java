@@ -321,5 +321,19 @@ public class ParkAwayDAO {
         return vozila;
     }
 
+    public ObservableList<Racun> dajRacune(){
+        ObservableList<Racun> racuni = FXCollections.observableArrayList();
+        try {
+            ResultSet rs = dajRacun.executeQuery();
+            while(rs.next()) {
+                Racun racun = new Racun(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getInt(4),LocalTime.parse(rs.getString(5)),LocalTime.parse(rs.getString(6)));
+                racuni.add(racun);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return racuni;
+    }
+
 
 }

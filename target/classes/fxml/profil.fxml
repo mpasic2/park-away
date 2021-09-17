@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="160.0" prefWidth="400.0" BorderPane.alignment="CENTER">
             <stylesheets>
@@ -147,11 +147,7 @@
                     </font>
                 </Label>
                 <ComboBox fx:id="chocideAuto" maxWidth="1.7976931348623157E308" prefHeight="38.0" promptText="Odaberi auto" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" onAction="#historijaPlacanja" text="Moja historija plaćanja" GridPane.rowIndex="8">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
+            <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#historijaPlacanja" prefHeight="45.0" styleClass="btn-historija-placanja" text="Historija plaćanja" GridPane.rowIndex="8" />
             <Label text="Šasija:" textFill="WHITE" GridPane.rowIndex="7">
                <font>
                   <Font size="14.0" />

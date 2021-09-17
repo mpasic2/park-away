@@ -1,6 +1,8 @@
 package ba.unsa.etf.icr.projekat;
 
 import ba.unsa.etf.icr.projekat.model.Korisnik;
+import ba.unsa.etf.icr.projekat.model.Racun;
+import ba.unsa.etf.icr.projekat.model.Vozilo;
 
 public class PrijavljeniKorisnik {
     public static Korisnik getKorisnik() {
@@ -12,5 +14,9 @@ public class PrijavljeniKorisnik {
     }
 
     public static Korisnik korisnik;
+    public static Racun trenutniRacun;
 
+    public static Racun getTrenutniRacun() { return trenutniRacun; }
+
+    public static void setTrenutniRacun(Racun trenutniRacun) { PrijavljeniKorisnik.trenutniRacun = trenutniRacun; }
 }
