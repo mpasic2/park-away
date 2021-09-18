@@ -11,13 +11,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
@@ -26,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -38,6 +37,7 @@ public class StatusController implements Initializable {
     public Label lblMjesto;
     public Label lblVrijeme;
     public Label lblUkupnaCijena;
+    public BorderPane borderStatus;
     Navigation navigation= new Navigation();
     public Button dugmeIzlazMap;
     public Button dugmeProfilMap;
@@ -154,6 +154,41 @@ public class StatusController implements Initializable {
 
     }
 
+    public void odjavaSaParkinga(ActionEvent actionEvent) throws IOException {
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog with Custom Actions");
+        alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
+        alert.setContentText("Choose your option.");
+
+        ButtonType buttonTypeOne = new ButtonType("Keš");
+        ButtonType buttonTypeTwo = new ButtonType("Kartično");
+
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne){
+            System.out.println("ovo je keš i nije implementirano");
+
+
+        } else if (result.get() == buttonTypeTwo) {
+            Stage noviProzor = new Stage();
+            Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/placanje.fxml"));
+            noviProzor.setTitle("Plaćanje");
+            noviProzor.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            noviProzor.setScene(scene);
+            noviProzor.show();
+            Stage zatvaranjePoruka=(Stage)lblNaziv.getScene().getWindow();
+            zatvaranjePoruka.close();
+        } else {
+            alert.close();
+        }
+
+
+
+    }
 
 }

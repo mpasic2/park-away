@@ -248,7 +248,7 @@ public class ParkAwayDAO {
             addVozilo.setString(3,v.getModel());
             addVozilo.setInt(4, v.getKorisnik().getKorisnikId());
             addVozilo.setString(5, v.getSasija());
-            addVozilo.execute();
+            addVozilo.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
