@@ -1,6 +1,8 @@
 package ba.unsa.etf.icr.projekat.controller;
 
 import ba.unsa.etf.icr.projekat.Navigation;
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -27,6 +29,7 @@ public class PlacanjeController{
     public Button B1;
     public Button B3;
     public Button B0;
+    private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
 
 
@@ -102,7 +105,11 @@ public class PlacanjeController{
             alert.setHeaderText("Plaćanje");
             alert.getDialogPane().setContentText("Uspješno ste platili parking");
             alert.showAndWait();
+
+            dao.izmijeniRacun(PrijavljeniKorisnik.getTrenutniRacun());
         }
+
+
     }
 
     public void Napisi7(ActionEvent actionEvent) {

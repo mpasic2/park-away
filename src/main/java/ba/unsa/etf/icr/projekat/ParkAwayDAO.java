@@ -12,7 +12,7 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun, updateRacun;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -39,6 +39,8 @@ public class ParkAwayDAO {
             getUserCars = con.prepareStatement("SELECT * FROM vozilo where korisnik_id=?");
             dodajRacun = con.prepareStatement("Insert into racun values (?,?,?,?,?,?)");
             dajRacun = con.prepareStatement("SELECT * FROM Racun");
+
+            updateRacun = con.prepareStatement("UPDATE racun SET placeno=?, vrijeme_odjave=? WHERE racun_id=?");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
@@ -371,4 +373,23 @@ public class ParkAwayDAO {
             return null;
         }
     }
+
+    public void izmijeniRacun(Racun racun){
+        try {
+            updateRacun.setInt(1, 1);
+            updateRacun.setString(2, LocalTime.now().toString());
+            updateRacun.setInt(3, racun.getRacunId());
+            updateRacun.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
 }
