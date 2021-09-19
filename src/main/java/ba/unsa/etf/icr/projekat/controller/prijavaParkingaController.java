@@ -116,7 +116,7 @@ public class prijavaParkingaController implements Initializable {
             PrijavljeniKorisnik.setTrenutniParking(parking);
             Stage stage = new Stage();
             Stage close = (Stage) lblNaziv.getScene().getWindow();
-            StatusController statusController = new StatusController(parking,close);
+            StatusController statusController = new StatusController(parking);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
             loader.setController(statusController);
             Parent root = loader.load();

@@ -85,10 +85,30 @@ public class Navigation {
     }
 
     public void carMapAction(ActionEvent actionEvent) throws IOException {
+        if(PrijavljeniKorisnik.getTrenutniParking() == null){
+                Stage stage=new Stage();
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila2.fxml"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.initStyle(StageStyle.UNDECORATED);
+                stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                    if (KeyCode.ESCAPE == event.getCode()) {
+                        stage.close();
+                    }
+                });
+                stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+                stage.show();
+
+
+            }else{
+
+
         Stage stage=new Stage();
-        Node node = (Node) actionEvent.getSource();
-        Stage close=(Stage)node.getScene().getWindow();
-        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(), close);
+
+        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
         loader.setController(statusController);
         Parent root = loader.load();
@@ -101,6 +121,9 @@ public class Navigation {
         });
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
+        }
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
         close.close();
     }
 

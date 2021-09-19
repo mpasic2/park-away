@@ -49,38 +49,16 @@ public class StatusController implements Initializable {
     private Stage backScene;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
-    public StatusController(Parking parking, Stage backScene) {
-        if(parking==null){
-            Stage stage=new Stage();
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(getClass().getResource("/fxml/statusVozila2.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-                if (KeyCode.ESCAPE == event.getCode()) {
-                    stage.close();
-                }
-            });
-            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.show();
-            Stage close=(Stage)lblNaziv.getScene().getWindow();
-            close.close();
+    public StatusController(Parking parking) {
 
-
-
-        }
         this.parking=parking;
-        this.backScene=backScene;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblNaziv.setText(parking.getNaziv());
         lblAdresa.setText(parking.getLokacija().getUlica());
         lblCijena.setText(parking.getCijena()+" KM/h");
-
+System.out.println("Racun = "+ parking);
         ObservableList<Pair<Integer, Integer>> p= dao.dajSlobodnaMjestaId(parking.getParkingId());
         int brojMjesta = 0;
         for(Pair<Integer, Integer> mjesto: p){
@@ -174,6 +152,7 @@ public class StatusController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
+            PrijavljeniKorisnik.setTrenutniParking(null);
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Informativni ekran");
             alert1.setHeaderText("Plaćanje pakringa");
@@ -218,6 +197,7 @@ public class StatusController implements Initializable {
             noviProzor.setScene(scene);
             noviProzor.show();
             Stage zatvaranjePoruka=(Stage)lblNaziv.getScene().getWindow();
+            PrijavljeniKorisnik.setTrenutniParking(null);
             zatvaranjePoruka.close();
         } else {
             alert.close();

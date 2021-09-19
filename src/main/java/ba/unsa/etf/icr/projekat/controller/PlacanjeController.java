@@ -128,7 +128,7 @@ public class PlacanjeController implements Initializable{
         Stage stage=new Stage();
         Node node = (Node) actionEvent.getSource();
         Stage close=(Stage)node.getScene().getWindow();
-        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(), close);
+        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
         loader.setController(statusController);
         Parent root = loader.load();
