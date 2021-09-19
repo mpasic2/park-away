@@ -43,22 +43,10 @@ public class AdminloginContoler implements Initializable {
 
 
     public void prijavaAdmina(ActionEvent actionEvent) throws IOException {
-        ObservableList<Korisnik> k = dao.dajKorisnike();
+        
         String mail = fldAdmin.getText();
         String password = fldAdminPassword.getText();
-        int j = 0;
-        korisnik = k.get(0);
-        for(int i = 0;i < k.size();i++){
-            if(mail.equals(k.get(i).getEmail())  && password.equals(k.get(i).getLozinka())){
-                j++;
-                korisnik = k.get(i);
-                break;
-            }
-        }
-        if(j == 0){
-            fldGreska.setText("Unesene informacije nisu tačne, pokušajte ponovo");
-            fldAdmin.requestFocus();
-        }else{
+        if(mail.equals("admin@gmail.com") && password.equals("admin")){
 
             Stage noviProzor = new Stage();
             Parent roditelj = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
@@ -75,5 +63,28 @@ public class AdminloginContoler implements Initializable {
             Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
             zatvaranjePoruka.close();
         }
+        else{
+            fldGreska.setText("Unesene informacije nisu tačne, pokušajte ponovo");
+            fldAdmin.requestFocus();
+        }
+    }
+
+    public void actionOdustani(ActionEvent actionEvent) throws IOException {
+
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        primaryStage.setTitle("Prijava");
+        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                primaryStage.close();
+            }
+        });
+        primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        primaryStage.show();
+
+
+        Stage zatvaranjePoruka=(Stage)fldGreska.getScene().getWindow();
+        zatvaranjePoruka.close();
     }
 }

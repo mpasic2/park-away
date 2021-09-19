@@ -45,6 +45,7 @@ public class ParkingDetailsController implements Initializable {
     public Button dugmeLokacijaMap;
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
+    public Button prijavaDugme;
 
     public ParkingDetailsController(Parking parking, Stage backScene) {
         dao = ParkAwayDAO.getInstance();
@@ -68,6 +69,8 @@ public class ParkingDetailsController implements Initializable {
         System.out.println(parking.getCijena());
         if(getClass().getResourceAsStream("/img/"+parking.getOcjena()+".png")!=null)
         imgOcjena.setImage(new Image(getClass().getResourceAsStream("/img/"+parking.getOcjena()+".png")));
+
+        if(dao.dajBrojSlobodnihMjesta(parking.getParkingId())==0) prijavaDugme.setDisable(true);
     }
     public void backParking(ActionEvent actionEvent) throws IOException {
         backScene.show();

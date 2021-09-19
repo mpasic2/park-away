@@ -3,6 +3,7 @@ package ba.unsa.etf.icr.projekat.controller;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import ba.unsa.etf.icr.projekat.model.Korisnik;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -127,5 +128,10 @@ public class loginContoler implements Initializable {
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 
+    }
+
+    public void exitActionPress(MouseEvent mouseEvent) {
+        Platform.exit();
+        System.exit(0);
     }
 }

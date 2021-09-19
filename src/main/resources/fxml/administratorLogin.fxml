@@ -78,6 +78,12 @@
                         <Insets left="98.0" />
                     </GridPane.margin></Button>
                 <Label fx:id="fldGreska" prefHeight="18.0" prefWidth="324.0" textAlignment="CENTER" textFill="RED" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#actionOdustani" text="Odustani" translateX="120.0" GridPane.rowIndex="5">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+
             </children>
             <padding>
                 <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
