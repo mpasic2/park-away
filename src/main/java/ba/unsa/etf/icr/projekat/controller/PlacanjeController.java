@@ -4,13 +4,22 @@ import ba.unsa.etf.icr.projekat.Navigation;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class PlacanjeController{
     public Button dugmeIzlazMap;
@@ -84,18 +93,32 @@ public class PlacanjeController{
     }
 
     public void helpAction(MouseEvent mouseEvent) {
-        Label lb = new Label("Ukoliko prvi put koristite apliakciju pritisnite dugme za registraciju,\n ukoliko ste već kreirali račun nastavite sa prijavom unoseći podatke u polja.");
+        Label lb = new Label("Radi pojadnostavljenja aplikacije dodan je samo jedan ispravan pin \n i to je sljedeca kombinacija: 1234.");
         lb.setWrapText(true);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Informativni ekran");
-        alert.setHeaderText("Detalji o parkingu");
+        alert.setHeaderText("Plaćanje pakringa");
         alert.getDialogPane().setContent(lb);
         alert.showAndWait();
 
     }
 
-    public void odustaniAction(ActionEvent actionEvent) {
+    public void odustaniAction(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = new Stage();
+        Stage close = (Stage) B7.getScene().getWindow();
+        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(),close);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
+        loader.setController(statusController);
+        Parent root = loader.load();
+        stage.setTitle("Status vozila");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.show();
+        close.close();
+
+
     }
 
     public void potvrdiAction(ActionEvent actionEvent) {
@@ -107,6 +130,7 @@ public class PlacanjeController{
             alert.showAndWait();
 
             dao.izmijeniRacun(PrijavljeniKorisnik.getTrenutniRacun());
+            PrijavljeniKorisnik.setTrenutniRacun(null);
         }
 
 

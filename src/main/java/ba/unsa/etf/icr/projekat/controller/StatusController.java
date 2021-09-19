@@ -157,20 +157,34 @@ public class StatusController implements Initializable {
     public void odjavaSaParkinga(ActionEvent actionEvent) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog with Custom Actions");
-        alert.setHeaderText("Look, a Confirmation Dialog with Custom Actions");
-        alert.setContentText("Choose your option.");
+        alert.setTitle("Plaćanje parkingas");
+        alert.setHeaderText("Punuđene su Vam opcije plaćanja parkinga");
+        alert.setContentText("Odaberite opciju plaćanja!");
 
-        ButtonType buttonTypeOne = new ButtonType("Keš");
+        ButtonType buttonTypeOne = new ButtonType("Gotovina");
         ButtonType buttonTypeTwo = new ButtonType("Kartično");
 
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeCancel = new ButtonType("Odustani", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            System.out.println("ovo je keš i nije implementirano");
+            long protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.HOURS) + 1;
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+            alert1.setTitle("Informativni ekran");
+            alert1.setHeaderText("Plaćanje pakringa");
+            alert1.getDialogPane().setContentText("Prilikom izlaska sa parkinga dužni ste \n portiru platiti parking u iznosu od " + Integer.parseInt(lblCijena.getText().split(" ")[0])*protekloVrijeme + " KM");
+            alert1.showAndWait();
+
+
+            dao.izmijeniRacun(PrijavljeniKorisnik.getTrenutniRacun());
+            PrijavljeniKorisnik.setTrenutniRacun(null);
+
+
+            Stage zatvaranjePoruka=(Stage)lblNaziv.getScene().getWindow();
+            zatvaranjePoruka.close();
+            //da se otvori mapa
 
 
         } else if (result.get() == buttonTypeTwo) {

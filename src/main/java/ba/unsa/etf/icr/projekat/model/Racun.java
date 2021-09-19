@@ -94,4 +94,13 @@ public class Racun {
     public void setOdjava(LocalTime odjava) {
         this.odjava.set(odjava);
     }
+
+    @Override
+    public String toString() {
+        return
+                 voziloId.getValue() +
+                ", mjesto=" + parkingMjestoId.getValue() +
+                ", prijava=" + prijava.getValue() +
+                ", odjava=" + odjava.getValue();
+    }
 }

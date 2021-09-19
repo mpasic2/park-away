@@ -1,30 +1,68 @@
 package ba.unsa.etf.icr.projekat.controller;
 
 import ba.unsa.etf.icr.projekat.Navigation;
+import ba.unsa.etf.icr.projekat.ParkAwayDAO;
+import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
+import ba.unsa.etf.icr.projekat.model.Racun;
+import ba.unsa.etf.icr.projekat.model.Vozilo;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class HistorijaPlacanjaController {
+public class HistorijaPlacanjaController implements Initializable {
 
+    public TableView listaRacuna;
     Navigation navigation= new Navigation();
     public Button dugmeIzlazMap;
     public Button dugmeProfilMap;
     public Button dugmeLokacijaMap;
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
+    private ParkAwayDAO dao = ParkAwayDAO.getInstance();
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            ObservableList<Racun> racuni = FXCollections.observableArrayList();
+            racuni = dao.dajRacune();
+            ObservableList<Vozilo> vozilaOdKorisnika = FXCollections.observableArrayList();
+            vozilaOdKorisnika = dao.dajKorisnikovaAuta(PrijavljeniKorisnik.getKorisnik().getKorisnikId());
+
+            ObservableList<Racun> racuniZaListu = FXCollections.observableArrayList();
+
+            for(int i=0;i< racuni.size();i++)
+                for(int j=0;j<vozilaOdKorisnika.size();j++)
+                    if(racuni.get(i).getVoziloId()==vozilaOdKorisnika.get(j).getVozilo_id())
+                        racuniZaListu.add(racuni.get(i));
+
+
+            System.out.println("ovo je lista"+listaRacuna);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
+
+
+
 
     public void logOut(ActionEvent actionEvent) throws IOException {
         navigation.logOut(actionEvent);
@@ -82,5 +120,6 @@ public class HistorijaPlacanjaController {
         alert.showAndWait();
 
     }
+
 
 }

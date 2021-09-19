@@ -12,7 +12,8 @@ public class ParkAwayDAO {
     private Connection con;
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
-            addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun, updateRacun;
+            addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun, updateRacun,
+            historijaPlacanja;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -331,8 +332,13 @@ public class ParkAwayDAO {
         try {
             ResultSet rs = dajRacun.executeQuery();
             while(rs.next()) {
-                System.out.println(rs.getString(5));
-                Racun racun = new Racun(rs.getInt(1), rs.getInt(2), rs.getInt(3),rs.getInt(4),LocalTime.parse(rs.getString(5)),LocalTime.parse(rs.getString(6)));
+                System.out.print(rs.getString(6));
+                Racun racun = new Racun(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getInt(4),
+                        LocalTime.parse(rs.getString(5)),
+                        LocalTime.parse(rs.getString(6)));
                 racuni.add(racun);
             }
         } catch (SQLException throwables) {
