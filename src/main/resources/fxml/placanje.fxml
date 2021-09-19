@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.PlacanjeController">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.PlacanjeController">
     <top>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" BorderPane.alignment="CENTER">
             <stylesheets>
@@ -72,17 +72,16 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
            <children>
-               <Button fx:id="B7" alignment="CENTER" mnemonicParsing="false" prefHeight="97.0" prefWidth="138.0" onAction="#Napisi7" text="7" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               <Button fx:id="B9" alignment="CENTER" mnemonicParsing="false" prefHeight="176.0" prefWidth="303.0" onAction="#Napisi9" text="9" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-               <Button fx:id="B4" alignment="CENTER" mnemonicParsing="false" prefHeight="85.0" prefWidth="92.0" onAction="#Napisi4" text="4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-               <Button fx:id="B5" alignment="CENTER" mnemonicParsing="false" prefHeight="168.0" prefWidth="120.0" onAction="#Napisi5" text="5" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-               <Button fx:id="B8" alignment="CENTER" mnemonicParsing="false" prefHeight="110.0" prefWidth="190.0" onAction="#Napisi8" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-               <Button fx:id="B6" alignment="CENTER" mnemonicParsing="false" prefHeight="174.0" prefWidth="91.0" onAction="#Napisi6" text="6" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-               <Button fx:id="B2" alignment="CENTER" mnemonicParsing="false" prefHeight="162.0" prefWidth="116.0" onAction="#Napisi2" text="2" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-               <Button fx:id="B1" alignment="CENTER" mnemonicParsing="false" prefHeight="161.0" prefWidth="225.0" onAction="#Napisi1" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-               <Button fx:id="B3" alignment="CENTER" mnemonicParsing="false" prefHeight="183.0" prefWidth="94.0" onAction="#Napisi3" text="3" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-               <Button fx:id="B0" alignment="CENTER" mnemonicParsing="false" prefHeight="189.0" prefWidth="255.0" onAction="#Napisi0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <TextField fx:id="fldPin" editable="false" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+               <Button fx:id="B7" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi7" prefHeight="97.0" prefWidth="138.0" text="7" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <Button fx:id="B9" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi9" prefHeight="176.0" prefWidth="303.0" text="9" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+               <Button fx:id="B4" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi4" prefHeight="85.0" prefWidth="92.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+               <Button fx:id="B5" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi5" prefHeight="168.0" prefWidth="120.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+               <Button fx:id="B8" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi8" prefHeight="110.0" prefWidth="190.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               <Button fx:id="B6" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi6" prefHeight="174.0" prefWidth="91.0" text="6" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+               <Button fx:id="B2" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi2" prefHeight="162.0" prefWidth="116.0" text="2" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+               <Button fx:id="B1" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi1" prefHeight="161.0" prefWidth="225.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               <Button fx:id="B3" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi3" prefHeight="183.0" prefWidth="94.0" text="3" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+               <Button fx:id="B0" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi0" prefHeight="189.0" prefWidth="255.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="219.0" text="Unesite Vaš pin:" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="17.0" />
@@ -91,6 +90,7 @@
                   <Insets top="40.0" />
                </GridPane.margin>
             </Label>
+            <PasswordField fx:id="fldPin" prefHeight="34.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
             <ButtonBar translateX="-73.0" GridPane.columnSpan="5" GridPane.rowIndex="9">
                <buttons>
                   <Button mnemonicParsing="false" onAction="#odustaniAction" text="Odustani">
@@ -105,6 +105,13 @@
                   </Button>
                </buttons>
             </ButtonBar>
+            <Button fx:id="Bdelete" alignment="CENTER" layoutX="154.0" layoutY="345.0" mnemonicParsing="false" onAction="#obrisi" prefHeight="189.0" prefWidth="255.0" text="&lt;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button fx:id="Bdelete1" alignment="CENTER" layoutX="227.0" layoutY="345.0" mnemonicParsing="false" onAction="#obrisiSve" prefHeight="189.0" prefWidth="255.0" text="X" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="lblIznos" alignment="CENTER" contentDisplay="CENTER" layoutX="82.0" layoutY="95.0" prefHeight="26.0" prefWidth="219.0" text="Iznos: KM" textFill="WHITE" GridPane.columnSpan="2">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
            </children>
            <opaqueInsets>
                <Insets />

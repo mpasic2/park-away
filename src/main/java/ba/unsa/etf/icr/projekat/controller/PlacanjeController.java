@@ -6,6 +6,7 @@ import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,18 +17,21 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.net.PasswordAuthentication;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
-public class PlacanjeController{
+public class PlacanjeController implements Initializable{
     public Button dugmeIzlazMap;
     public Button dugmeProfilMap;
     public Button dugmeLokacijaMap;
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
-    public TextField fldPin;
+    public PasswordField fldPin;
     public Button B7;
     public Button B9;
     public Button B4;
@@ -38,10 +42,25 @@ public class PlacanjeController{
     public Button B1;
     public Button B3;
     public Button B0;
+    public Label lblIznos;
+
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
 
 
+    public PlacanjeController() {
+
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        long ukupno;
+        long protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.MINUTES);
+        if(protekloVrijeme>15 && protekloVrijeme<60)
+            ukupno=PrijavljeniKorisnik.getTrenutniParking().getCijena();
+        else
+            ukupno=PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.HOURS)*PrijavljeniKorisnik.getTrenutniParking().getCijena();
+        this.lblIznos.setText("Iznos: " +ukupno+" KM");
+    }
     Navigation navigation= new Navigation();
 
     public void logOut(ActionEvent actionEvent) throws IOException {
@@ -106,18 +125,23 @@ public class PlacanjeController{
 
     public void odustaniAction(ActionEvent actionEvent) throws IOException {
 
-        Stage stage = new Stage();
-        Stage close = (Stage) B7.getScene().getWindow();
-        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(),close);
+        Stage stage=new Stage();
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
+        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking(), close);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
         loader.setController(statusController);
         Parent root = loader.load();
         stage.setTitle("Status vozila");
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
         close.close();
-
 
     }
 
@@ -131,6 +155,29 @@ public class PlacanjeController{
 
             dao.izmijeniRacun(PrijavljeniKorisnik.getTrenutniRacun());
             PrijavljeniKorisnik.setTrenutniRacun(null);
+            PrijavljeniKorisnik.setTrenutniParking(null);
+            Stage stage=new Stage();
+            mapController cont=new mapController(PrijavljeniKorisnik.getKorisnik());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
+            loader.setController(cont);
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            stage.setTitle("Mapa");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                if (KeyCode.ESCAPE == event.getCode()) {
+                    stage.close();
+                }
+            });
+            stage.show();
+            Node node = (Node) actionEvent.getSource();
+            Stage close=(Stage)node.getScene().getWindow();
+            close.close();
         }
 
 
@@ -174,5 +221,14 @@ public class PlacanjeController{
 
     public void Napisi0(ActionEvent actionEvent) {
         fldPin.setText(fldPin.getText()+"0");
+    }
+
+    public void obrisi(ActionEvent actionEvent) {
+        fldPin.setText(fldPin.getText().substring(0, fldPin.getText().length()-1));
+        System.out.println(fldPin.getText());
+    }
+
+    public void obrisiSve(ActionEvent actionEvent) {
+        fldPin.setText("");
     }
 }

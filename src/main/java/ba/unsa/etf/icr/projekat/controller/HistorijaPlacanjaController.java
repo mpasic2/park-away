@@ -3,8 +3,10 @@ package ba.unsa.etf.icr.projekat.controller;
 import ba.unsa.etf.icr.projekat.Navigation;
 import ba.unsa.etf.icr.projekat.ParkAwayDAO;
 import ba.unsa.etf.icr.projekat.PrijavljeniKorisnik;
+import ba.unsa.etf.icr.projekat.model.Parking;
 import ba.unsa.etf.icr.projekat.model.Racun;
 import ba.unsa.etf.icr.projekat.model.Vozilo;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -20,21 +23,26 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
 
 public class HistorijaPlacanjaController implements Initializable {
 
-    public TableView listaRacuna;
+    public TableView<Racun> listaRacuna;
+    public TextField fldSearch;
     Navigation navigation= new Navigation();
     public Button dugmeIzlazMap;
     public Button dugmeProfilMap;
     public Button dugmeLokacijaMap;
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
+    public TableColumn<Racun, String> colNaziv;
+    public TableColumn<Racun, String> colVozilo;
+    public TableColumn<Racun, Integer> colLokacija;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
-
+    ObservableList<Racun> racuniZaListu = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,24 +52,45 @@ public class HistorijaPlacanjaController implements Initializable {
             ObservableList<Vozilo> vozilaOdKorisnika = FXCollections.observableArrayList();
             vozilaOdKorisnika = dao.dajKorisnikovaAuta(PrijavljeniKorisnik.getKorisnik().getKorisnikId());
 
-            ObservableList<Racun> racuniZaListu = FXCollections.observableArrayList();
+            for (Racun racun : racuni)
+                for (Vozilo vozilo : vozilaOdKorisnika)
+                    if (racun.getVoziloId() == vozilo.getVozilo_id()){
+                        racuniZaListu.add(racun);
+                    }
 
-            for(int i=0;i< racuni.size();i++)
-                for(int j=0;j<vozilaOdKorisnika.size();j++)
-                    if(racuni.get(i).getVoziloId()==vozilaOdKorisnika.get(j).getVozilo_id())
-                        racuniZaListu.add(racuni.get(i));
 
+            listaRacuna.setItems(racuniZaListu);
+            colNaziv.setCellValueFactory(entry -> new SimpleObjectProperty(dao.dajParkigByParkingMjesto(entry.getValue().getParkingMjestoId()).getNaziv()));
+            colVozilo.setCellValueFactory( entry -> new SimpleObjectProperty(dao.dajVozilo(entry.getValue().getVoziloId()).getModel()));
+            colLokacija.setCellValueFactory(entry -> new SimpleObjectProperty(dao.dajParkigByParkingMjesto(entry.getValue().getParkingMjestoId()).getLokacija().getUlica()));
 
-            System.out.println("ovo je lista"+listaRacuna);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+        fldSearch. textProperty().addListener((obs, oldText, newText) -> {
+            search();
+        });
 
     }
 
-
+    private void search() {
+        String keyword = fldSearch.getText().toLowerCase();
+        ObservableList<Racun> filteredData = FXCollections.observableArrayList();
+        if(keyword.equals("")){
+            listaRacuna.setItems(racuniZaListu);
+            return;
+        }
+        for(Racun racun: racuniZaListu){
+            if(dao.dajParkigByParkingMjesto(racun.getParkingMjestoId()).getNaziv().toLowerCase().contains(keyword.toLowerCase())){
+                filteredData.add(racun);
+            }
+            else if(dao.dajParkigByParkingMjesto(racun.getParkingMjestoId()).getLokacija().getUlica().toLowerCase().contains(keyword.toLowerCase())){
+                filteredData.add(racun);
+            }
+        }
+        listaRacuna.setItems(filteredData);
+    }
 
 
     public void logOut(ActionEvent actionEvent) throws IOException {
@@ -122,4 +151,7 @@ public class HistorijaPlacanjaController implements Initializable {
     }
 
 
+    public void actionSearch(ActionEvent actionEvent) {
+        search();
+    }
 }

@@ -13,7 +13,7 @@ public class ParkAwayDAO {
     private static ParkAwayDAO instance;
     private PreparedStatement getUsers,getCity,getLocation,addParking, getParking, getFree, addCard, addUser,obrisiParking, addLokacija,
             addVozilo, getParkingImages, izmijeniParking, getUserCars, getAllFreeBroj, getAllFreeId, dodajRacun, dajRacun, updateRacun,
-            historijaPlacanja;
+            getParkingByParkingMjesto, dajVoziloById;
     public static ParkAwayDAO getInstance() {
         if (instance == null) instance = new ParkAwayDAO();
         return instance;
@@ -30,6 +30,7 @@ public class ParkAwayDAO {
             getAllFreeId = con.prepareStatement("SELECT parking_mjesto_id, broj_parking_mjesta from Parking_mjesto where parking_id=? and vozilo_id is NULL");
             getUsers = con.prepareStatement("Select * from korisnik");
             getParkingImages = con.prepareStatement("Select * from slike where parking_id=?");
+            getParkingByParkingMjesto = con.prepareStatement("SELECT p.parking_id, naziv, lokacija_id, cijena, pocetak_radnog_vremena, kraj_radnog_vremena, stalni_parking, ocjena, opis  from parking p, parking_mjesto pm where pm.parking_id=p.parking_id and parking_mjesto_id=?");
             addCard =  con.prepareStatement("Insert into kartica values (?,?,?,?,?,?,?)");
             addUser =  con.prepareStatement("Insert into korisnik values (?,?,?,?,?,?,?,?)");
             addLokacija =  con.prepareStatement("Insert into lokacja values (?,?,?)");
@@ -40,6 +41,7 @@ public class ParkAwayDAO {
             getUserCars = con.prepareStatement("SELECT * FROM vozilo where korisnik_id=?");
             dodajRacun = con.prepareStatement("Insert into racun values (?,?,?,?,?,?)");
             dajRacun = con.prepareStatement("SELECT * FROM Racun");
+            dajVoziloById= con.prepareStatement("SELECT * From vozilo WHERE vozilo_id=?");
 
             updateRacun = con.prepareStatement("UPDATE racun SET placeno=?, vrijeme_odjave=? WHERE racun_id=?");
         } catch (SQLException | ClassNotFoundException throwables) {
@@ -113,6 +115,7 @@ public class ParkAwayDAO {
         }
         return null;
     }
+
     public ObservableList<Parking> dajParkinge(){
         ObservableList<Parking> parkinzi = FXCollections.observableArrayList();
         try {
@@ -128,6 +131,33 @@ public class ParkAwayDAO {
             throwables.printStackTrace();
         }
         return parkinzi;
+    }
+    public Parking dajParkigByParkingMjesto(int id){
+        try {
+            getParkingByParkingMjesto.setInt(1,id);
+            ResultSet resultSet = getParkingByParkingMjesto.executeQuery();
+            Lokacija l = pronadjiUlicu(resultSet.getInt(3));
+            Parking parking= new Parking(resultSet.getInt(1),resultSet.getString(2),l,
+                    resultSet.getInt(4),LocalTime.parse(resultSet.getString(5)), LocalTime.parse(resultSet.getString(6)),
+                    resultSet.getInt(7),resultSet.getInt(8),resultSet.getString(9));
+            return parking;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+    public Vozilo dajVozilo(int id){
+
+        try {
+            dajVoziloById.setInt(1,id);
+            ResultSet resultSet = dajVoziloById.executeQuery();
+
+            Korisnik k= pronadjiKorisnika(resultSet.getInt(4));
+            return new Vozilo(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3), k,resultSet.getString(5));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
     public Integer dajBrojSlobodnihMjesta(int id) {
         try {
@@ -332,13 +362,13 @@ public class ParkAwayDAO {
         try {
             ResultSet rs = dajRacun.executeQuery();
             while(rs.next()) {
-                System.out.print(rs.getString(6));
+
                 Racun racun = new Racun(rs.getInt(1),
                         rs.getInt(2),
                         rs.getInt(3),
                         rs.getInt(4),
                         LocalTime.parse(rs.getString(5)),
-                        LocalTime.parse(rs.getString(6)));
+                        LocalTime.parse(rs.getString(5)));
                 racuni.add(racun);
             }
         } catch (SQLException throwables) {

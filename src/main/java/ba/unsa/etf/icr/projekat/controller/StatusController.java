@@ -45,6 +45,7 @@ public class StatusController implements Initializable {
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
     public Parking parking;
+    long ukupno=0;
     private Stage backScene;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
@@ -91,8 +92,11 @@ public class StatusController implements Initializable {
             lblMjesto.setText(String.valueOf(brojMjesta));
         long protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.MINUTES);
         lblVrijeme.setText("Vaše vozilo je parkirano "+ protekloVrijeme +" minuta");
-        long ukupno=PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.HOURS)*parking.getCijena();
-        lblUkupnaCijena.setText("Trenutna cijena parkinga je " + ukupno + "KM");
+        if(protekloVrijeme>15 && protekloVrijeme<60)
+            ukupno=parking.getCijena();
+        else
+            ukupno=PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.HOURS)*parking.getCijena();
+        lblUkupnaCijena.setText("Trenutna cijena parkinga je " + ukupno + " KM");
     }
 
     public void logOut(ActionEvent actionEvent) throws IOException {
@@ -170,20 +174,33 @@ public class StatusController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
-            long protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.HOURS) + 1;
             Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Informativni ekran");
             alert1.setHeaderText("Plaćanje pakringa");
-            alert1.getDialogPane().setContentText("Prilikom izlaska sa parkinga dužni ste \n portiru platiti parking u iznosu od " + Integer.parseInt(lblCijena.getText().split(" ")[0])*protekloVrijeme + " KM");
+            alert1.getDialogPane().setContentText("Prilikom izlaska sa parkinga dužni ste \n portiru platiti parking u iznosu od " + ukupno +" KM");
             alert1.showAndWait();
 
 
             dao.izmijeniRacun(PrijavljeniKorisnik.getTrenutniRacun());
             PrijavljeniKorisnik.setTrenutniRacun(null);
 
-
-            Stage zatvaranjePoruka=(Stage)lblNaziv.getScene().getWindow();
-            zatvaranjePoruka.close();
+            Stage stage=new Stage();
+            mapController cont=new mapController(PrijavljeniKorisnik.getKorisnik());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
+            loader.setController(cont);
+            Parent root = loader.load();
+            stage.setTitle("Mapa");
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                if (KeyCode.ESCAPE == event.getCode()) {
+                    stage.close();
+                }
+            });
+            stage.show();
+            Node node = (Node) actionEvent.getSource();
+            Stage close=(Stage)node.getScene().getWindow();
+            close.close();
             //da se otvori mapa
 
 
@@ -193,6 +210,11 @@ public class StatusController implements Initializable {
             noviProzor.setTitle("Plaćanje");
             noviProzor.initStyle(StageStyle.UNDECORATED);
             Scene scene = new  Scene(roditelj, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+            noviProzor.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+                if (KeyCode.ESCAPE == event.getCode()) {
+                    noviProzor.close();
+                }
+            });
             noviProzor.setScene(scene);
             noviProzor.show();
             Stage zatvaranjePoruka=(Stage)lblNaziv.getScene().getWindow();

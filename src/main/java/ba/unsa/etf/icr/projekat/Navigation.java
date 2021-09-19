@@ -66,9 +66,7 @@ public class Navigation {
 
     public void locationAction(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        loginContoler lgn = new loginContoler();
-        Korisnik ime = lgn.korisnik;
-        mapController cont=new mapController(ime);
+        mapController cont=new mapController(PrijavljeniKorisnik.getKorisnik());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/map.fxml"));
         loader.setController(cont);
         Parent root = loader.load();
@@ -107,17 +105,6 @@ public class Navigation {
     }
 
     public void messageAction(ActionEvent actionEvent) throws IOException {
-        Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
-
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
-                stage.close();
-            }
-        });
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
         Node node = (Node) actionEvent.getSource();
         Stage close=(Stage)node.getScene().getWindow();
         close.close();

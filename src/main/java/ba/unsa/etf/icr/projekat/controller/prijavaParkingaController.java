@@ -35,13 +35,13 @@ public class prijavaParkingaController implements Initializable {
     public Label lblAdresa;
     public Label lblSlobMjesta;
     public ComboBox<String> cbvozilo;
-    public JFXTimePicker vrijemePrijave;
     public ComboBox cmboxMjestaParking;
     public Button dugmeOdustani;
     public Button dugmePrijava;
     public Label lblCijena;
     public Label lblPopunjen;
     public Parking parking;
+    public Label lblVecPrijavljen;
     private Stage backScene;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
@@ -55,6 +55,10 @@ public class prijavaParkingaController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(dao.dajBrojSlobodnihMjesta(parking.getParkingId())==0) {
             lblPopunjen.visibleProperty().set(true);
+            dugmePrijava.disableProperty().set(true);
+        }
+        if(PrijavljeniKorisnik.getTrenutniParking()!=null){
+            lblVecPrijavljen.visibleProperty().set(true);
             dugmePrijava.disableProperty().set(true);
         }
         lblAdresa.setText(parking.getLokacija().getUlica());
@@ -74,7 +78,6 @@ public class prijavaParkingaController implements Initializable {
         }
         cmboxMjestaParking.setItems(dao.dajSlobodnaMjesta(parking.getParkingId()));
         cmboxMjestaParking.getSelectionModel().selectFirst();
-        vrijemePrijave.valueProperty().setValue(LocalTime.now());
     }
 
     public void backParking(ActionEvent actionEvent) throws IOException {
@@ -90,7 +93,7 @@ public class prijavaParkingaController implements Initializable {
             if(vozila.get(i).getModel().equals(cbvozilo.getSelectionModel().getSelectedItem()))
                 idVozila=vozila.get(i).getVozilo_id();
 
-        LocalTime vrijemPrijave = vrijemePrijave.getValue();
+        LocalTime vrijemPrijave = LocalTime.now();
 
         int idMjesta=0;
         ObservableList<Pair<Integer,Integer>> slobodnaMjesta=dao.dajSlobodnaMjestaId(parking.getParkingId());
@@ -107,7 +110,7 @@ public class prijavaParkingaController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informativni ekran");
             alert.setHeaderText("Prijava na parking");
-            alert.getDialogPane().setContentText("Uspješno ste se prijavili na parking");
+            alert.getDialogPane().setContentText("Uspješno ste se prijavili na parking\nPrvih 15 minuta je besplatno.");
             alert.showAndWait();
 
             PrijavljeniKorisnik.setTrenutniParking(parking);

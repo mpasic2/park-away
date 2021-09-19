@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.HistorijaPlacanjaController">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.HistorijaPlacanjaController">
     <top>
         <AnchorPane prefHeight="117.0" prefWidth="400.0">
             <stylesheets>
@@ -30,7 +30,7 @@
                   <Insets left="-220.0" top="80.0" />
                </HBox.margin>
             </TextField>
-            <Button fx:id="btnSearch" layoutX="337.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="337.0">
+            <Button fx:id="btnSearch" layoutX="337.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#actionSearch" prefHeight="25.0" prefWidth="25.0" AnchorPane.leftAnchor="337.0">
                <HBox.margin>
                   <Insets left="3.0" right="30.0" top="80.0" />
                </HBox.margin>
@@ -64,12 +64,11 @@
       </VBox>
     </bottom>
    <center>
-      <TableView fx:id="listaRacuna" maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
+      <TableView fx:id="listaRacuna" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn prefWidth="93.19997787475586" text="Naziv parkinga" />
-          <TableColumn prefWidth="77.60004425048828" text="Lokacija" />
-          <TableColumn prefWidth="124.80000305175781" text="Br. dostupnih mjesta" />
-            <TableColumn prefWidth="43.79998779296875" text="Više" />
+            <TableColumn fx:id="colNaziv" prefWidth="113.0" text="Naziv parkinga" />
+          <TableColumn fx:id="colLokacija" prefWidth="128.0" text="Lokacija" />
+          <TableColumn fx:id="colVozilo" prefWidth="89.0" text="Vozilo" />
         </columns>
          <BorderPane.margin>
             <Insets bottom="15.0" left="30.0" right="30.0" />
