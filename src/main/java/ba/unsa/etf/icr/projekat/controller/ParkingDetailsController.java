@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -46,6 +47,8 @@ public class ParkingDetailsController implements Initializable {
     public Button dugmeCarMap;
     public Button dugmePorukaMap;
     public Button prijavaDugme;
+    public Label lblPopunjen;
+    public Label lblZatvoreno;
 
     public ParkingDetailsController(Parking parking, Stage backScene) {
         dao = ParkAwayDAO.getInstance();
@@ -54,6 +57,17 @@ public class ParkingDetailsController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        if(!parking.getPocetakRadnogVremena().equals(LocalTime.parse("00:00"))  &&
+                !((parking.getPocetakRadnogVremena().isBefore(LocalTime.now()) ||
+                        (parking.getPocetakRadnogVremena().equals(LocalTime.now())))
+                        && (parking.getKrajRadnogVremena().isAfter(LocalTime.now()) ||
+                        parking.getKrajRadnogVremena().equals(LocalTime.now())))){
+            lblZatvoreno.setVisible(true);
+        }
+        else if(dao.dajBrojSlobodnihMjesta(parking.getParkingId())==0) {
+            lblPopunjen.visibleProperty().set(true);
+            prijavaDugme.disableProperty().set(true);
+        }
         lblNazivParkinga.setText(parking.getNaziv());
         lblLokacija.setText(parking.getLokacija().getUlica());
         lblCijena.setText(Integer.toString(parking.getCijena()));

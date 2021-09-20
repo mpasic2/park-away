@@ -28,9 +28,17 @@
                       <URL value="@/css/stil.css" />
                   </stylesheets>
                   <children>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#exitActionPress" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/redCros.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
                       <ImageView fx:id="imgAbout" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                           <HBox.margin>
-                              <Insets left="149.0" top="15.0" />
+                              <Insets left="96.0" top="15.0" />
                           </HBox.margin>
                      <image>
                         <Image url="@../img/logo.png" />
@@ -96,7 +104,7 @@
                </GridPane.margin></Button>
             <Label text="Nemate račun?" GridPane.rowIndex="6">
                <GridPane.margin>
-                  <Insets left="104.0" top="5.0" />
+                  <Insets left="104.0" top="15.0" />
                </GridPane.margin>
                <font>
                   <Font size="17.0" />
