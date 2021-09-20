@@ -22,6 +22,7 @@ import javafx.stage.StageStyle;
 import javax.swing.text.html.ListView;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static javafx.scene.control.PopupControl.USE_COMPUTED_SIZE;
@@ -120,22 +121,33 @@ public class AdminControler implements Initializable {
         }
         else {
 
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Informativni ekran");
+            alert.setHeaderText("Potvrda brisanja parkinga");
+            alert.setContentText("Da li želite obrisati ovaj parking?");
 
-            String sve = listaParking.getSelectionModel().getSelectedItem().toString();
-            int idParkinga = Integer.parseInt(sve.split(" ")[0]);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                String sve = listaParking.getSelectionModel().getSelectedItem().toString();
+                int idParkinga = Integer.parseInt(sve.split(" ")[0]);
 
-            dao.obrisiPaarking(dao.dajParkinge().get(idParkinga - 1));
+                dao.obrisiPaarking(dao.dajParkinge().get(idParkinga - 1));
 
-            listaParking.refresh();
+                listaParking.refresh();
 
 
-            Stage noviProzor1 = new Stage();
-            Parent roditelj1 = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
-            noviProzor1.setTitle("Administrator");
-            noviProzor1.initStyle(StageStyle.UNDECORATED);
-            Scene scene1 = new Scene(roditelj1, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
-            noviProzor1.setScene(scene1);
-            noviProzor1.show();
+                Stage noviProzor1 = new Stage();
+                Parent roditelj1 = FXMLLoader.load(getClass().getResource("/fxml/administrator.fxml"));
+                noviProzor1.setTitle("Administrator");
+                noviProzor1.initStyle(StageStyle.UNDECORATED);
+                Scene scene1 = new Scene(roditelj1, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+                noviProzor1.setScene(scene1);
+                noviProzor1.show();
+            }
+            else
+                alert.close();
+
+
         }
     }
 

@@ -95,7 +95,11 @@ public class ProfilController implements Initializable {
 
     public void historijaPlacanja(ActionEvent actionEvent) throws IOException {
         Stage stage=new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/historijaPlacanja.fxml"));
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/historijaPlacanja.fxml"));
+        loader.setController(new HistorijaPlacanjaController(close));
+        Parent root = loader.load();
         stage.setTitle("Historija placanja");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
@@ -105,9 +109,7 @@ public class ProfilController implements Initializable {
         });
         stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         stage.show();
-        Node node = (Node) actionEvent.getSource();
-        Stage close=(Stage)node.getScene().getWindow();
-        close.close();
+        close.hide();
     }
 
 

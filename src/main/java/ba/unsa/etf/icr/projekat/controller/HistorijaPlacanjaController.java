@@ -43,6 +43,11 @@ public class HistorijaPlacanjaController implements Initializable {
     public TableColumn<Racun, Integer> colLokacija;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
     ObservableList<Racun> racuniZaListu = FXCollections.observableArrayList();
+    private Stage backScene;
+
+    public HistorijaPlacanjaController(Stage backScene) {
+        this.backScene=backScene;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -90,6 +95,12 @@ public class HistorijaPlacanjaController implements Initializable {
             }
         }
         listaRacuna.setItems(filteredData);
+    }
+
+    public void backParking(ActionEvent actionEvent) throws IOException {
+        backScene.show();
+        Stage close = (Stage) listaRacuna.getScene().getWindow();
+        close.close();
     }
 
 
