@@ -7,6 +7,7 @@ import javafx.util.Pair;
 
 import java.sql.*;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class ParkAwayDAO {
     private Connection con;
@@ -22,6 +23,22 @@ public class ParkAwayDAO {
         try {
             Class.forName("org.sqlite.JDBC");
             con = DriverManager.getConnection("jdbc:sqlite:parkAwayDB.db");
+        } catch (SQLException | ClassNotFoundException  e) {
+            e.printStackTrace();
+        }
+
+        try {
+            getUsers = con.prepareStatement("Select * from korisnik");
+        } catch (SQLException  e) {
+            regenerisiBazu();
+            try {
+                getUsers = con.prepareStatement("Select * from korisnik");
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+        }
+        try {
+
             getCity = con.prepareStatement("Select * from grad");
             getLocation = con.prepareStatement("SELECT * FROM Lokacja");
             getParking = con.prepareStatement("SELECT * FROM Parking");
@@ -44,7 +61,7 @@ public class ParkAwayDAO {
             dajVoziloById= con.prepareStatement("SELECT * From vozilo WHERE vozilo_id=?");
 
             updateRacun = con.prepareStatement("UPDATE racun SET placeno=?, vrijeme_odjave=? WHERE racun_id=?");
-        } catch (SQLException | ClassNotFoundException throwables) {
+        } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
@@ -52,6 +69,24 @@ public class ParkAwayDAO {
     public void closeBase() throws SQLException {
         con.close();
         con = null;
+    }
+    private void regenerisiBazu() {
+        Scanner ulaz = null;
+        ulaz = new Scanner(getClass().getResourceAsStream("/db/parkAwayDB.db.sql"));
+        String sqlUpit = "";
+        while (ulaz.hasNext()) {
+            sqlUpit += ulaz.nextLine();
+            if ( sqlUpit.length() > 1 && sqlUpit.charAt( sqlUpit.length()-1 ) == ';') {
+                try {
+                    Statement stmt = con.createStatement();
+                    stmt.execute(sqlUpit);
+                    sqlUpit = "";
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        ulaz.close();
     }
     public ObservableList<Grad> dajGradove(){
         ObservableList<Grad> gradovi = FXCollections.observableArrayList();

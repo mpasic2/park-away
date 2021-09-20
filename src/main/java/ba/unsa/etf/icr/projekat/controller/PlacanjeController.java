@@ -43,13 +43,14 @@ public class PlacanjeController implements Initializable{
     public Button B3;
     public Button B0;
     public Label lblIznos;
+    Stage backScene;
 
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
 
 
-    public PlacanjeController() {
-
+    public PlacanjeController(Stage backScene) {
+        this.backScene=backScene;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -124,25 +125,9 @@ public class PlacanjeController implements Initializable{
     }
 
     public void odustaniAction(ActionEvent actionEvent) throws IOException {
-
-        Stage stage=new Stage();
-        Node node = (Node) actionEvent.getSource();
-        Stage close=(Stage)node.getScene().getWindow();
-        StatusController statusController = new StatusController(PrijavljeniKorisnik.getTrenutniParking());
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/statusVozila.fxml"));
-        loader.setController(statusController);
-        Parent root = loader.load();
-        stage.setTitle("Status vozila");
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
-                stage.close();
-            }
-        });
-        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-        stage.show();
+        backScene.show();
+        Stage close = (Stage) lblIznos.getScene().getWindow();
         close.close();
-
     }
 
     public void potvrdiAction(ActionEvent actionEvent) {

@@ -46,6 +46,7 @@ public class StatusController implements Initializable {
     public Button dugmePorukaMap;
     public Parking parking;
     long ukupno=0;
+    long protekloVrijeme=0;
     private Stage backScene;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
@@ -58,7 +59,6 @@ public class StatusController implements Initializable {
         lblNaziv.setText(parking.getNaziv());
         lblAdresa.setText(parking.getLokacija().getUlica());
         lblCijena.setText(parking.getCijena()+" KM/h");
-System.out.println("Racun = "+ parking);
         ObservableList<Pair<Integer, Integer>> p= dao.dajSlobodnaMjestaId(parking.getParkingId());
         int brojMjesta = 0;
         for(Pair<Integer, Integer> mjesto: p){
@@ -68,7 +68,7 @@ System.out.println("Racun = "+ parking);
         }
         if(brojMjesta!=0)
             lblMjesto.setText(String.valueOf(brojMjesta));
-        long protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.MINUTES);
+        protekloVrijeme = PrijavljeniKorisnik.getTrenutniRacun().getPrijava().until(LocalTime.now(), ChronoUnit.MINUTES);
         lblVrijeme.setText("Vaše vozilo je parkirano "+ protekloVrijeme +" minuta");
         if(protekloVrijeme>15 && protekloVrijeme<60)
             ukupno=parking.getCijena();
@@ -138,7 +138,25 @@ System.out.println("Racun = "+ parking);
 
     public void odjavaSaParkinga(ActionEvent actionEvent) throws IOException {
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Stage stage=new Stage();
+        Node node = (Node) actionEvent.getSource();
+        Stage close=(Stage)node.getScene().getWindow();
+        OdabirPlacanjaController cont=new OdabirPlacanjaController(parking, close,ukupno ,protekloVrijeme);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/odjavaParkinga.fxml"));
+        loader.setController(cont);
+        Parent root = loader.load();
+        stage.setTitle("Mapa");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+        stage.addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+            if (KeyCode.ESCAPE == event.getCode()) {
+                stage.close();
+            }
+        });
+        stage.show();
+
+        close.hide();
+       /* Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Plaćanje parkingas");
         alert.setHeaderText("Punuđene su Vam opcije plaćanja parkinga");
         alert.setContentText("Odaberite opciju plaćanja!");
@@ -180,7 +198,6 @@ System.out.println("Racun = "+ parking);
             Node node = (Node) actionEvent.getSource();
             Stage close=(Stage)node.getScene().getWindow();
             close.close();
-            //da se otvori mapa
 
 
         } else if (result.get() == buttonTypeTwo) {
@@ -201,7 +218,7 @@ System.out.println("Racun = "+ parking);
             zatvaranjePoruka.close();
         } else {
             alert.close();
-        }
+        }*/
 
 
 

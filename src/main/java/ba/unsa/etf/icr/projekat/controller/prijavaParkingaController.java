@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Pair;
@@ -42,6 +43,11 @@ public class prijavaParkingaController implements Initializable {
     public Label lblPopunjen;
     public Parking parking;
     public Label lblVecPrijavljen;
+    public Button dugmeIzlazMap;
+    public Button dugmeProfilMap;
+    public Button dugmeLokacijaMap;
+    public Button dugmeCarMap;
+    public Button dugmePorukaMap;
     private Stage backScene;
     private ParkAwayDAO dao = ParkAwayDAO.getInstance();
 
@@ -132,8 +138,57 @@ public class prijavaParkingaController implements Initializable {
             close.close();
         }
 
-
-
     }
+
+
+    Navigation navigation= new Navigation();
+
+    public void logOut(ActionEvent actionEvent) throws IOException {
+        navigation.logOut(actionEvent);
+    }
+
+    public void profileAction(ActionEvent actionEvent) throws IOException {
+        navigation.profileAction(actionEvent,PrijavljeniKorisnik.getKorisnik());
+    }
+
+    public void locationAction(ActionEvent actionEvent) throws IOException {
+        navigation.locationAction(actionEvent);
+    }
+
+    public void carMapAction(ActionEvent actionEvent) throws IOException {
+        navigation.carMapAction(actionEvent);
+    }
+
+    public void messageAction(ActionEvent actionEvent) throws IOException {
+        navigation.messageAction(actionEvent);
+    }
+
+    public void mousePopupBack(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Odjava");
+        dugmeIzlazMap.setTooltip(tooltip);
+    }
+    public void mousePopupProfil(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Profil");
+        dugmeProfilMap.setTooltip(tooltip);
+    }
+    public void mousePopupMapa(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Mapa");
+        dugmeLokacijaMap.setTooltip(tooltip);
+    }
+    public void mousePopupAuta(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Automobili");
+        dugmeCarMap.setTooltip(tooltip);
+    }
+    public void mousePopupIzlaz(MouseEvent mouseEvent) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.setText("Izlaz");
+        dugmePorukaMap.setTooltip(tooltip);
+    }
+
+
 
 }

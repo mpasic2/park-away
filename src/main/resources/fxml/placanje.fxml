@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ba.unsa.etf.icr.projekat.controller.PlacanjeController">
+<BorderPane fx:id="borderPaneMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #75a9f9;" stylesheets="/css/stil.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" BorderPane.alignment="CENTER">
             <stylesheets>
@@ -72,15 +72,15 @@
                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
            <children>
-               <Button fx:id="B7" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi7" prefHeight="97.0" prefWidth="138.0" text="7" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-               <Button fx:id="B9" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi9" prefHeight="176.0" prefWidth="303.0" text="9" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+               <Button fx:id="B7" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi7" prefHeight="97.0" prefWidth="138.0" text="7" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+               <Button fx:id="B9" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi9" prefHeight="176.0" prefWidth="303.0" text="9" GridPane.columnIndex="3" GridPane.rowIndex="6" />
                <Button fx:id="B4" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi4" prefHeight="85.0" prefWidth="92.0" text="4" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                <Button fx:id="B5" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi5" prefHeight="168.0" prefWidth="120.0" text="5" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-               <Button fx:id="B8" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi8" prefHeight="110.0" prefWidth="190.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               <Button fx:id="B8" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi8" prefHeight="110.0" prefWidth="190.0" text="8" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                <Button fx:id="B6" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi6" prefHeight="174.0" prefWidth="91.0" text="6" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-               <Button fx:id="B2" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi2" prefHeight="162.0" prefWidth="116.0" text="2" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-               <Button fx:id="B1" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi1" prefHeight="161.0" prefWidth="225.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-               <Button fx:id="B3" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi3" prefHeight="183.0" prefWidth="94.0" text="3" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+               <Button fx:id="B2" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi2" prefHeight="162.0" prefWidth="116.0" text="2" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+               <Button fx:id="B1" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi1" prefHeight="161.0" prefWidth="225.0" text="1" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+               <Button fx:id="B3" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi3" prefHeight="183.0" prefWidth="94.0" text="3" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                <Button fx:id="B0" alignment="CENTER" mnemonicParsing="false" onAction="#Napisi0" prefHeight="189.0" prefWidth="255.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="219.0" text="Unesite Vaš pin:" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <font>

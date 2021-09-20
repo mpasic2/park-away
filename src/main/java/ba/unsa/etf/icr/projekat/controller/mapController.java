@@ -60,7 +60,6 @@ public class mapController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(user);
         Image image = new Image("/img/logo.png");
         imgAbout.setImage(image);
         mapView.getEngine().load(getClass().getResource("/HTML/googlemap.html").toString());
