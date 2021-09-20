@@ -51,7 +51,7 @@
             <RowConstraints />
         </rowConstraints>
          <children>
-            <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
+            <Label fx:id="lblNaziv" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Naziv Parkinga" GridPane.columnSpan="4">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
+            <Label fx:id="lblAdresa" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="Adresa " GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -67,7 +67,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="vrijeme" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="lblVrijeme" layoutX="10.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="vrijeme" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="2 KM" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lblCijena" layoutX="149.0" layoutY="47.0" maxWidth="1.7976931348623157E308" prefHeight="37.0" style="-fx-background-color: #fff; -fx-border-color: #4d4d4d;" text="2 KM" textOverrun="CLIP" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -83,22 +83,22 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </Label>
-          <Button mnemonicParsing="false" prefHeight="58.0" prefWidth="202.0" text="Platite gotovinom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+          <Button mnemonicParsing="false" onAction="#actionGotovina" prefHeight="58.0" prefWidth="202.0" text="Platite gotovinom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnBack" mnemonicParsing="false" prefHeight="50.0" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backAction" prefHeight="50.0" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label text="2 KM" textFill="WHITE" underline="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+            <Label fx:id="lblUkupnaCijena" text="2 KM" textFill="WHITE" underline="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <Button layoutX="109.0" layoutY="345.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="202.0" text="Platite karticom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+            <Button layoutX="109.0" layoutY="345.0" mnemonicParsing="false" onAction="#actionKartica" prefHeight="58.0" prefWidth="202.0" text="Platite karticom" textAlignment="CENTER" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -114,13 +114,13 @@
    </center>
    <bottom>
       <HBox fx:id="ButtonBarMap" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" spacing="35.0" BorderPane.alignment="CENTER">
-         <children>
-             <Button fx:id="dugmeIzlazMap" mnemonicParsing="false"/>
-             <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" />
-             <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" />
-             <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" />
-             <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false"/>
-         </children>
+          <children>
+              <Button fx:id="dugmeIzlazMap" mnemonicParsing="false" onAction="#logOut" onMouseEntered="#mousePopupBack" />
+              <Button fx:id="dugmeProfilMap" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileAction" onMouseEntered="#mousePopupProfil" />
+              <Button fx:id="dugmeLokacijaMap" layoutX="62.0" layoutY="10.0" mnemonicParsing="false" onAction="#locationAction" onMouseEntered="#mousePopupMapa" />
+              <Button fx:id="dugmeCarMap" layoutX="114.0" layoutY="10.0" mnemonicParsing="false" onAction="#carMapAction" onMouseEntered="#mousePopupAuta" />
+              <Button fx:id="dugmePorukaMap" layoutX="166.0" layoutY="10.0" mnemonicParsing="false" onAction="#messageAction" onMouseEntered="#mousePopupIzlaz" />
+          </children>
       </HBox>
    </bottom>
 </BorderPane>
